@@ -8,7 +8,7 @@
 
 ## Cloud Crafters
 
-## Integrantes: <a href="https://www.linkedin.com/in/victorbarq/">Goku Sayajin</a>, <a href="https://www.linkedin.com/in/victorbarq/">Saitama One</a>, <a href="https://www.linkedin.com/in/victorbarq/">Ikki de Fenix</a>, <a href="https://www.linkedin.com/in/victorbarq/">Yusuke Urameshi</a>, <a href="https://www.linkedin.com/in/YvesLevi/">Yves Levi</a>
+## Integrantes: <a href="https://www.linkedin.com/in/carolina-favaro-fricks-1a0423231/">Carolina Fricks</a>, <a href="https://www.linkedin.com/in/victorbarq/">Saitama One</a>, <a href="https://www.linkedin.com/in/victorbarq/">Ikki de Fenix</a>, <a href="https://www.linkedin.com/in/victorbarq/">Yusuke Urameshi</a>, <a href="https://www.linkedin.com/in/YvesLevi/">Yves Levi</a>
 
 ## Descrição
 
