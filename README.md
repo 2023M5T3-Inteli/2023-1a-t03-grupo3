@@ -8,7 +8,7 @@
 
 ## Cloud Crafters
 
-## Integrantes: <a href="https://www.linkedin.com/in/carolina-favaro-fricks-1a0423231/">Carolina Fricks</a>, <a href='https://github.com/2023M5T3-Inteli/2023-1a-t03-grupo3'>Stefano Tinelli</a>, <a href="https://www.linkedin.com/in/sofia-moreiras-pimazzoni/">Sofia Pimazzoni</a>, <a href="https://www.linkedin.com/in/jordan-acs/">Jordan Andrade</a>,  <a href="https://www.linkedin.com/in/marcelofeitoza7/">Marcelo Feitoza</a>,<a href="https://www.linkedin.com/in/marcos-moura-02ab0a258/">Marcos Moura</a>, <a href="https://www.linkedin.com/in/YvesLevi/">Yves Levi</a> 
+## Integrantes: <a href="https://www.linkedin.com/in/carolina-favaro-fricks-1a0423231/">Carolina Fricks</a>, <a href='https://github.com/2023M5T3-Inteli/2023-1a-t03-grupo3'>Stefano Tinelli</a>, <a href="https://www.linkedin.com/in/sofia-moreiras-pimazzoni/">Sofia Pimazzoni</a>, <a href="https://www.linkedin.com/in/jordan-acs/">Jordan Andrade</a>,  <a href="https://www.linkedin.com/in/marcelofeitoza7/">Marcelo Feitoza</a>, <a href="https://www.linkedin.com/in/marcos-moura-02ab0a258/">Marcos Moura</a>, <a href="https://www.linkedin.com/in/YvesLevi/">Yves Levi</a> 
 
 ## Descrição
 
