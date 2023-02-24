@@ -4,6 +4,8 @@ import { NotificationsService } from './notifications.service';
 
 describe('NotificationsController', () => {
   let controller: NotificationsController;
+  let service: NotificationsService;
+  
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -12,9 +14,14 @@ describe('NotificationsController', () => {
     }).compile();
 
     controller = module.get<NotificationsController>(NotificationsController);
+    service = module.get<NotificationsService>(NotificationsService);
   });
 
-  it('should be defined', () => {
+  it('controller should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  it('service should be defined', () => {
+    expect(service).toBeDefined();
   });
 });

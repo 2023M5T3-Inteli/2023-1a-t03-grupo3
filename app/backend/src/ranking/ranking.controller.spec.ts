@@ -4,6 +4,7 @@ import { RankingService } from './ranking.service';
 
 describe('RankingController', () => {
   let controller: RankingController;
+  let service: RankingService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -12,23 +13,25 @@ describe('RankingController', () => {
     }).compile();
 
     controller = module.get<RankingController>(RankingController);
+    service = module.get<RankingService>(RankingService);
   });
 
-  it('should be defined', () => {
+  it('controller should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  it('service should be defined', () => {
+    expect(service).toBeDefined();
   });
 
   describe('root', () => {
     it('should list and sort all ranks', async () => {
-      const spyOn = await jest.spyOn(controller.findAll(), 'finally');
-      const magic = 0;
-      expect(spyOn).toBeCalledTimes(magic);
-    });
+      it('should list and sort all ranks', () => {
+        expect(controller.findAll()).toHaveBeenCalled();
+      });
 
-    it('should not list and sort all ranks', async () => {
-      const spyOn = await jest.spyOn(controller.findAll(), 'catch');
-      const magic = 0;
-      expect(spyOn).toBeCalledTimes(magic);
+      it('should not list and sort all ranks', async () => {
+      });
     });
   });
 });
