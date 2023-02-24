@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateHomepageDto } from './dto/create-homepage.dto';
-import { UpdateHomepageDto } from './dto/update-homepage.dto';
+
 
 @Injectable()
 export class HomepageService {
