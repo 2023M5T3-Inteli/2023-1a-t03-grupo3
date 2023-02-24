@@ -1,10 +1,10 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
-import { createProjectRequest } from './request.module';
-import { AppService } from './request.service';
+import { createProjectRequest } from './dto/createRequest.dto';
+import { requestService } from './request.service';
 
-@Controller('createRequest')
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+@Controller('createController')
+export class requestController {
+  constructor(private readonly appService: requestService) {}
 
   @Get()
   getHello(): string {

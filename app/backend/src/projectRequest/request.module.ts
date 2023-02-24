@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './request.controller';
-import { AppService } from './request.service';
+import { requestController } from './request.controller';
+import { requestService } from './request.service';
 
 @Module({
   imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [requestController],
+  providers: [requestService],
 })
 export class AppModule {}
 
-export class createProjectRequest{
-  project: string;
-  manager: string;
-  email: string;
-  name: string;
-}
+// export class createProjectRequest{
+//   project: string;
+//   manager: string;
+//   email: string;
+//   name: string;
+// }
