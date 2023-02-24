@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
-import { createProjectRequest } from './app.module';
-import { AppService } from './app.service';
+import { createProjectRequest } from './request.module';
+import { AppService } from './request.service';
 
 @Controller('createRequest')
 export class AppController {
@@ -14,7 +14,6 @@ export class AppController {
   @Post()
   createRequest(@Body() createProjectRequest: createProjectRequest) {
     const { project, manager, name, email} = createProjectRequest;
-
     // Salva os dados.
     console.log(`Project Name: ${project}, Manager: ${manager}, Name: ${name}, E-mail: ${email}`);
 
