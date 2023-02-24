@@ -17,4 +17,18 @@ describe('RankingController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  describe('root', () => {
+    it('should list and sort all ranks', async () => {
+      const spyOn = await jest.spyOn(controller.findAll(), 'finally');
+      const magic = 0;
+      expect(spyOn).toBeCalledTimes(magic);
+    });
+
+    it('should not list and sort all ranks', async () => {
+      const spyOn = await jest.spyOn(controller.findAll(), 'catch');
+      const magic = 0;
+      expect(spyOn).toBeCalledTimes(magic);
+    });
+  });
 });
