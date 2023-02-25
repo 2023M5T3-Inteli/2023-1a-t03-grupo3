@@ -1,4 +1,4 @@
-export class createProjectRequest{
+export class createRequestDto{
     project: string;
     manager: string;
     email: string;

@@ -7,7 +7,7 @@ import { requestService } from './request.service';
   controllers: [requestController],
   providers: [requestService],
 })
-export class AppModule {}
+export class requestModule {}
 
 // export class createProjectRequest{
 //   project: string;
