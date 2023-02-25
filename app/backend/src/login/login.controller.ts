@@ -11,24 +11,4 @@ export class LoginController {
   create(@Body() createLoginDto: CreateLoginDto) {
     return this.loginService.create(createLoginDto);
   }
-
-  @Get()
-  findAll() {
-    return this.loginService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.loginService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLoginDto: UpdateLoginDto) {
-    return this.loginService.update(+id, updateLoginDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.loginService.remove(+id);
-  }
 }

@@ -18,4 +18,13 @@ export class RankingService {
       send(error)
     }
   }
+
+  getUserRanking(): any{
+    let userRanking = {
+      name: "Marcos",
+      score: 22
+    }
+    return userRanking
+  }
+  
 }
