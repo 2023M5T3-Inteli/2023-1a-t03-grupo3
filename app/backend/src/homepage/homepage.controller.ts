@@ -5,7 +5,7 @@ import { HomepageService } from './homepage.service';
 export class HomepageController {
   constructor(private readonly homepageService: HomepageService) {}
 
-  @Get('home')
+  @Get()
   findAll():any {
     return this.homepageService.findAll();
   }
