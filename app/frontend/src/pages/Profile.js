@@ -1,7 +1,14 @@
+import { Sidebar } from "../components/Sidebar"
+import { Title } from "../components/Title"
+
 export const Profile = () => {
     return (
-        <div>
-            <h1>This is profile</h1>
+        <div className="flex min-h-screen max-w-screen w-full h-full">
+            <Sidebar />
+
+            <div className="w-4/5">
+                <Title>Profile</Title>
+            </div>
         </div>
     )
 }
