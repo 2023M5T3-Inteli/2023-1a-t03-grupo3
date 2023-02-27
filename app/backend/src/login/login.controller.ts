@@ -10,4 +10,8 @@ export class LoginController {
   create(@Body() createLoginDto: CreateLoginDto) {
     return this.loginService.create(createLoginDto);
   }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
