@@ -4,6 +4,7 @@ import { createBrowserRouter, createRoutesFromElements, Link, Outlet, Route, Rou
 import { Index } from './pages';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
+import { Project } from './pages/Project'
 
 export default function App(props) {
 
@@ -13,6 +14,7 @@ export default function App(props) {
         <Route index element={<Index />} />
         <Route path="/home" element={<Home />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/project' element={<Project />} />
       </Route>
     )
   );
@@ -25,10 +27,11 @@ export default function App(props) {
 const Root = () => {
   return (
     <>
-      <div className='flex flex-row w-full p-4 justify-between'>
+      {/* <div className='flex flex-row w-full p-4 justify-between'>
         <Link to="/home">Home</Link>
         <Link to="/profile">Profile</Link>
-      </div>
+        <Link to="/project">Project</Link>
+      </div> */}
 
       <div>
         <Outlet />
