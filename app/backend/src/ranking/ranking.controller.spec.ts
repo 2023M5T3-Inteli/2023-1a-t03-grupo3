@@ -16,22 +16,32 @@ describe('RankingController', () => {
     service = module.get<RankingService>(RankingService);
   });
 
-  it('controller should be defined', () => {
+  it('should be defined', () => {
     expect(controller).toBeDefined();
   });
 
-  it('service should be defined', () => {
-    expect(service).toBeDefined();
-  });
-
-  describe('root', () => {
+  describe('should verify ranking', () => {
     it('should list and sort all ranks', async () => {
-      it('should list and sort all ranks', () => {
-        expect(controller.findAll()).toHaveBeenCalled();
-      });
+      const resultExpected = [
+        { name: 'Austin', score: 50 },
+        { name: 'Edward', score: 20 },
+      ];
+      jest.spyOn(service, 'findAll').mockImplementation(() => resultExpected);
 
-      it('should not list and sort all ranks', async () => {
-      });
+      expect(await controller.findAll()).toBe(resultExpected);
+    });
+    it('should not list and sort all ranks', async () => {
+      const resultExpected = [
+        { name: 'Austin', score: 50 },
+        { name: 'Edward', score: 20 },
+      ];
+      const result = [
+        { name: 'Edward', score: 20 },
+        { name: 'Austin', score: 50 },
+      ];
+      jest.spyOn(service, 'findAll').mockImplementation(() => resultExpected);
+
+      expect(await controller.findAll()).not.toBe(result);
     });
   });
 });

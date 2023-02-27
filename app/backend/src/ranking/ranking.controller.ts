@@ -11,8 +11,8 @@ export class RankingController {
     return this.rankingService.findAll();
   }
   
-  @Get('user')
-  getUserRanking(): any{
-    return this.rankingService.getUserRanking()
-  }
+  // @Get('user')
+  // getUserRanking(): any{
+  //   return this.rankingService.getUserRanking()
+  // }
 }

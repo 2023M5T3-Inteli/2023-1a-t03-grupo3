@@ -6,7 +6,6 @@ import { Ranking } from './interfaces/ranking.interface';
 export class RankingService {
   private readonly rankings: Ranking[] = [];
   findAll(): Ranking[] {
-    try {
       this.rankings.sort((a, b) => {
         if(a.score > b.score) {
           return -1;
@@ -14,17 +13,14 @@ export class RankingService {
       })
   
       return this.rankings;
-    } catch (error) {
-      send(error)
-    }
   }
 
-  getUserRanking(): any{
-    let userRanking = {
-      name: "Marcos",
-      score: 22
-    }
-    return userRanking
-  }
+  // getUserRanking(): any{
+  //   let userRanking = {
+  //     name: "Marcos",
+  //     score: 22
+  //   }
+  //   return userRanking
+  // }
   
 }
