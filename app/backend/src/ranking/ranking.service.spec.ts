@@ -28,14 +28,14 @@ describe('RankingService', () => {
 
   it('should list and sort all ranks', () => {
     const rankingMock = [
-      { name: 'Yves', score: '40' },
-      { name: 'Austin', score: '50' },
-      { name: 'Edward', score: '20' },
+      { name: 'Yves', score: 40 },
+      { name: 'Austin', score: 50},
+      { name: 'Edward', score: 20 },
     ];
     const mockResult = [
-      { name: 'Austin', score: '50' },
-      { name: 'Yves', score: '40' },
-      { name: 'Edward', score: '20' },
+      { name: 'Austin', score: 50 },
+      { name: 'Yves', score: 40 },
+      { name: 'Edward', score: 20 },
     ];
     
     expect(rankingMock).toBe(mockResult);

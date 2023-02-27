@@ -10,4 +10,9 @@ export class RankingController {
   async findAll(): Promise<Ranking[]> {
     return this.rankingService.findAll();
   }
+  
+  @Get('user')
+  getUserRanking(): any{
+    return this.rankingService.getUserRanking()
+  }
 }
