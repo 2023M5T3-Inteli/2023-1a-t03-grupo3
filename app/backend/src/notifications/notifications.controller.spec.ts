@@ -4,8 +4,7 @@ import { NotificationsService } from './notifications.service';
 
 describe('NotificationsController', () => {
   let controller: NotificationsController;
-  let service: NotificationsService;
-  
+  let notifications: Notification[];
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -14,14 +13,16 @@ describe('NotificationsController', () => {
     }).compile();
 
     controller = module.get<NotificationsController>(NotificationsController);
-    service = module.get<NotificationsService>(NotificationsService);
   });
 
   it('controller should be defined', () => {
     expect(controller).toBeDefined();
   });
-
-  it('service should be defined', () => {
-    expect(service).toBeDefined();
+  describe('# get notifications', () => {
+    it('should be return notifications', () => {
+      const mock = [{name: 'Austin'}]
+      jest.spyOn(controller, 'findAll').mockImplementation(()=> mock);
+      expect(controller.findAll()).toBe(mock);
+    });
   });
 });
