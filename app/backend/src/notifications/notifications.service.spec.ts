@@ -3,6 +3,7 @@ import { NotificationsService } from './notifications.service';
 
 describe('NotificationsService', () => {
   let service: NotificationsService;
+  let notifications: Notification[];
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -14,5 +15,12 @@ describe('NotificationsService', () => {
 
   it('should be defined', () => {
     expect(service).toBeDefined();
+  });
+  describe('# get notifications', () => {
+    it('should be return notifications', () => {
+      const mock = [{name: 'Austin'}]
+      jest.spyOn(service, 'findAll').mockImplementation(()=> mock);
+      expect(service.findAll()).toBe(mock);
+    });
   });
 });
