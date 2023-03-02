@@ -1,7 +1,6 @@
 import albertoPicture from "../assets/alberto.png";
 
 export const UserRanked = ({ name, rating, index }) => {
-  console.log(index);
   return (
     <div className="flex flex-row">
       <p className="font-montserrat font-semibold w-20 text-center m-4">
