@@ -15,4 +15,19 @@ describe('HomepageService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('should get all projects', () => {
+    expect(service.findAll()).toEqual([
+      {
+        id: 1,
+        projectName: "Lorem ip",
+        description: "Aaaaaaaa"
+      },
+      {
+        id: 2,
+        projectName: "Project 2",
+        description: "bbbbbb"
+      }
+    ])
+  })
 });

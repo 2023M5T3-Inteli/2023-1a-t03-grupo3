@@ -17,4 +17,19 @@ describe('HomepageController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  it('should get all projects', () => {
+    expect(controller.findAll()).toEqual([
+      {
+        id: 1,
+        name: "Lorem ip",
+        description: "Aaaaaaaa"
+      },
+      {
+        id: 2,
+        name: "Project 2",
+        description: "bbbbbb"
+      }
+    ])
+  })
 });
