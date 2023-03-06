@@ -18,7 +18,7 @@ export const Sidebar = () => {
                 <Link className='text-[#e1e1e1] mb-1 font-semibold uppercase'>CREATE NEW PROJECT</Link>
                 <Link className='text-[#e1e1e1] mb-1 font-semibold uppercase'>MY PROJECTS</Link>
                 <Link className='text-[#e1e1e1] mb-1 font-semibold uppercase'>NOTIFICATIONS</Link>
-                <Link className='text-[#e1e1e1] mb-1 font-semibold uppercase'>RANKING</Link>
+                <Link to="/ranking" className='text-[#e1e1e1] mb-1 font-semibold uppercase'>RANKING</Link>
                 <Link className='text-[#e1e1e1] mb-1 font-semibold uppercase'>FAVORITES</Link>
                 <Link className='text-[#e1e1e1] font-semibold uppercase'>LANGUAGE</Link>
             </div>

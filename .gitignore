@@ -6,4 +6,6 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/
 app/frontend/node_modules
+app/frontend/node_modules/*
 app/backend/node_modules
+app/backend/node_modules/*
