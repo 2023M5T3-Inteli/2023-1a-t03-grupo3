@@ -37,15 +37,9 @@ A solução proposta pelo time de desenvolvimento é a criação de uma platafor
 |.gitignore<br>
 |README.md<br>
 
-## 💻 Configuração para Desenvolvimento
+## Documentação do projeto
 
-1 - Faça o download do GODOT e deste repositório.
-2 - Abra o GODOT, ao ser prontificado clique em IMPORTAR.
-3 - Selecione a pasta onde descompactou este repositório.
-
-Para abrir este projeto você necessita das seguintes ferramentas:
-
--<a href="https://godotengine.org/download">GODOT</a>
+https://grupo3-inteli.atlassian.net/wiki/spaces/D/pages/1212417/DOCUMENTA+O
 
 ## 🗃 Histórico de lançamentos
 
