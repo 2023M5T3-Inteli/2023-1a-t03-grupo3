@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { Ranking } from './interfaces/ranking.interface';
 import { RankingService } from './ranking.service';
 
@@ -10,9 +10,9 @@ export class RankingController {
   async findAll(): Promise<Ranking[]> {
     return this.rankingService.findAll();
   }
-  
-  // @Get('user')
-  // getUserRanking(): any{
-  //   return this.rankingService.getUserRanking()
-  // }
+
+  @Get(':id')
+  async findOne(@Param('id') id: number): Promise<Ranking[]> {
+    return this.rankingService.findOne(id);
+  }
 }

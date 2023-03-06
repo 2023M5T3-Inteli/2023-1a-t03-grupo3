@@ -25,4 +25,15 @@ describe('RankingService', () => {
 
     expect(await service.findAll()).toBe(mockResult);
   });
+
+  it('should select an especific person', async () => {
+    const mock = [
+      { id: 4, name: 'Austin', score: 50 },
+    ];
+
+    const mockResult = [{name:'Austin', score: 50}]
+    jest.spyOn(service, 'findOne').mockImplementation(() => mock);
+
+    expect(await service.findOne(4)).toBe(mockResult);
+  });
 });
