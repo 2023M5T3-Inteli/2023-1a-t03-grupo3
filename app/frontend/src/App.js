@@ -5,7 +5,8 @@ import { Index } from './pages';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
 import { Project } from './pages/Project';
-import { Login } from './pages/Login'
+import { Login } from './pages/Login';
+import { Createproject } from './pages/Createproject'
 
 
 export default function App(props) {
@@ -18,6 +19,7 @@ export default function App(props) {
         <Route path='/profile' element={<Profile />} />
         <Route path='/project' element={<Project />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/createproject' element={<Createproject />} />
       </Route>
     )
   );
