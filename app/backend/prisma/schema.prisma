@@ -10,8 +10,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+model User {}
+//marcosx
+model UserProjects {}
+
+model Project {
+    id
+    title
+    description
+    manager
+    start
+    end
+    
 }
+
+
+
+model Members {}
+//stefano
+
+model Login {
+  id
+}
+

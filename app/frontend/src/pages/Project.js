@@ -9,32 +9,33 @@ import { Users } from "../assets/users.jsx";
 import { Arrow } from "../assets/arrow";
 
 export const Project = () => {
-    const [project, setProject] = useState({
-        title: "Lorem ipsum",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eu aliquam nisl nisl sit amet nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eu aliquam nisl nisl sit amet nisl.",
-        collaborators: [
-            {
-                type: "analyst",
-                amount: 5,
-                enrolled: 1,
-            },
-            {
-                type: "full-stack",
-                amount: 5,
-                enrolled: 3,
-            },
-            {
-                type: "ux designer",
-                amount: 2,
-                enrolled: 0,
-            },
-        ],
-        durationInWeeks: 7,
-        subject: "Programming",
-    });
 
     useEffect(() => {
+        let project = {
+            title: "Lorem ipsum",
+            description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eu aliquam nisl nisl sit amet nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eu aliquam nisl nisl sit amet nisl.",
+            collaborators: [
+                {
+                    type: "analyst",
+                    amount: 5,
+                    enrolled: 1,
+                },
+                {
+                    type: "full-stack",
+                    amount: 5,
+                    enrolled: 3,
+                },
+                {
+                    type: "ux designer",
+                    amount: 2,
+                    enrolled: 0,
+                },
+                ],
+            durationInWeeks: 7,
+            subject: "Programming",
+        }
+        
         setTitle(project.title);
         setDescription(project.description);
         setCollaboratorsAmount(
@@ -59,8 +60,9 @@ export const Project = () => {
     const [enrolledCollaborators, setEnrolledColaboratos] = useState(0);
     const [duration, setDuration] = useState(0);
     const [subject, setSubject] = useState("");
-
     const [percentile, setPercentile] = useState(0)
+
+    const [project, setProject] = useState({})
 
     return (
         <div className="w-full min-h-screen h-full p-0 flex flex-col items-center">
