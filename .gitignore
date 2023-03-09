@@ -7,10 +7,18 @@ export_presets.cfg
 .mono/
 
 # node_modules
+app/frontend/yarn.lock
+app/frontend/package-lock.json
+app/backend/yarn.lock
+app/backend/package-lock.json
 app/frontend/node_modules
+app/frontend/node_modules/*
 app/backend/node_modules
 
 # .env
 app/frontend/.env
 app/backend/.env
 app/frontend/node_modules/.cache
+app/backend/node_modules/*
+app/backend/.env
+app/frontend/node_modules/.cache/.eslintcache

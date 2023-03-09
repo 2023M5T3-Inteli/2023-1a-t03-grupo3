@@ -1,10 +1,11 @@
 import './App.css';
 
-import { createBrowserRouter, createRoutesFromElements, Link, Outlet, Route, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProvider } from 'react-router-dom';
 import { Index } from './pages';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
 import { Project } from './pages/Project';
+import { Ranking } from './pages/Ranking';
 import { Login } from './pages/Login'
 
 
