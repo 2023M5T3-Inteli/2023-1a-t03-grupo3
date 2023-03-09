@@ -8,13 +8,16 @@ import { Book } from "../assets/book.jsx";
 import { Users } from "../assets/users.jsx";
 import { Arrow } from "../assets/arrow";
 
+import send from "../assets/send.svg"
+import { Link } from "react-router-dom";
+
 export const Project = () => {
 
     useEffect(() => {
         let project = {
             title: "Lorem ipsum",
             description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eu aliquam nisl nisl sit amet nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eu aliquam nisl nisl sit amet nisl.",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eu aliquam nisl nisl sit amet nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eu aliquam nisl nisl sit amet nisl.",
             collaborators: [
                 {
                     type: "analyst",
@@ -31,11 +34,11 @@ export const Project = () => {
                     amount: 2,
                     enrolled: 0,
                 },
-                ],
+            ],
             durationInWeeks: 7,
             subject: "Programming",
         }
-        
+
         setTitle(project.title);
         setDescription(project.description);
         setCollaboratorsAmount(
@@ -65,8 +68,12 @@ export const Project = () => {
     const [project, setProject] = useState({})
 
     return (
-        <div className="w-full min-h-screen h-full p-0 flex flex-col items-center">
+        <div className="w-full min-h-screen h-full p-0 flex flex-col items-center pb-16">
             <div className="bg-[#061826] w-full px-8 md:px-16 py-8 md:py-16 flex flex-col md:flex-row justify-center items-center md:justify-between">
+                <Link to={"/home"} className="absolute text-white top-0 left-0 ml-4 md:ml-8 mt-4 md:mt-8 rotate-90">
+                    <Arrow color={"white"} />
+                </Link>
+
                 <div className="text-center w-full md:w-3/5">
                     <div className="mb-4">
                         <Title>{title}</Title>
@@ -113,16 +120,22 @@ export const Project = () => {
                         </p>
                     </div>
 
-                    <div className="mt-8 md:mt-24 flex justify-center">
-                        <button className="bg-[#061826] text-[#f1f1f1] flex py-4 px-8 rounded-full font-semibold text-xl items-center">
-                            <p className="mr-4">Apply now</p> <Arrow />
+                    <div className="mt-8 md:mt-16 flex justify-center">
+                        <button className="bg-[#061826] text-[#4A92FF] flex py-4 px-8 rounded-full font-semibold text-xl items-center" onClick={() => {
+                            // scroll down to the application questions
+                            window.scrollTo({
+                                top: document.body.scrollHeight,
+                                behavior: 'smooth'
+                            })
+                        }}>
+                            <p className="mr-2">Apply</p><Arrow />
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div className="w-full px-16 py-16 flex justify-between">
-                <div className="text-center w-3/5">
+            <div className="w-full p-4 md:px-16 py-8 md:py-16 flex justify-between">
+                <div className="text-center w-full md:w-3/5">
                     <Text color="#061826" variant={"xl"} bold>
                         {description}
                     </Text>
@@ -138,9 +151,8 @@ export const Project = () => {
                             <div
                                 className={"h-2.5 rounded-full"}
                                 style={{
-                                    width: `${
-                                        enrolledCollaborators / collaboratorsAmount * 100
-                                    }%`,
+                                    width: `${enrolledCollaborators / collaboratorsAmount * 100
+                                        }%`,
                                 }}
                             ></div>
                         </div>
@@ -148,8 +160,57 @@ export const Project = () => {
                     {percentile < 100 ? <Title color={"#e2e2e2"} variant={3}>Open for subscriptions!</Title> : null}
                 </div>
             </div>
-                
-            <div className="w-full md:w-11/12 border-2 border-red-500">123</div>
+
+            {/* Application questions */}
+            <div className="w-full px-4 md:px-16 py-2 md:w-full">
+                <Title color="#e2e2e2" variant={2}>Application questions</Title>
+
+                {/* Question */}
+                <div className="w-full">
+                    <div className="mt-4">
+                        <Text variant={"lg"} color="e2e2e2" bold>Have you ever worked with any of the skills of this project?</Text>
+                        <input className="bg-white border border-gray-200 rounded-lg w-full p-2 shadow-md" placeholder="Your answer..." />
+                    </div>
+
+                    <div className="mt-4">
+                        <Text variant={"lg"} color="e2e2e2" bold>Witch paper do you want to apply?</Text>
+                        <input className="bg-white border border-gray-200 rounded-lg w-full p-2 shadow-md" placeholder="Your answer..." />
+                    </div>
+                </div>
+
+                <div className="mt-4">
+                    <Text variant={"lg"} color="e2e2e2" bold>Attachments</Text>
+                    <input class="block w-full text-sm border border-gray-200 rounded-lg cursor-pointer shadow-md bg-whitex focus:outline-none dark:placeholder-gray-400 p-2" id="multiple_files" type="file" multiple />
+                </div>
+
+                <div className="mt-4">
+                    <Text variant={"lg"} color={"e2e2e2"} bold>
+                        Would you like to receive a performance report at the end of the project?
+                    </Text>
+                    {/* create a checkbox for yes or no */}
+
+                    <div className="flex items-center">
+                        <input type="checkbox" className="mr-2 rounded-full" />
+                        <Text variant={"lg"} color={"e2e2e2"} bold>
+                            Yes
+                        </Text>
+
+                        <input type="checkbox" className="mr-2 ml-4" />
+                        <Text variant={"lg"} color={"e2e2e2"} bold>
+                            No
+                        </Text>
+                    </div>
+                </div>
+
+                <div className="mt-8">
+                    <button className="flex rounded-full p-4 justify-center items-center bg-[#061826] text-[#4A92FF]">
+                        <img className="mr-2" src={send} width={24} alt="send" />
+                        <Text variant={"lg"} color={"e2e2e2"} bold>
+                            Submit application
+                        </Text>
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };

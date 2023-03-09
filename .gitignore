@@ -13,3 +13,4 @@ app/backend/node_modules
 # .env
 app/frontend/.env
 app/backend/.env
+app/frontend/node_modules/.cache
