@@ -5,9 +5,10 @@ import { Index } from './pages';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
 import { Project } from './pages/Project';
-import { Ranking } from './pages/Ranking';
-import { Login } from './pages/Login'
+import { Login } from './pages/Login';
 import { Notification } from './pages/Notification'
+import { Createproject } from './pages/Createproject'
+import { Ranking } from './pages/Ranking';
 
 
 export default function App(props) {
@@ -22,28 +23,20 @@ export default function App(props) {
         <Route path='/ranking' element={<Ranking />} />
         <Route path='/login' element={<Login />} />
         <Route path='/notification' element={<Notification/>}/>
+        <Route path='/createproject' element={<Createproject />} />
       </Route>
     )
   );
 
-  return (
-    <RouterProvider router={router} />
-  );
+	return (
+		<RouterProvider router={router} />
+	);
 }
 
 const Root = () => {
-  return (
-    <>
-      {/* <div className='flex flex-row w-full p-4 justify-between'>
-        <Link to="/home">Home</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/project">Project</Link>
-      </div> */}
-
-      <div>
-        <Outlet />
-      </div>
-    </>
-  )
+	return (
+		<div>
+			<Outlet />
+		</div>
+	)
 }
-
