@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { Ranking } from './interfaces/ranking.interface';
+import { ApiBody } from '@nestjs/swagger';
+import { Ranking } from './entity/ranking.entity';
+import { RankingInterface } from './interfaces/ranking.interface';
 
 @Injectable()
 export class RankingService {
-  private readonly rankings: Ranking[] = [];
-  findAll(): Ranking[] {
+  private readonly rankings: RankingInterface[] = [];
+  private readonly ranked: Ranking[] = [];
+  findAll(): RankingInterface[] {
     this.rankings.sort((a, b) => {
       if (a.score > b.score) {
         return -1;
@@ -14,9 +17,7 @@ export class RankingService {
     return this.rankings;
   }
 
-  findOne(id: number): Ranking[] {
-    const person = this.rankings[id];
-    const rankedUser = [{ name: person.name, score: person.score }];
-    return rankedUser;
+  findOne(id: number): Ranking {
+    return this.ranked[id];
   }
 }

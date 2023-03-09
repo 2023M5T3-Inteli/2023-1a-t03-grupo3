@@ -1,12 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import { Homepage } from './entity/homepage.entity';
 
 @Injectable()
 export class HomepageService {
-  findAll(): any {
-    let projects ={
-      projectName: "Lorem ipsum",
-      description: "Lorem ipsum dolor sit amet. Quo iste error ut nulla nesciunt et consequuntur facilis aut doloremque debitis."
-    }
-    return projects;
+  private readonly projects: Homepage[];
+  findAll(): Homepage[] {
+    return this.projects;
   }
 }

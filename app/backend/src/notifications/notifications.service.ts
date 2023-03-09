@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Notification } from './interfaces/notifications.interface';
+import { NotificationInterface } from './interfaces/notifications.interface';
 @Injectable()
 export class NotificationsService {
-  private readonly notifications: Notification[] = [];
-  findAll(): Notification[] {
+  private readonly notifications: NotificationInterface[] = [];
+  findAll(): NotificationInterface[] {
     return this.notifications;
   }
 }

@@ -3,11 +3,10 @@ import { requestController } from './request.controller';
 import { requestService } from './request.service';
 
 @Module({
-  imports: [],
   controllers: [requestController],
   providers: [requestService],
 })
-export class requestModule {}
+export class RequestModule {}
 
 // export class createProjectRequest{
 //   project: string;
