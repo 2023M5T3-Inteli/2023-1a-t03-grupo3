@@ -9,10 +9,12 @@ export const Createproject = () => {
         <div className="flex col min-h-screen max-w-screen w-full h-full">
             <Sidebar />
 
-            <div className="bg-[#F0F0F0] w-4/5 flex flex-col">
-                <Title>Create new project</Title>
+            <div className="bg-[#F0F0F0] w-4/5 flex flex-col justify-center items-center px-4 py-8">
+                <div className='w-full'>
+                    <Title variant={3} color={"e2e2e2"}>Create new project</Title>
+                </div>
 
-                <div className="h-full ml-8 mr-8 mt-8 mb-8 flex flex-col bg-[#FFFFFF] rounded-lg pt-5 pb-5 pl-5 pr-5 shadow-lg">
+                <div className="h-full ml-8 mr-8 flex flex-col bg-[#FFFFFF] rounded-lg pt-5 pb-5 pl-5 pr-5 shadow-lg w-full">
                     <div className="flex flex-col">
                         <p>Title</p>
                         <input type="text" className="bg-[#E1E1E1] rounded-lg pt-1 pb-1 pl-1 text-[#000000]" placeholder="Write the title of the project you are proposing"></input>
