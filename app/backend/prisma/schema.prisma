@@ -15,26 +15,23 @@ model User {}
 model UserProjects {}
 
 model Project {
-    id
-    title
-    description
-    manager
-    start
-    end
+    id          Int @id @default(autoincrement())
+    title       String
+    description String
+    manager     String
+    start_date  DateTime
+    end_date    DateTime
+    subject     String
+    status      String
+    tags        String?
+    att         String?
     
 }
 
 
 
-model Members { 
-  Pr.id  Int  @id @default(autoincrement())
-  Função String
-  Qnt.Função Int
-  Qnt.Funç.Preenchida Int    
-}
+model Members { }
 
 
-model Login {
-  id
-}
+model Login { }
 
