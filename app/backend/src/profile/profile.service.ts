@@ -1,16 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { UpdateProfileDto } from './dto/update-profile.dto';
-import { Profile } from './interfaces/profile.interface';
+import { ProfileInterface } from './interfaces/profile.interface';
 
 @Injectable()
 export class ProfileService {
-  private readonly profiles: Profile[] = [];
+  private readonly profiles: ProfileInterface[] = [];
   
-  findOne(id: number): Profile[] {
+  findOne(id: number): ProfileInterface[] {
     return this.profiles;
   }
 
   update(id: number, updateProfileDto: UpdateProfileDto) {
-
   }
 }
