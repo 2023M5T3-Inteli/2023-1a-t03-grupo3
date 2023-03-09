@@ -15,3 +15,4 @@ app/frontend/node_modules/*
 app/backend/node_modules
 app/backend/node_modules/*
 app/backend/.env
+app/frontend/node_modules/.cache/.eslintcache
