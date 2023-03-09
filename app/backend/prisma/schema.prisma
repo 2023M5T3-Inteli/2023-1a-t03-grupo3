@@ -26,8 +26,13 @@ model Project {
 
 
 
-model Members {}
-//stefano
+model Members { 
+  Pr.id  Int  @id @default(autoincrement())
+  Função String
+  Qnt.Função Int
+  Qnt.Funç.Preenchida Int    
+}
+
 
 model Login {
   id
