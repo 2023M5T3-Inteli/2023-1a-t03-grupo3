@@ -5,7 +5,7 @@ export const Sidebar = () => {
     return (
         <div className="flex flex-col w-1/5 bg-[#061826] py-4 px-2 text-[#f1f1f1]">
             <Link to="/profile" className='flex flex-row w-full items-center justify-center mb-8'>
-                <img src={albertoPicture} className="w-8 h-8 mr-4" />
+                <img alt="" src={albertoPicture} className="w-8 h-8 mr-4" />
 
                 <div>
                     <p className='text-[0.75rem]'>Alberto Castilho</p>
