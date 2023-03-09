@@ -11,7 +11,6 @@ export const Profile = () => {
             <Sidebar />
 
             <div className="w-4/5 bg-[#F0F0F0]">
-
                 <div className="rounded-xl bg-white border-2 w-auto h-auto m-4 p-4">
                     <div className="rounded-l-xl w-40 inline-block"></div>
 
