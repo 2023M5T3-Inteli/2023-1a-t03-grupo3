@@ -7,3 +7,4 @@ export_presets.cfg
 .mono/
 app/frontend/node_modules
 app/backend/node_modules
+app/backend/.env
