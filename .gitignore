@@ -5,6 +5,13 @@ export_presets.cfg
 
 # Mono-specific ignores
 .mono/
+
+app/frontend/yarn.lock
+app/frontend/package-lock.json
+app/backend/yarn.lock
+app/backend/package-lock.json
 app/frontend/node_modules
+app/frontend/node_modules/*
 app/backend/node_modules
+app/backend/node_modules/*
 app/backend/.env
