@@ -4,39 +4,43 @@ import { UserRanked } from "../components/UserRanked";
 export const Ranking = () => {
   const users = [
     {
-      name: "Amet Mattis Vulputate",
+      name: "Sócrates",
       rating: 60,
     },
     {
-      name: "Amet Mattis Vulputate",
+      name: "Aristóteles",
       rating: 40,
     },
     {
-      name: "Amet Mattis Vulputate",
+      name: "Arrascaeta",
       rating: 50,
     },
     {
-      name: "Amet Mattis Vulputate",
+      name: "Gabigol",
       rating: 70,
     },
     {
-      name: "Amet Mattis Vulputate",
+      name: "Gerson",
       rating: 70,
     },
     {
-      name: "Amet Mattis Vulputate",
+      name: "Bruno Henrique",
       rating: 70,
     },
     {
-      name: "Amet Mattis Vulputate",
+      name: "Courtois",
       rating: 70,
     },
     {
-      name: "Amet Mattis Vulputate",
+      name: "De Bruyne",
       rating: 70,
     },
     {
-      name: "Amet Mattis Vulputate",
+      name: "Platão",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
       rating: 70,
     },
   ];
@@ -59,7 +63,8 @@ export const Ranking = () => {
           .sort((a, b) => (a.rating < b.rating ? 1 : -1))
           .map((item, index) => {
             return (
-              <UserRanked index={index} name={item.name} rating={item.rating} />
+              <UserRanked id={item.id} index={index} name={item.name} rating={item.rating} />
+        
             );
           })}
       </div>
