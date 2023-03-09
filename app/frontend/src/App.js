@@ -26,24 +26,15 @@ export default function App(props) {
     )
   );
 
-  return (
-    <RouterProvider router={router} />
-  );
+	return (
+		<RouterProvider router={router} />
+	);
 }
 
 const Root = () => {
-  return (
-    <>
-      {/* <div className='flex flex-row w-full p-4 justify-between'>
-        <Link to="/home">Home</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/project">Project</Link>
-      </div> */}
-
-      <div>
-        <Outlet />
-      </div>
-    </>
-  )
+	return (
+		<div>
+			<Outlet />
+		</div>
+	)
 }
-
