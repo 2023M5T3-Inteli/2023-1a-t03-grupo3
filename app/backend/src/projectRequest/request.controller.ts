@@ -1,14 +1,14 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import {
   ApiBearerAuth,
-  ApiOperation,
-  ApiResponse,
-  ApiTags,
+  ApiOperation, ApiResponse,
+  ApiTags
 } from '@nestjs/swagger';
 import { createRequestDto } from './dto/create-request.dto';
+import { RequestEntity } from './entities/request.entity';
 import { requestService } from './request.service';
 
-@ApiBearerAuth()
+@ApiBearerAuth('defaultBearerAuth')
 @ApiTags('project-request')
 @Controller('request')
 export class requestController {
@@ -16,18 +16,12 @@ export class requestController {
 
   @Post()
   @ApiOperation({ summary: 'Create project' })
+  @ApiResponse({
+    status: 201,
+    description: 'This method login info',
+    type: RequestEntity
+  })
   create(@Body() createRequestDto: createRequestDto) {
     return this.requestService.create(createRequestDto);
   }
 }
-
-// console.log(`Project Name: ${project}, Manager: ${manager}, Name: ${name}, E-mail: ${email}`);
-// return {
-//   message: 'Request created and pending aproval.',
-//   data: {
-//     project,
-//     manager,
-//     name,
-//     email,
-//   },
-// };

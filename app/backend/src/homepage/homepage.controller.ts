@@ -1,4 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Homepage } from './entity/homepage.entity';
 import { HomepageService } from './homepage.service';

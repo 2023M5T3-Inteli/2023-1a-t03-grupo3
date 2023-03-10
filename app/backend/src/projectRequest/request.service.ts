@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { createRequestDto } from './dto/create-request.dto';
-import { Request } from './entities/request.entity';
+import { RequestEntity } from './entities/request.entity';
 
 @Injectable()
 export class requestService {
-  private readonly requests: Request[] = [];
+  private readonly requests: RequestEntity[] = [];
   create(createRequestDto: createRequestDto) {
     this.requests.push(createRequestDto)
     return createRequestDto;

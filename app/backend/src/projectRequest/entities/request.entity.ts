@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class Request {
+export class RequestEntity {
   @ApiProperty({
     example: 'Increase Online Sales',
     description: 'Project for marketing',
