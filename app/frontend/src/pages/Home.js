@@ -7,19 +7,34 @@ import search from '../assets/search.svg'
 export const Home = () => {
     const cards = [
         {
-            title: "abc", desc: "qwrqewer"
-        }, {
-            title: "abb", desc: "qwrqewer"
-        }, {
-            title: "abc", desc: "qwrqewer"
-        }, {
-            title: "abc", desc: "qwrqewer"
-        }, {
-            title: "abc", desc: "qwrqewer"
-        }, {
-            title: "abc", desc: "qwrqewer"
-        }, {
-            title: "abc", desc: "qwrqewer"
+            title: "Project 1", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed semper nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl."
+        },
+        {
+            title: "Project 2", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed semper nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl."
+        },
+        {
+            title: "Project 3", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed semper nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl."
+        },
+        {
+            title: "Project 4", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed semper nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl."
+        },
+        {
+            title: "Project 5", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed semper nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl."
+        },
+        {
+            title: "Project 6", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed semper nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl."
+        },
+        {
+            title: "Project 7", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed semper nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl."
+        },
+        {
+            title: "Project 8", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed semper nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl."
+        },
+        {
+            title: "Project 9", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed semper nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl."
+        },
+        {
+            title: "Project 10", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed semper nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl. Sed euismod, nunc euismod ultricies ultricies, nunc nisl aliquam nisl, eu aliquam nisl nisl eu nisl."
         },
     ]
 

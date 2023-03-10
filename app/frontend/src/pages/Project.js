@@ -79,7 +79,7 @@ export const Project = () => {
                         <Title>{title}</Title>
                     </div>
 
-                    <Text variant={"lg"}>{description}</Text>
+                    <Text color="f1f1f1" variant={"lg"}>{description}</Text>
                 </div>
 
                 <div className="bg-[#8A58DC] px-4 py-4 md:py-8 rounded-2xl shadow-lg md:absolute w-full md:w-1/4 flex flex-col justify-center md:right-0 mt-4 md:mr-16 md:top-0 md:mt-16">
@@ -136,7 +136,7 @@ export const Project = () => {
 
             <div className="w-full p-4 md:px-16 py-8 md:py-16 flex justify-between">
                 <div className="text-center w-full md:w-3/5">
-                    <Text color="#061826" variant={"xl"} bold>
+                    <Text color="061826" variant={"xl"} bold>
                         {description}
                     </Text>
 

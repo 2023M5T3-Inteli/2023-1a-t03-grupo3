@@ -21,7 +21,7 @@ export default function App(props) {
         <Route path='/project' element={<Project />} />
         <Route path='/ranking' element={<Ranking />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/notification' element={<Notification/>}/>
+        <Route path='/notifications' element={<Notification/>}/>
         <Route path='/createproject' element={<Createproject />} />
       </Route>
     )
