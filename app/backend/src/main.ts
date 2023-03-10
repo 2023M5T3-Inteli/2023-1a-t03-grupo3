@@ -8,8 +8,20 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Backend routes')
     .setDescription('Backend nest application')
+    .addCookieAuth()
+    .addBearerAuth()
+    .addBearerAuth(
+      {
+        description: 'Access endpoints ',
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'defaultBearerAuth',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
+
   SwaggerModule.setup('api', app, document);
 
   await app.listen(3000);

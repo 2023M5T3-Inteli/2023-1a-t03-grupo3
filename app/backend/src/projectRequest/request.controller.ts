@@ -5,9 +5,10 @@ import {
   ApiTags
 } from '@nestjs/swagger';
 import { createRequestDto } from './dto/create-request.dto';
+import { RequestEntity } from './entities/request.entity';
 import { requestService } from './request.service';
 
-@ApiBearerAuth()
+@ApiBearerAuth('defaultBearerAuth')
 @ApiTags('project-request')
 @Controller('request')
 export class requestController {
@@ -18,7 +19,7 @@ export class requestController {
   @ApiResponse({
     status: 201,
     description: 'This method login info',
-    type: Request
+    type: RequestEntity
   })
   create(@Body() createRequestDto: createRequestDto) {
     return this.requestService.create(createRequestDto);

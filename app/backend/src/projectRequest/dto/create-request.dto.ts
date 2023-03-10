@@ -1,18 +1,15 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class createRequestDto {
-  @ApiProperty({
-    example: 'Increase Online Sales',
-    description: 'Project for marketing',
-  })
+  @ApiProperty()
   project: string;
 
-  @ApiProperty({ example: 'Arrascaneta', description: 'The manager' })
+  @ApiProperty()
   manager: string;
 
-  @ApiProperty({ example: 'any@delltechonologies.com', description: "User's e-mail" })
+  @ApiProperty()
   email: string;
 
-  @ApiProperty({ example: 'Jorge', description: "Candidato" })
+  @ApiProperty()
   name: string;
 }

@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Ranking } from './entity/ranking.entity';
 import { RankingInterface } from './interfaces/ranking.interface';
 import { RankingService } from './ranking.service';
@@ -16,6 +16,7 @@ export class RankingController {
     status: 200,
     description: 'This method get and ranks all users from DB'
   })
+  @ApiBadRequestResponse({description:'Bad response'})
   findAll(): RankingInterface[] {
     return this.rankingService.findAll();
   }
