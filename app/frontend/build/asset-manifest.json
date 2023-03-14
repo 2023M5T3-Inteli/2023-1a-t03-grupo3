@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.db976983.css",
+    "main.js": "/static/js/main.7de13f64.js",
+    "static/media/alberto.svg": "/static/media/alberto.a22e522fd338c5155d7a1f829e4e354f.svg",
+    "static/media/login.svg": "/static/media/login.a4dc32dbd5cb5dcb5aff2c1882d0d6f4.svg",
+    "static/media/bell.svg": "/static/media/bell.07266e9cc924e48072ebcd51e8771935.svg",
+    "static/media/filter.svg": "/static/media/filter.31bb5c80ac7ec74f8218fb0d59af5f55.svg",
+    "index.html": "/index.html",
+    "static/media/x1.svg": "/static/media/x1.f4ba42dea40f36bfcd83ebdfaf97508a.svg",
+    "static/media/edit_icon.svg": "/static/media/edit_icon.865c3e139c3a62b7a94865ecdbec5d29.svg",
+    "static/media/search.svg": "/static/media/search.e4e837d3ad57df0d60aae2968256b5bf.svg",
+    "static/media/send.svg": "/static/media/send.d46a8016d09f57fb8b44ed55332ae6c9.svg",
+    "static/media/project.svg": "/static/media/project.dbaf9b44e64eb4ec0568d637fb4b6140.svg",
+    "main.db976983.css.map": "/static/css/main.db976983.css.map",
+    "main.7de13f64.js.map": "/static/js/main.7de13f64.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.db976983.css",
+    "static/js/main.7de13f64.js"
+  ]
+}

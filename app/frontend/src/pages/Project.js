@@ -70,7 +70,7 @@ export const Project = () => {
     return (
         <div className="w-full min-h-screen h-full p-0 flex flex-col items-center pb-16">
             <div className="bg-[#061826] w-full px-8 md:px-16 py-8 md:py-16 flex flex-col md:flex-row justify-center items-center md:justify-between">
-                <Link to={"/home"} className="absolute text-white top-0 left-0 ml-4 md:ml-8 mt-4 md:mt-8 rotate-90">
+                <Link to={"/"} className="absolute text-white top-0 left-0 ml-4 md:ml-8 mt-4 md:mt-8 rotate-90">
                     <Arrow color={"white"} />
                 </Link>
 
