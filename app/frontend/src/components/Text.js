@@ -13,7 +13,7 @@ export const Text = ({
     }
 
     return (
-        <p className={`${bold ? "font-semibold" : ""} ${variants[variant]} text-[${color}]`}>
+        <p className={`${bold ? "font-semibold" : ""} ${variants[variant]} text-[#${color}]`}>
             {children}
         </p>
     )

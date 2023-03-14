@@ -67,9 +67,9 @@ export const Createproject = () => {
                         <p>Question</p>
                         <input type="text" className="bg-[#E1E1E1] rounded-lg pt-1 pb-1 pl-1 text-[#000000]" placeholder="Ex.: Have you ever worked with Python?"></input>
                     </div>
-                    <button className="rounded-full py-3 px-6 border-2 border-black-400 rounded mt-5 pl-1 pr-1 pt-1 pb-1 w-1/5 shadow-lg">+ Add question</button>
+                    <button className="rounded-full py-3 px-6 border-2 border-black-400 mt-5 pl-1 pr-1 pt-1 pb-1 w-1/5 shadow-lg">+ Add question</button>
                     <div className="flex flex-col items-center">
-                        <button className="rounded-full py-3 px-6 border-2 border-black-400 rounded mt-5 pl-1 pr-1 pt-1 pb-1 w-1/5 shadow-lg text-blue-600 bg-[#061826] hover:border-blue-400">SEND TO APPROVAL</button>
+                        <button className="py-3 px-6 border-2 border-black-400 rounded mt-5 pl-1 pr-1 pt-1 pb-1 w-1/5 shadow-lg text-blue-600 bg-[#061826] hover:border-blue-400">SEND TO APPROVAL</button>
                     </div>
                 </div>
             </div>

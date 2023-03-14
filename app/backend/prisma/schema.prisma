@@ -10,31 +10,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {}
-//marcosx
-model UserProjects {}
-
-model Project {
-    id
-    title
-    description
-    manager
-    start
-    end
-    
+model User {
+  id          Int    @id @default(autoincrement())
+  name        String
+  email       String @unique
+  picture     String
+  role        String
+  linkedin    String
+  github      String
+  hardskills  String
+  softskills  String
+  otherskills String
+  contact     String
+  city        String
+  state       String
+  country     String
 }
 
-
-
-model Members { 
-  Pr.id  Int  @id @default(autoincrement())
-  Função String
-  Qnt.Função Int
-  Qnt.Funç.Preenchida Int    
+model Projects {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  link        String
+  image       String
+  user        User   @relation(fields: [userId], references: [id])
+  userId      Int
 }
-
 
 model Login {
-  id
+  user_id  Int @relation(fields: [user_id], references: [id])
+  email   String
+  password String
 }
-
