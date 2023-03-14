@@ -18,7 +18,7 @@ export class requestController {
   @ApiResponse({
     status: 201,
     description: 'This method login info',
-    type: Request
+    type: createRequestDto
   })
   create(@Body() createRequestDto: createRequestDto) {
     return this.requestService.create(createRequestDto);
