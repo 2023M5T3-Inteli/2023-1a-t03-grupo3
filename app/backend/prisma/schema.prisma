@@ -11,10 +11,15 @@ datasource db {
 }
 
 model User {
+  id             String   @unique @default(uuid())
+  email          String   @unique
+  hashedPassword String
+  createdAt      DateTime @default(now())
+  updateAt       DateTime @updatedAt()
 }
 
-model Project {
-}
+// model Project {
+// }
 
-model UserProject {
-}
+// model UserProject {
+// }
