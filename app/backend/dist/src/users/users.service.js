@@ -17,7 +17,9 @@ let UsersService = class UsersService {
         this.prisma = prisma;
     }
     async getUsers() {
-        return await this.prisma.user.findMany({});
+        return await this.prisma.user.findMany({
+            select: { id: true, email: true }
+        });
     }
     async getMyUser(id) {
         return await this.prisma.user.findUnique({ where: { id } });
