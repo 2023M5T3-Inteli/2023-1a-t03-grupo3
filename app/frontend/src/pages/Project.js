@@ -71,7 +71,7 @@ export const Project = () => {
         <div className="w-full min-h-screen h-full p-0 flex flex-col items-center pb-16">
             <div className="bg-[#061826] w-full px-8 md:px-16 py-8 md:py-16 flex flex-col md:flex-row justify-center items-center md:justify-between">
                 <Link to={"/"} className="absolute text-white top-0 left-0 ml-4 md:ml-8 mt-4 md:mt-8 rotate-90">
-                    <Arrow color={"white"} />
+                    <Arrow color={"white"} width={36}/>
                 </Link>
 
                 <div className="text-center w-full md:w-3/5">
@@ -89,7 +89,7 @@ export const Project = () => {
                             <p className="font-medium text-3xl">
                                 {collaboratorsAmount || "?"} collaborators
                             </p>
-                            <div className="font-medium text-2xl flex">
+                            <div className="font-medium text-2xl flex flex-wrap">
                                 {collaborators.map((collaborator, index) => {
                                     return (
                                         <p className="text-lg" key={index}>
@@ -98,7 +98,7 @@ export const Project = () => {
                                             {index !==
                                                 collaborators.length - 1
                                                 ? ","
-                                                : ""}{" "}
+                                                : ""}
                                         </p>
                                     );
                                 })}
@@ -139,25 +139,6 @@ export const Project = () => {
                     <Text color="061826" variant={"xl"} bold>
                         {description}
                     </Text>
-
-                    <div className={"my-8"}>
-                        <Text color={"e2e2e2"}>
-                            {enrolledCollaborators || "0"} of{" "}
-                            {collaboratorsAmount || "?"} have already enrolled
-                            to the project!
-                        </Text>
-
-                        <div className="w-full bg-gray-200 rounded-full h-2.5">
-                            <div
-                                className={"h-2.5 rounded-full"}
-                                style={{
-                                    width: `${enrolledCollaborators / collaboratorsAmount * 100
-                                        }%`,
-                                }}
-                            ></div>
-                        </div>
-                    </div>
-                    {percentile < 100 ? <Title color={"#e2e2e2"} variant={3}>Open for subscriptions!</Title> : null}
                 </div>
             </div>
 
