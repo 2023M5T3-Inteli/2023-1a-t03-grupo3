@@ -9,12 +9,39 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+model Projects{
+  id String @id
+  title String
+  description String
+  owner User @relation(fields: [ownerId], references: [id])
+  ownerId String
+  start DateTime
+  end DateTime
+  category String
+  status String
+  tags Tag[]
+  attachments Attachment[]
+  members Member[]
+
+}
+
+model Tag{
+  tittle String
+}
+
+model Attachment{
+  file Blob
+}
 
 model User {
+  
+}
+model Member{
+  quantity Int
+  projectRole String
+  fullFilled Int
 }
 
-model Project {
-}
-
-model UserProject {
+model Blob {
+  
 }

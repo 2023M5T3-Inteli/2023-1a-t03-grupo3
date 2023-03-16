@@ -6,7 +6,6 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/
 
-<<<<<<< HEAD
 # node_modules
 app/frontend/yarn.lock
 app/frontend/package-lock.json
@@ -23,7 +22,6 @@ app/frontend/node_modules/.cache
 app/backend/node_modules/*
 app/backend/.env
 app/frontend/node_modules/.cache/.eslintcache
-=======
 app/backend/node_modules/
 app/frontend/node_modules/
->>>>>>> ec60091736c6993ba83744d0f63e0b74b75df9d5
+app/backend/dist/
