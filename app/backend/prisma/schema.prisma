@@ -17,4 +17,11 @@ model Project {
 }
 
 model UserProject {
+  id      Int     @id @default(uuid())
+  user    User    @relation(fields: [userID], references: [id])
+  userID  Int
+  project Project @relation(fields: [projectID], references: [id])
+  projectID Int
+  status  String
+  favorite Boolean
 }
