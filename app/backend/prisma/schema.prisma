@@ -43,4 +43,11 @@ model Member{
 }
 
 model UserProject {
+  id String @id
+  user User @relation(fields: [userId], references: [id])
+  userId String
+  project Projects @relation(fields: [projectId], references: [id])
+  projectId String
+  status String
+  favorite Boolean
 }
