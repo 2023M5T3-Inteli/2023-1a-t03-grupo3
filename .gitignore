@@ -22,6 +22,7 @@ app/frontend/node_modules/.cache
 app/backend/node_modules/*
 app/backend/.env
 app/frontend/node_modules/.cache/.eslintcache
+app/backend/dist/
 app/backend/node_modules/
 app/frontend/node_modules/
 app/backend/dist/

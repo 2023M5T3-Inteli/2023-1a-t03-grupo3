@@ -10,11 +10,15 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const auth_module_1 = require("./auth/auth.module");
 const users_module_1 = require("./users/users.module");
+const notifications_module_1 = require("./notifications/notifications.module");
+const homepage_module_1 = require("./homepage/homepage.module");
+const project_module_1 = require("./project/project.module");
+const mail_module_1 = require("./mail/mail.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, users_module_1.UsersModule],
+        imports: [auth_module_1.AuthModule, users_module_1.UsersModule, notifications_module_1.NotificationsModule, homepage_module_1.HomepageModule, project_module_1.ProjectModule, mail_module_1.MailModule],
     })
 ], AppModule);
 exports.AppModule = AppModule;

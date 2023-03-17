@@ -22,15 +22,16 @@ model Projects{
   tags Tag[]
   attachments Attachment[]
   members Member[]
+  shadowing Boolean
 
 }
 
 model Tag{
-  tittle String
+  title String
 }
 
 model Attachment{
-  file Blob
+  file String
 }
 
 model User {
