@@ -10,8 +10,8 @@ export const Profile = () => {
         <div className="flex min-h-screen max-w-screen w-full h-full">
             <Sidebar />
 
-            <div className="w-4/5 bg-[#F0F0F0] flex flex-col items-center justify-center p-4">
-                <div className="w-full">
+            <div className="w-4/5 bg-[#F0F0F0] flex flex-col items-center justify-center px-4 py-8">
+                <div className="w-full mb-1">
                     <Title color={'#e2e2e2'} variant={3}>Profile</Title>
                 </div>
                 <div className="rounded-xl bg-white border-2 h-auto p-4 w-full flex flex-col">
@@ -108,7 +108,7 @@ export const Profile = () => {
                     </div>
 
                     <div className="mt-12 mx-6">
-                        <Subtitle>Favorites</Subtitle>
+                        <Subtitle id="favorite">Favorites</Subtitle>
 
                         <div className="mt-4">
                             <Card title={"Lorem ipsum"} desc={"Lorem ipsum solor dolor amet"} />

@@ -5,7 +5,7 @@ export const CardNotification = ({desc,type,aproval}) =>{
 
 
     return(
-        <div className={` shadow-md p-4 rounded-xl  bg-[#ffffff] mb-3 
+        <div className={` border-2 border-black-1000 shadow-md p-4 rounded-xl  bg-[#fafafa] mb-3 
         ${
             aproval===true? "border-2 border-green-700" : aproval===false? "border-2 border-red-500": ""
         } 
@@ -19,10 +19,10 @@ export const CardNotification = ({desc,type,aproval}) =>{
                 <p className="">{desc}</p>
             </div>
             <img 
-            className="flex flex-row " 
-            src={x1} 
-            width={15} 
-            height={15}
+                className="flex flex-row " 
+                src={x1} 
+                width={15} 
+                height={15}
             />
         
         </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import bell from "../assets/bell.svg";
 import filter from "../assets/filter.svg";
 import { NotificationModal } from "../components/NotificationModal";
+import { Title } from '../components/Title'
 
 export const Notification = () => {
   var notificationContent = [
@@ -29,15 +30,17 @@ export const Notification = () => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
-    <div className="flex min-h-screen max-w-screen w-auto h-full border-red-400">
+    <div className="flex min-h-screen max-w-screen w-auto h-full">
       <NotificationModal 
             isOpen={openModal} 
             setClose={() =>setOpenModal(!openModal)} 
             />
       <Sidebar />
-      <div className="flex flex-col w-full max-w-screen border border-red-500 bg-[#f8f8f8]">
-            <div className="mt-8 m-8 font-semibold text-3xl flex flex-row justify-between h-12 itens-center align-center">
-                <p>Notifications</p>
+      <div className=" w-4/5 flex flex-col max-w-screen bg-[#F0F0F0] px-4 py-8">
+            <div className="font-semibold text-3xl flex flex-row justify-between h-12 itens-center align-center">
+                <div className="w-full mb-1">
+                    <Title color={'#e2e2e2'} variant={3}>Notifications</Title>
+                </div>
                 <div className="flex flex-row justify-between w-16">
                     <img 
                     className={"hover:cursor-pointer"}
@@ -56,7 +59,7 @@ export const Notification = () => {
                     />
                 </div>
             </div>
-            <div className="mt-8 m-8">
+            <div className="rounded-xl bg-white border-2 h-full p-4 w-full flex flex-col">
                 {notificationContent.map((item) => {
                     return (
                     <CardNotification

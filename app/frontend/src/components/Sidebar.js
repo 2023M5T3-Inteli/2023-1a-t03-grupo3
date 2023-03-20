@@ -15,12 +15,12 @@ export const Sidebar = () => {
             </Link>
 
             <div className='flex flex-col'>
-                <Link to={"/"} className='text-[#e1e1e1] mb-1 font-bold uppercase'>Join a project</Link>
-                <Link to={"/createproject"} className='text-[#e1e1e1] mb-1 font-semibold uppercase'>CREATE NEW PROJECT</Link>
-                <Link to={"/profile"} className='text-[#e1e1e1] mb-1 font-semibold uppercase'>MY PROJECTS</Link>
-                <Link to={"/notifications"} className='text-[#e1e1e1] mb-1 font-semibold uppercase'>NOTIFICATIONS</Link>
-                <Link to="/ranking" className='text-[#e1e1e1] mb-1 font-semibold uppercase'>RANKING</Link>
-                <Link to={"/profile"} className='text-[#e1e1e1] mb-1 font-semibold uppercase'>FAVORITES</Link>
+                <Link to={"/"} className='text-[#e1e1e1] mb-3 font-bold uppercase'>Join a project</Link>
+                <Link to={"/createproject"} className='text-[#e1e1e1] mb-3 font-semibold uppercase'>CREATE NEW PROJECT</Link>
+                <Link to={"/profile"} className='text-[#e1e1e1] mb-3 font-semibold uppercase'>MY PROJECTS</Link>
+                <Link to={"/notifications"} className='text-[#e1e1e1] mb-3 font-semibold uppercase'>NOTIFICATIONS</Link>
+                <Link to="/ranking" className='text-[#e1e1e1] mb-3 font-semibold uppercase'>RANKING</Link>
+                <Link to={"/profile#favorite"} className='text-[#e1e1e1] mb-3 font-semibold uppercase'>FAVORITES</Link>
                 {/* <Link className='text-[#e1e1e1] font-semibold uppercase'>LANGUAGE</Link> */}
             </div>
 
