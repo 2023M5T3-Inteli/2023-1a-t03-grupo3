@@ -24,5 +24,7 @@ jobs:
                   TARGET: ${{ secrets.TARGET_DIR }}
                   SCRIPT_AFTER: |
                       cd ~/2023-1a-t03-grupo3/app/backend
+                      nvm use 18
+                      sudo rm -rf node_modules
                       sudo npm install
                       sudo npm run start > build.log
