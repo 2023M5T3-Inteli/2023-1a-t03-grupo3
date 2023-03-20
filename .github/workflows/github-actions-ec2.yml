@@ -38,7 +38,8 @@ jobs:
                   REMOTE_USER: ${{ secrets.USERNAME }}
                   TARGET: ${{ secrets.TARGET_DIR }}
                   ARGS: "-rlgoDzvc -i --delete"
-                  SOURCE: "dist/"
+                  SOURCE: "app/backend/dist/"
                   EXCLUDE: "/dist/, /node_modules/"
                   SCRIPT_AFTER: |
+                      cd app/backend
                       npm run start > build.log
