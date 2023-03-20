@@ -1,12 +1,12 @@
 import { PrismaService } from 'prisma/prisma.service';
-import { AuthDto } from './dto/auth.dto';
+import { CreateUserDto, AuthDto } from './dto/auth.dto';
 import { JwtService } from '@nestjs/jwt';
 import { Request, Response } from 'express';
 export declare class AuthService {
     private prisma;
     private jwt;
     constructor(prisma: PrismaService, jwt: JwtService);
-    signup(dto: AuthDto): Promise<{
+    signup(dto: CreateUserDto): Promise<{
         message: string;
     }>;
     signin(dto: AuthDto, req: Request, res: Response): Promise<Response<any, Record<string, any>>>;

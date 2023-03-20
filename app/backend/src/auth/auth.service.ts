@@ -4,7 +4,7 @@ import {
 	Injectable,
 } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
-import { AuthDto } from './dto/auth.dto';
+import { CreateUserDto, AuthDto } from './dto/auth.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { jwtSecret } from 'src/utils/constants'
@@ -14,8 +14,8 @@ import { Request, Response } from 'express';
 export class AuthService {
 	constructor(private prisma: PrismaService, private jwt: JwtService) { }
 
-	async signup(dto: AuthDto) {
-		const { email, password } = dto;
+	async signup(dto: CreateUserDto) {
+		const { fullName, email, password } = dto;
 
 		const foundUser = await this.prisma.user.findUnique({ where: { email } })
 
@@ -25,7 +25,13 @@ export class AuthService {
 
 		const hashedPassword = await this.hashPassword(password);
 
-		await this.prisma.user.create({ data: { email, hashedPassword } });
+		await this.prisma.user.create({
+			data: {
+				fullName,
+				email,
+				hashedPassword,
+			},
+		});
 
 		return { message: 'Signup successful' };
 	}

@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,11 +7,57 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// User table 
 model User {
+  id             String    @id @default(uuid())
+  fullName       String
+  email          String    @unique
+  hashedPassword String
+  picture        String?
+  city           String?
+  state          String?
+  country        String?
+  hardSkills     String?
+  softSkills     String?
+  score          Int?       @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  manager        Manager?  @relation(fields: [managerId], references: [id])
+  managerId      String?
+  projects       Project[]
 }
 
+model Manager {
+  id        String   @id @default(uuid())
+  fullName  String
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User[]
+}
+
+// Project table
 model Project {
+  id          String       @id @default(uuid())
+  title       String
+  description String
+  startDate   DateTime
+  endDate     DateTime
+  category    String
+  status      String       @default("pending")
+  tags        String[]
+  members     User[]
+  attachments Attachment[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
-model UserProject {
+model Attachment {
+  id        String   @id @default(uuid())
+  name      String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId String
 }
