@@ -17,8 +17,13 @@ jobs:
 
       - name: Deploy to Server 1
         uses: easingthemes/ssh-deploy@main
+        with:  
+          script: |
+            cd ~/2023-1a-t03-grupo3/app/backend
+            npm install
+            npm run start
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_HOST: ${{ secrets.HOST_PUBLIC_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
