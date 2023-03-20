@@ -19,7 +19,7 @@ model User {
   country        String?
   hardSkills     String?
   softSkills     String?
-  score          Int?       @default(0)
+  score          Int?      @default(0)
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   manager        Manager?  @relation(fields: [managerId], references: [id])
