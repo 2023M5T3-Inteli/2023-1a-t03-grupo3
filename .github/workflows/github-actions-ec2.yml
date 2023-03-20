@@ -41,5 +41,4 @@ jobs:
                   SOURCE: "app/backend/dist/"
                   EXCLUDE: "/dist/, /node_modules/"
                   SCRIPT_AFTER: |
-                      cd app/backend
                       npm run start > build.log
