@@ -21,7 +21,7 @@ jobs:
           script: |
             cd ~/2023-1a-t03-grupo3/app/backend
             npm install
-            npm run start
+            npm run start > build.log
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.HOST_PUBLIC_DNS }}
