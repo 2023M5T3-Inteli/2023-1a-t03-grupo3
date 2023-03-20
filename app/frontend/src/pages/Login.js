@@ -37,7 +37,7 @@ export const Login = () => {
             const { status, data } = res;
             console.log(status, data, token)
 
-            res.status === 201 && token && data.message === "Signin successful" ? console.log("Valid") : alert("Invalid credentials");
+            res.status === 201 && data.message === "Signin successful" ? console.log("Valid") : alert("Invalid credentials");
         } catch (error) {
             console.log(error);
         }
@@ -108,7 +108,7 @@ export const Login = () => {
                                 },
                             })}
                         />
-                        {errors.password && (
+                        {errors.password && ( 
                             <p className="text-red-500">
                                 {errors.password.message}
                             </p>
