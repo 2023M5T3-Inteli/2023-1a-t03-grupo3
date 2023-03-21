@@ -1,5 +1,5 @@
-export class Notification{
-    id:number;
+export class createNotificationDto{
+    id:number
     sender: number;
     description: string;
     type:string;
