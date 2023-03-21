@@ -14,19 +14,42 @@ export class ProjectsService {
   }
 
   create(createProjectDto: CreateProjectDto) {
-    const newProject = this.prisma.project.create({
-      data: {
-        title: createProjectDto.title,
-        description: createProjectDto.description,
-        startDate: createProjectDto.startDate,
-        endDate: createProjectDto.endDate,
-        category: createProjectDto.category,
-        status: createProjectDto.status,
-        tags: [...createProjectDto.tags]
+    const foundProject = this.prisma.project.findUnique({
+      where: {
+        title: createProjectDto.title
       }
-    });
+    })
 
-    return newProject;
+    if (foundProject) {
+      return {
+        message: "Project already exists",
+        project: foundProject
+      }
+    }
+
+    try {
+      const newProject = this.prisma.project.create({
+        data: {
+          title: createProjectDto.title,
+          description: createProjectDto.description,
+          startDate: new Date(createProjectDto.startDate),
+          endDate: new Date(createProjectDto.endDate),
+          category: createProjectDto.category,
+          status: createProjectDto.status,
+          tags: createProjectDto.tags
+        }
+      });
+
+      return {
+        message: "Project created successfully",
+        project: newProject
+      };
+    } catch (error) {
+      return {
+        message: "Something went wrong",
+        error: error
+      }
+    }
   }
 
   findOne(id: number) {

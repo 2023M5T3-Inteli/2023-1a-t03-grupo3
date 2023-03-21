@@ -4,12 +4,9 @@ export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
     getUsers(): Promise<{
-        users: {
-            id: string;
-            email: string;
-        }[];
-        message: string;
-    }>;
+        id: string;
+        email: string;
+    }[]>;
     getMyUser(params: {
         id: string;
     }): Promise<{

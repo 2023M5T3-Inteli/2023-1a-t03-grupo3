@@ -4,12 +4,9 @@ export declare class UsersService {
     private prisma;
     constructor(prisma: PrismaService);
     getUsers(): Promise<{
-        users: {
-            id: string;
-            email: string;
-        }[];
-        message: string;
-    }>;
+        id: string;
+        email: string;
+    }[]>;
     getMyUser(id: string): Promise<{
         user: import(".prisma/client").User;
         message: string;

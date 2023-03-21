@@ -15,10 +15,8 @@ export class UsersService {
             throw new BadRequestException('No user found');
         }
 
-        return {
-            users,
-            message: "Users found successfully"
-        };
+        return users;
+
     }
 
     async getMyUser(id: string) {

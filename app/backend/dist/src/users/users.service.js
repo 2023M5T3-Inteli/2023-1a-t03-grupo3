@@ -23,10 +23,7 @@ let UsersService = class UsersService {
         if (!users) {
             throw new common_1.BadRequestException('No user found');
         }
-        return {
-            users,
-            message: "Users found successfully"
-        };
+        return users;
     }
     async getMyUser(id) {
         const user = await this.prisma.user.findUnique({ where: { id } });
