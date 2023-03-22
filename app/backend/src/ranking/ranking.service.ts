@@ -1,22 +1,21 @@
-import { Injectable } from '@nestjs/common';
-import { CreateRankingDto } from './dto/create-ranking.dto';
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "prisma/prisma.service";
 
 @Injectable()
 export class RankingService {
-  private readonly rankings: CreateRankingDto[] = [];
-  async findAll(): Promise<CreateRankingDto[]> {
-    const users = [{ username: 'Andy', rating: 20 }];
-    users.sort((a, b) => (a.rating < b.rating ? 1 : -1));
-    return this.rankings;
+  constructor(private prisma: PrismaService) {}
+  async findAll() {
+    const foundUsers = await this.prisma.user.findMany({
+      take: 20,
+      orderBy: {
+        score: "desc",
+      },
+    });
+    return foundUsers;
   }
 
-  async findOne(id: number): Promise<CreateRankingDto[]> {
-    const user = [
-      {
-        username: this.rankings.find((x) => x.id === id)?.username,
-        rating: this.rankings.find((x) => x.id === id)?.rating,
-      },
-    ];
-    return user;
+  async findOne(id: string) {
+    const especificUser = await this.prisma.user.findMany({ where: { id } });
+    return especificUser;
   }
 }

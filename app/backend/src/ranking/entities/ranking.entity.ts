@@ -1,5 +1,5 @@
 export class Ranking {
-    id:number;
+    id:string;
     username: string;
     rating: number;
 }

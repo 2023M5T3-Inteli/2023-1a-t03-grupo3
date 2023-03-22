@@ -21,7 +21,7 @@ export class RankingController {
     status: 403,
     description: 'Forbidden',
   })
-  async findAll(): Promise<CreateRankingDto[]> {
+  async findAll() {
     return await this.rankingService.findAll();
   }
 
@@ -36,7 +36,7 @@ export class RankingController {
     description: 'Forbidden',
   })
   @Get(':id')
-  async findOne(@Param('id') id: number) {
-    return await this.rankingService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.rankingService.findOne(id);
   }
 }
