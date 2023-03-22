@@ -1,12 +1,4 @@
-// export class CreateProjectDto {
-//     title: string;
-//     description: string;
-//     startDate: string;
-//     endDate: string;
-//     category: string;
-//     status: string;
-//     tags: string[];
-// }
+
 import { IsArray, IsDate, IsDateString, IsEmail, IsNotEmpty, IsString, Length } from "class-validator";
 
 export class CreateProjectDto {
