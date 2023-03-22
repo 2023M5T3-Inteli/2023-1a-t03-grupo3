@@ -4,8 +4,24 @@ import albertoPicture from "../assets/alberto.svg"
 import { Card } from "../components/Card"
 import { EditButton } from "../components/EditButton"
 import { Subtitle } from "../components/Subtitle"
+import { useEffect } from "react"
 
 export const Profile = () => {
+    useEffect(() => {
+        const isProjects = window.location.href.includes("#projects")
+        const isFavorite = window.location.href.includes("#favorite")
+
+        if (isProjects) {
+            const projects = document.getElementById("projects")
+            projects.scrollIntoView({ behavior: "smooth" })
+        }
+
+        if (isFavorite) {
+            const favorite = document.getElementById("favorite")
+            favorite.scrollIntoView({ behavior: "smooth" })
+        }
+    }, [])
+
     return (
         <div className="flex min-h-screen max-w-screen w-full h-full">
             <Sidebar />
@@ -88,7 +104,7 @@ export const Profile = () => {
                     </div>
 
                     {/* profile projects informations */}
-                    <div className="mt-12 mx-6">
+                    <div className="mt-12 mx-6" id="projects">
                         <Subtitle>Current Projects</Subtitle>
 
                         <div className="mt-4">
@@ -107,7 +123,7 @@ export const Profile = () => {
                         </div>
                     </div>
 
-                    <div className="mt-12 mx-6">
+                    <div className="mt-12 mx-6" id="favorite">
                         <Subtitle id="favorite">Favorites</Subtitle>
 
                         <div className="mt-4">
@@ -124,6 +140,6 @@ export const Profile = () => {
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }
