@@ -1,62 +1,110 @@
 import { Sidebar } from "../components/Sidebar";
 import { UserRanked } from "../components/UserRanked";
 import { Title } from "../components/Title";
-import { axios } from "axios";
-import { useEffect, useState } from "react";
+// import { axios } from "Axios";
+// import { useEffect, useState } from "react";
 
 export const Ranking = () => {
-  // const users = [
-  //   {
-  //     name: "Sócrates",
-  //     rating: 60,
-  //   },
-  //   {
-  //     name: "Aristóteles",
-  //     rating: 40,
-  //   },
-  //   {
-  //     name: "Arrascaeta",
-  //     rating: 50,
-  //   },
-  //   {
-  //     name: "Gabigol",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Gerson",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Bruno Henrique",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Courtois",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "De Bruyne",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Platão",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  // ];
+  const users = [
+    {
+      name: "Sócrates",
+      rating: 60,
+    },
+    {
+      name: "Aristóteles",
+      rating: 40,
+    },
+    {
+      name: "Arrascaeta",
+      rating: 50,
+    },
+    {
+      name: "Gabigol",
+      rating: 70,
+    },
+    {
+      name: "Gerson",
+      rating: 70,
+    },
+    {
+      name: "Bruno Henrique",
+      rating: 70,
+    },
+    {
+      name: "Courtois",
+      rating: 70,
+    },
+    {
+      name: "De Bruyne",
+      rating: 70,
+    },
+    {
+      name: "Platão",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+    {
+      name: "Giordano Bruno",
+      rating: 70,
+    },
+  ];
 
-  const [list, setList] = useState([]);
+  // const [list, setList] = useState([]);
 
-  useEffect(() => {
-    axios.get("/ranking").then((res) => {
-      setList(res.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get("/ranking").then((res) => {
+  //     setList(res.data);
+  //   });
+  // }, []);
 
-  if(!list) return null;
+  // if(!list) return null;
 
   return (
     <div className=" bg-[#F0F0F0] flex min-h-screen max-w-screen w-full h-full">
@@ -77,7 +125,7 @@ export const Ranking = () => {
             </div>
 
             {users
-              .sort((a, b) => (a.rating < b.rating ? 1 : -1))
+              .sort((a, b) => (a.rating < b.rating ? 1 : -1)).slice(0,20)
               .map((item, index) => {
                 return (
                   <UserRanked
