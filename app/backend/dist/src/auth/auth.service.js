@@ -21,13 +21,19 @@ let AuthService = class AuthService {
         this.jwt = jwt;
     }
     async signup(dto) {
-        const { email, password } = dto;
+        const { fullName, email, password } = dto;
         const foundUser = await this.prisma.user.findUnique({ where: { email } });
         if (foundUser) {
             throw new common_1.BadRequestException('Email already exists');
         }
         const hashedPassword = await this.hashPassword(password);
-        await this.prisma.user.create({ data: { email, hashedPassword } });
+        await this.prisma.user.create({
+            data: {
+                fullName,
+                email,
+                hashedPassword,
+            },
+        });
         return { message: 'Signup successful' };
     }
     async signin(dto, req, res) {

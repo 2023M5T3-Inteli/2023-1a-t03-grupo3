@@ -17,12 +17,48 @@ let UsersService = class UsersService {
         this.prisma = prisma;
     }
     async getUsers() {
-        return await this.prisma.user.findMany({
+        const users = await this.prisma.user.findMany({
             select: { id: true, email: true }
         });
+        if (!users) {
+            throw new common_1.BadRequestException('No user found');
+        }
+        return {
+            users,
+            message: "Users found successfully"
+        };
     }
     async getMyUser(id) {
-        return await this.prisma.user.findUnique({ where: { id } });
+        const user = await this.prisma.user.findUnique({ where: { id } });
+        if (!user) {
+            throw new common_1.BadRequestException('No user found');
+        }
+        return {
+            user,
+            message: "User found successfully"
+        };
+    }
+    async updateUser(id, body) {
+        const user = await this.prisma.user.findUnique({ where: { id } });
+        if (!user) {
+            throw new common_1.BadRequestException('No user found');
+        }
+        await this.prisma.user.update({
+            where: { id },
+            data: Object.assign({}, body)
+        });
+        return {
+            user,
+            message: "User updated successfully"
+        };
+    }
+    async deleteUser(id) {
+        const user = await this.prisma.user.findUnique({ where: { id } });
+        if (!user) {
+            throw new common_1.BadRequestException('No user found');
+        }
+        await this.prisma.user.delete({ where: { id } });
+        return { id, message: "User deleted successfully" };
     }
 };
 UsersService = __decorate([
