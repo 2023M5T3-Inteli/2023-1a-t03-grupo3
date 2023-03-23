@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import albertoPicture from "../assets/alberto.png";
 import { User } from "../assets/user";
 
-export const UserRanked = ({ fullName, score, index, id }) => {
+export const UserRanked = ({ picture,fullName, score, index, id }) => {
 
   return (
     <Link to={`/profile/${id}`} className="flex flex-row">
