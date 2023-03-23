@@ -5,97 +5,6 @@ import axios from "../axios";
 import { useEffect, useState } from "react";
 
 export const Ranking = () => {
-  // const users = [
-  //   {
-  //     name: "Sócrates",
-  //     rating: 60,
-  //   },
-  //   {
-  //     name: "Aristóteles",
-  //     rating: 40,
-  //   },
-  //   {
-  //     name: "Arrascaeta",
-  //     rating: 50,
-  //   },
-  //   {
-  //     name: "Gabigol",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Gerson",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Bruno Henrique",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Courtois",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "De Bruyne",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Platão",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  //   {
-  //     name: "Giordano Bruno",
-  //     rating: 70,
-  //   },
-  // ];
-
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -114,7 +23,7 @@ export const Ranking = () => {
         <div className="flex flex-col">
           <div className="w-full mb-1">
             <Title color={"#e2e2e2"} variant={3}>
-              Ranking
+              Ranking - Top 20
             </Title>
           </div>
 
@@ -125,14 +34,14 @@ export const Ranking = () => {
             </div>
 
             {list
-              .sort((a, b) => (a.rating < b.rating ? 1 : -1)).slice(0,20)
+              .sort((a, b) => (a.score < b.score ? 1 : -1)).slice(0,20)
               .map((item, index) => {
                 return (
                   <UserRanked
                     id={item.id}
                     index={index}
-                    name={item.name}
-                    rating={item.rating}
+                    fullName={item.fullName}
+                    score={item.score}
                   />
                 );
               })}

@@ -10,6 +10,11 @@ export class RankingService {
       orderBy: {
         score: "desc",
       },
+      select:{
+        picture: true,
+        fullName: true,
+        score: true
+      }
     });
     return foundUsers;
   }

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import albertoPicture from "../assets/alberto.png";
 
-export const UserRanked = ({ name, rating, index, id }) => {
+export const UserRanked = ({ fullName, score, index, id }) => {
 
   return (
-    <Link to={`/user/${id}`} className="flex flex-row">
+    <Link to={`/ranking/user/${id}`} className="flex flex-row">
       <p className="font-montserrat font-semibold w-20 text-center m-4">
         {index + 1}°
       </p>
@@ -21,8 +21,8 @@ export const UserRanked = ({ name, rating, index, id }) => {
         }`} 
       >
         <img src={albertoPicture} className="w-8 h-8 m-3"></img>
-        <span className="m-4 tracking-wide">{name}</span>
-        <span className="m-4 ml-auto mr-12">{rating}</span>
+        <span className="m-4 tracking-wide">{fullName}</span>
+        <span className="m-4 ml-auto mr-12">{score}</span>
       </div>
       
     </Link>

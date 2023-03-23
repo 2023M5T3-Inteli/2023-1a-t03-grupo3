@@ -35,7 +35,7 @@ export class RankingController {
     status: 403,
     description: 'Forbidden',
   })
-  @Get(':id')
+  @Get('/user/:id')
   async findOne(@Param('id') id: string) {
     return await this.rankingService.findOne(id);
   }
