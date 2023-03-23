@@ -9,14 +9,10 @@ export declare class UsersController {
     }[]>;
     getMyUser(params: {
         id: string;
-    }): Promise<{
-        user: import(".prisma/client").User;
-        message: string;
-    }>;
+    }): Promise<import(".prisma/client").User>;
     updateUser(dto: UpdateUserDto, params: {
         id: string;
     }): Promise<{
-        user: import(".prisma/client").User;
         message: string;
     }>;
     deleteUser(params: {
