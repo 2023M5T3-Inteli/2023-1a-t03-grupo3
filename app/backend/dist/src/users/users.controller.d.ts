@@ -4,19 +4,15 @@ export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
     getUsers(): Promise<{
-        id: string;
         email: string;
+        id: string;
     }[]>;
     getMyUser(params: {
         id: string;
-    }): Promise<{
-        user: import(".prisma/client").User;
-        message: string;
-    }>;
+    }): Promise<import(".prisma/client").User>;
     updateUser(dto: UpdateUserDto, params: {
         id: string;
     }): Promise<{
-        user: import(".prisma/client").User;
         message: string;
     }>;
     deleteUser(params: {

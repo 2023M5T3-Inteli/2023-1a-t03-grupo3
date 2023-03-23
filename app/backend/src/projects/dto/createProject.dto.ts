@@ -12,21 +12,19 @@ export class CreateProjectDto {
 
     @IsNotEmpty()
     @IsString()
-    @IsDateString()
     public startDate: string;
 
     @IsNotEmpty()
     @IsString()
-    @IsDateString()
     public endDate: string;
 
     @IsNotEmpty()
     @IsString()
     public category: string;
 
+    @IsArray()
     @IsNotEmpty()
-    @IsString()
-    public status: string;
+    public questions: string[];
 
     @IsNotEmpty()
     @IsArray()

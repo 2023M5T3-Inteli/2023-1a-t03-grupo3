@@ -1,6 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { UpdateUserDto } from './dto/updateUser.dto';
+import { CreateUserDto } from './dto/createUser.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -16,20 +18,16 @@ export class UsersService {
         }
 
         return users;
-
     }
 
-    async getMyUser(id: string) {
+    async getUser(id: string) {
         const user = await this.prisma.user.findUnique({ where: { id } });
 
         if (!user) {
             throw new BadRequestException('No user found');
         }
 
-        return {
-            user,
-            message: "User found successfully"
-        };
+        return user;
     }
 
     async updateUser(id: string, body: UpdateUserDto) {
@@ -37,6 +35,24 @@ export class UsersService {
 
         if (!user) {
             throw new BadRequestException('No user found');
+        }
+
+        if (Object.keys(body).length === 0) {
+            throw new BadRequestException('No data to update');
+        }
+
+        if (body.hashedPassword) {
+            await this.prisma.user.update({
+                where: { id },
+                data: {
+                    ...body,
+                    hashedPassword: await this.hashPassword(body.hashedPassword)
+                }
+            });
+
+            return {
+                message: "User updated successfully"
+            };
         }
 
         await this.prisma.user.update({
@@ -47,7 +63,6 @@ export class UsersService {
         });
 
         return {
-            user,
             message: "User updated successfully"
         };
     }
@@ -62,5 +77,9 @@ export class UsersService {
         await this.prisma.user.delete({ where: { id } });
 
         return { id, message: "User deleted successfully" };
+    }
+
+    async hashPassword(password: string) {
+        return await bcrypt.hash(password, 10);
     }
 }

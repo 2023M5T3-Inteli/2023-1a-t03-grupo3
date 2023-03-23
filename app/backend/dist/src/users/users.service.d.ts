@@ -4,19 +4,16 @@ export declare class UsersService {
     private prisma;
     constructor(prisma: PrismaService);
     getUsers(): Promise<{
-        id: string;
         email: string;
+        id: string;
     }[]>;
-    getMyUser(id: string): Promise<{
-        user: import(".prisma/client").User;
-        message: string;
-    }>;
+    getUser(id: string): Promise<import(".prisma/client").User>;
     updateUser(id: string, body: UpdateUserDto): Promise<{
-        user: import(".prisma/client").User;
         message: string;
     }>;
     deleteUser(id: string): Promise<{
         id: string;
         message: string;
     }>;
+    hashPassword(password: string): Promise<string>;
 }

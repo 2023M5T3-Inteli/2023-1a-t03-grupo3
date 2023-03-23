@@ -1,110 +1,25 @@
 import { Sidebar } from "../components/Sidebar";
 import { UserRanked } from "../components/UserRanked";
 import { Title } from "../components/Title";
-// import { axios } from "Axios";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "../axios";
 
 export const Ranking = () => {
-  const users = [
-    {
-      name: "Sócrates",
-      rating: 60,
-    },
-    {
-      name: "Aristóteles",
-      rating: 40,
-    },
-    {
-      name: "Arrascaeta",
-      rating: 50,
-    },
-    {
-      name: "Gabigol",
-      rating: 70,
-    },
-    {
-      name: "Gerson",
-      rating: 70,
-    },
-    {
-      name: "Bruno Henrique",
-      rating: 70,
-    },
-    {
-      name: "Courtois",
-      rating: 70,
-    },
-    {
-      name: "De Bruyne",
-      rating: 70,
-    },
-    {
-      name: "Platão",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-    {
-      name: "Giordano Bruno",
-      rating: 70,
-    },
-  ];
+  const [data, setData] = useState([])
 
-  // const [list, setList] = useState([]);
+  useEffect(() => {
+    const getProjects = async () => {
+      await axios.get("/ranking").then(res => {
+        setData(res.data)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
 
-  // useEffect(() => {
-  //   axios.get("/ranking").then((res) => {
-  //     setList(res.data);
-  //   });
-  // }, []);
+    getProjects()
+  }, [])
 
-  // if(!list) return null;
+  console.log(data)
 
   return (
     <div className=" bg-[#F0F0F0] flex min-h-screen max-w-screen w-full h-full">
@@ -114,28 +29,24 @@ export const Ranking = () => {
         <div className="flex flex-col">
           <div className="w-full mb-1">
             <Title color={"#e2e2e2"} variant={3}>
-              Ranking
+              Ranking - Top 20
             </Title>
           </div>
 
           <div className="rounded-xl bg-white border-2 h-auto p-4 w-full flex flex-col">
-            <div className="flex flex-row ml-28 mr-32 m-2 w-30 place-content-between">
-              <p className="font-montserrat">Name</p>
-              <p className="font-montserrat">Rating</p>
+            <div className="flex flex-row justify-between mx-auto w-10/12">
+              <p className="font-montserrat font-semibold">Name</p>
+              <p className="font-montserrat font-semibold">Rating</p>
             </div>
 
-            {users
-              .sort((a, b) => (a.rating < b.rating ? 1 : -1)).slice(0,20)
-              .map((item, index) => {
-                return (
-                  <UserRanked
-                    id={item.id}
-                    index={index}
-                    name={item.name}
-                    rating={item.rating}
-                  />
-                );
-              })}
+            {data ? data.map((item, index) => {
+              return (
+                <UserRanked
+                  index={index}
+                  {...item}
+                />
+              );
+            }) : <p className='text-xl text-gray-500'>No one to render...</p>}
           </div>
         </div>
       </div>
