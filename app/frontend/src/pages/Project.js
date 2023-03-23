@@ -161,7 +161,7 @@ export const Project = () => {
 
                 <div className="mt-4">
                     <Text variant={"lg"} color="e2e2e2" bold>Attachments</Text>
-                    <input class="block w-full text-sm border border-gray-200 rounded-lg cursor-pointer shadow-md bg-whitex focus:outline-none dark:placeholder-gray-400 p-2" id="multiple_files" type="file" multiple />
+                    <input className="block w-full text-sm border border-gray-200 rounded-lg cursor-pointer shadow-md bg-whitex focus:outline-none dark:placeholder-gray-400 p-2" id="multiple_files" type="file" multiple />
                 </div>
 
                 <div className="mt-4">

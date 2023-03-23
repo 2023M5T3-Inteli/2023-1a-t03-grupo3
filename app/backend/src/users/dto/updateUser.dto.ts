@@ -1,13 +1,45 @@
 //create a dto for updating a user
 // Path: src/users/dto/updateUser.dto.ts
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class UpdateUserDto {
-    @IsNotEmpty()
     @IsString()
+    @IsOptional()
     fullName: string;
 
-    @IsNotEmpty()
     @IsEmail()
+    @IsOptional()
     email: string;
+
+    @IsString()
+    @IsOptional()
+    hashedPassword: string;
+
+    @IsString()
+    @IsOptional()
+    role: string;
+
+    @IsString()
+    @IsOptional()
+    picture: string;
+
+    @IsString()
+    @IsOptional()
+    city: string;
+
+    @IsString()
+    @IsOptional()
+    state: string;
+
+    @IsString()
+    @IsOptional()
+    country: string;
+
+    @IsString()
+    @IsOptional()
+    hardSkills: string;
+
+    @IsString()
+    @IsOptional()
+    softSkills: string;
 }

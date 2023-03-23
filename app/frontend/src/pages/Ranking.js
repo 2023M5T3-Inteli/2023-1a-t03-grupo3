@@ -1,19 +1,25 @@
 import { Sidebar } from "../components/Sidebar";
 import { UserRanked } from "../components/UserRanked";
 import { Title } from "../components/Title";
-import axios from "../axios";
 import { useEffect, useState } from "react";
+import axios from "../axios";
 
 export const Ranking = () => {
-  const [list, setList] = useState([]);
+  const [data, setData] = useState([])
 
   useEffect(() => {
-    axios.get("/ranking").then((res) => {
-      setList(res.data);
-    });
-  }, []);
+    const getProjects = async () => {
+      await axios.get("/ranking").then(res => {
+        setData(res.data)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
 
-  if(!list) return null;
+    getProjects()
+  }, [])
+
+  console.log(data)
 
   return (
     <div className=" bg-[#F0F0F0] flex min-h-screen max-w-screen w-full h-full">
@@ -28,23 +34,19 @@ export const Ranking = () => {
           </div>
 
           <div className="rounded-xl bg-white border-2 h-auto p-4 w-full flex flex-col">
-            <div className="flex flex-row ml-28 mr-32 m-2 w-30 place-content-between">
-              <p className="font-montserrat">Name</p>
-              <p className="font-montserrat">Rating</p>
+            <div className="flex flex-row justify-between mx-auto w-10/12">
+              <p className="font-montserrat font-semibold">Name</p>
+              <p className="font-montserrat font-semibold">Rating</p>
             </div>
 
-            {list
-              .sort((a, b) => (a.score < b.score ? 1 : -1)).slice(0,20)
-              .map((item, index) => {
-                return (
-                  <UserRanked
-                    id={item.id}
-                    index={index}
-                    fullName={item.fullName}
-                    score={item.score}
-                  />
-                );
-              })}
+            {data ? data.map((item, index) => {
+              return (
+                <UserRanked
+                  index={index}
+                  {...item}
+                />
+              );
+            }) : <p className='text-xl text-gray-500'>No one to render...</p>}
           </div>
         </div>
       </div>

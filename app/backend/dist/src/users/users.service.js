@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../prisma/prisma.service");
+const bcrypt = require("bcrypt");
 let UsersService = class UsersService {
     constructor(prisma) {
         this.prisma = prisma;
@@ -25,27 +26,35 @@ let UsersService = class UsersService {
         }
         return users;
     }
-    async getMyUser(id) {
+    async getUser(id) {
         const user = await this.prisma.user.findUnique({ where: { id } });
         if (!user) {
             throw new common_1.BadRequestException('No user found');
         }
-        return {
-            user,
-            message: "User found successfully"
-        };
+        return user;
     }
     async updateUser(id, body) {
         const user = await this.prisma.user.findUnique({ where: { id } });
         if (!user) {
             throw new common_1.BadRequestException('No user found');
         }
+        if (Object.keys(body).length === 0) {
+            throw new common_1.BadRequestException('No data to update');
+        }
+        if (body.hashedPassword) {
+            await this.prisma.user.update({
+                where: { id },
+                data: Object.assign(Object.assign({}, body), { hashedPassword: await this.hashPassword(body.hashedPassword) })
+            });
+            return {
+                message: "User updated successfully"
+            };
+        }
         await this.prisma.user.update({
             where: { id },
             data: Object.assign({}, body)
         });
         return {
-            user,
             message: "User updated successfully"
         };
     }
@@ -56,6 +65,9 @@ let UsersService = class UsersService {
         }
         await this.prisma.user.delete({ where: { id } });
         return { id, message: "User deleted successfully" };
+    }
+    async hashPassword(password) {
+        return await bcrypt.hash(password, 10);
     }
 };
 UsersService = __decorate([

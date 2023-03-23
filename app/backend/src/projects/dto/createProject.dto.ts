@@ -1,12 +1,4 @@
-// export class CreateProjectDto {
-//     title: string;
-//     description: string;
-//     startDate: string;
-//     endDate: string;
-//     category: string;
-//     status: string;
-//     tags: string[];
-// }
+
 import { IsArray, IsDate, IsDateString, IsEmail, IsNotEmpty, IsString, Length } from "class-validator";
 
 export class CreateProjectDto {
@@ -20,21 +12,19 @@ export class CreateProjectDto {
 
     @IsNotEmpty()
     @IsString()
-    @IsDateString()
     public startDate: string;
 
     @IsNotEmpty()
     @IsString()
-    @IsDateString()
     public endDate: string;
 
     @IsNotEmpty()
     @IsString()
     public category: string;
 
+    @IsArray()
     @IsNotEmpty()
-    @IsString()
-    public status: string;
+    public questions: string[];
 
     @IsNotEmpty()
     @IsArray()

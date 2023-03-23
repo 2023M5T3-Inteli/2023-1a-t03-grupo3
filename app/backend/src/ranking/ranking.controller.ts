@@ -1,15 +1,11 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import {
-  ApiBearerAuth, ApiResponse, ApiTags
-} from '@nestjs/swagger';
+import { Controller, Get, Param, Post } from '@nestjs/common';
+import { ApiResponse } from '@nestjs/swagger';
 import { CreateRankingDto } from './dto/create-ranking.dto';
 import { RankingService } from './ranking.service';
 
-@ApiBearerAuth()
-@ApiTags('ranking')
 @Controller('ranking')
 export class RankingController {
-  constructor(private readonly rankingService: RankingService) {}
+  constructor(private readonly rankingService: RankingService) { }
 
   @Get()
   @ApiResponse({
@@ -25,18 +21,8 @@ export class RankingController {
     return await this.rankingService.findAll();
   }
 
-
-  @ApiResponse({
-    status: 200,
-    description: 'Everything works fine',
-    type: CreateRankingDto
-  })
-  @ApiResponse({
-    status: 403,
-    description: 'Forbidden',
-  })
-  @Get('/user/:id')
-  async findOne(@Param('id') id: string) {
-    return await this.rankingService.findOne(id);
+  @Post("/increment/:id")
+  increment(@Param('id') id: string) {
+    return this.rankingService.increment(id);
   }
 }

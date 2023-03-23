@@ -14,16 +14,16 @@ export class UsersController {
 
 	@Get("/:id")
 	getMyUser(@Param() params: { id: string }) {
-		return this.usersService.getMyUser(params.id);
+		return this.usersService.getUser(params.id);
 	}
 
-	@UseGuards(JwtAuthGuard)
+	// @UseGuards(JwtAuthGuard)
 	@Put("/update/:id")
 	updateUser(@Body() dto: UpdateUserDto, @Param() params: { id: string }) {
 		return this.usersService.updateUser(params.id, dto);
 	}
 
-	@UseGuards(JwtAuthGuard)
+	// @UseGuards(JwtAuthGuard)
 	@Delete("/delete/:id")
 	deleteUser(@Param() params: { id: string }) {
 		return this.usersService.deleteUser(params.id);

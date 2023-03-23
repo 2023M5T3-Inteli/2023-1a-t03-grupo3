@@ -14,7 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
-const jwt_guard_1 = require("../auth/jwt.guard");
 const updateUser_dto_1 = require("./dto/updateUser.dto");
 const users_service_1 = require("./users.service");
 let UsersController = class UsersController {
@@ -25,7 +24,7 @@ let UsersController = class UsersController {
         return this.usersService.getUsers();
     }
     getMyUser(params) {
-        return this.usersService.getMyUser(params.id);
+        return this.usersService.getUser(params.id);
     }
     updateUser(dto, params) {
         return this.usersService.updateUser(params.id, dto);
@@ -48,7 +47,6 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getMyUser", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Put)("/update/:id"),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Param)()),
@@ -57,7 +55,6 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "updateUser", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Delete)("/delete/:id"),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
