@@ -8,15 +8,6 @@ export class RankingController {
   constructor(private readonly rankingService: RankingService) { }
 
   @Get()
-  @ApiResponse({
-    status: 200,
-    description: 'Everything works fine',
-    type: CreateRankingDto
-  })
-  @ApiResponse({
-    status: 403,
-    description: 'Forbidden',
-  })
   async findAll() {
     return await this.rankingService.findAll();
   }

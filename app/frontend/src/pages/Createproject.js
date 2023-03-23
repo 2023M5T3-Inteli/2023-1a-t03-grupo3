@@ -1,9 +1,13 @@
 import { Sidebar } from '../components/Sidebar'
-import { Card } from '../components/Card'
 import { Title } from '../components/Title'
 
 export const Createproject = () => {
 
+    function deletePost(){
+        axios.delete('/delete/:id').then((res)=>{
+            alert('Project delete')
+        });
+    }
 
     return (
         <div className="flex col min-h-screen max-w-screen w-full h-full">
