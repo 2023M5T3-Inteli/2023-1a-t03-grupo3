@@ -29,7 +29,7 @@ export const Ranking = () => {
         <div className="flex flex-col">
           <div className="w-full mb-1">
             <Title color={"#e2e2e2"} variant={3}>
-              Ranking
+              Ranking - Top 20
             </Title>
           </div>
 

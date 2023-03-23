@@ -1,15 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { RankingService } from './ranking.service';
+import { Controller, Get, Param, Post } from '@nestjs/common';
+import { ApiResponse } from '@nestjs/swagger';
 import { CreateRankingDto } from './dto/create-ranking.dto';
-import { UpdateRankingDto } from './dto/update-ranking.dto';
+import { RankingService } from './ranking.service';
 
 @Controller('ranking')
 export class RankingController {
   constructor(private readonly rankingService: RankingService) { }
 
   @Get()
-  findAll() {
-    return this.rankingService.findAll();
+  async findAll() {
+    return await this.rankingService.findAll();
   }
 
   @Post("/increment/:id")
