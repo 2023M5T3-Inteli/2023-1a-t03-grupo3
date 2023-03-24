@@ -9,6 +9,9 @@ import { Login } from './pages/Login'
 import { Notification } from './pages/Notification'
 import { Createproject } from './pages/Createproject'
 import { Ranking } from './pages/Ranking';
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function App(props) {
@@ -18,7 +21,7 @@ export default function App(props) {
       <Route path="/" element={<Root />}>
         <Route index element={<Home />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/project' element={<Project />} />
+        <Route path='/project/:id' element={<Project />} />
         <Route path='/ranking' element={<Ranking />} />
         <Route path='/login' element={<Login />} />
         <Route path='/notifications' element={<Notification/>}/>

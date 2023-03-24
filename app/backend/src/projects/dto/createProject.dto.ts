@@ -2,6 +2,12 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsArray, IsNotEmpty, IsString } from "class-validator";
 
+interface Role {
+    role: string,
+    amount: number,
+    applied: number
+}
+
 export class CreateProjectDto {
     @IsNotEmpty()
     @IsString()

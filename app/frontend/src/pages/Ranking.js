@@ -29,12 +29,12 @@ export const Ranking = () => {
         <div className="flex flex-col">
           <div className="w-full mb-1">
             <Title color={"#e2e2e2"} variant={3}>
-              Ranking - Top 20
+              Ranking
             </Title>
           </div>
 
-          <div className="rounded-xl bg-white border-2 h-auto p-4 w-full flex flex-col">
-            <div className="flex flex-row justify-between mx-auto w-10/12">
+          <div className="rounded-xl bg-white border-2 h-auto w-full flex flex-col px-4">
+            <div className="flex flex-row justify-between w-full my-2 px-10">
               <p className="font-montserrat font-semibold">Name</p>
               <p className="font-montserrat font-semibold">Rating</p>
             </div>

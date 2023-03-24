@@ -25,7 +25,8 @@ export class NotificationsController {
 		description: 'Forbidden',
 	  })
   findAll(@Param("id") id: string) {
-    return this.notificationsService.getNots(id);
+    // return this.notificationsService.getNots(id);
+    return "Notifications";
   }
   
   // @Get(':id')
