@@ -1,8 +1,9 @@
 import { Controller, Get, Param, Post } from '@nestjs/common';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateRankingDto } from './dto/create-ranking.dto';
 import { RankingService } from './ranking.service';
 
+@ApiTags('ranking')
 @Controller('ranking')
 export class RankingController {
   constructor(private readonly rankingService: RankingService) { }
