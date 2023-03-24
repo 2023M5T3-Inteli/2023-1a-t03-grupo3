@@ -22,7 +22,7 @@ model User {
   hardSkills     String?      @default("")
   softSkills     String?      @default("")
   otherSkills    String?      @default("")
-  notifications  Nofication[]
+  notifications  Notification[]
   score          Int?         @default(0)
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
@@ -31,7 +31,7 @@ model User {
   projects       Project[]
 }
 
-model Nofication {
+model Notification {
   id          String   @id @default(uuid())
   description String
   type        String   @default("application")
@@ -77,3 +77,10 @@ model Attachment {
   project   Project  @relation(fields: [projectId], references: [id])
   projectId String
 }
+
+
+
+
+
+
+
