@@ -9,85 +9,63 @@ import { Users } from "../assets/users.jsx";
 import { Arrow } from "../assets/arrow";
 
 import send from "../assets/send.svg"
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import axios from "../axios";
 
 export const Project = () => {
+    const params = useParams();
+
+    const [project, setProject] = useState({
+        category: "",
+        createdAt: "",
+        description: "",
+        endDate: "",
+        id: "",
+        questions: [],
+        startDate: "",
+        status: "",
+        tags: [],
+        title: "",
+    })
 
     useEffect(() => {
-        let project = {
-            title: "Lorem ipsum",
-            description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eu aliquam nisl nisl sit amet nisl. Sed euismod, nisl vitae ultricies lacinia, nisl nisl aliquam nisl, eu aliquam nisl nisl sit amet nisl.",
-            collaborators: [
-                {
-                    type: "analyst",
-                    amount: 5,
-                    enrolled: 1,
-                },
-                {
-                    type: "full-stack",
-                    amount: 5,
-                    enrolled: 3,
-                },
-                {
-                    type: "ux designer",
-                    amount: 2,
-                    enrolled: 0,
-                },
-            ],
-            durationInWeeks: 7,
-            subject: "Programming",
+        let { id } = params;
+
+        const getProject = async (id) => {
+            await axios.get(`/projects/${id}`)
+                .then(res => {
+                    setProject(res.data)
+                    console.log(res.data
+                    )
+                }).catch(err => {
+                    console.log(err)
+                })
         }
 
-        setTitle(project.title);
-        setDescription(project.description);
-        setCollaboratorsAmount(
-            project.collaborators.reduce((acc, curr) => acc + curr.amount, 0)
-        );
-        setEnrolledColaboratos(
-            project.collaborators.reduce((acc, curr) => acc + curr.enrolled, 0)
-        );
-        setCollaborators(project.collaborators);
-        setDuration(project.durationInWeeks);
-        setSubject(project.subject);
-
-        setPercentile((enrolledCollaborators / collaboratorsAmount) * 100)
-
-        console.log(percentile)
+        getProject(id)
     }, []);
-
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [collaboratorsAmount, setCollaboratorsAmount] = useState(0);
-    const [collaborators, setCollaborators] = useState([]);
-    const [enrolledCollaborators, setEnrolledColaboratos] = useState(0);
-    const [duration, setDuration] = useState(0);
-    const [subject, setSubject] = useState("");
-    const [percentile, setPercentile] = useState(0)
-
-    const [project, setProject] = useState({})
 
     return (
         <div className="w-full min-h-screen h-full p-0 flex flex-col items-center pb-16">
             <div className="bg-[#061826] w-full px-8 md:px-16 py-8 md:py-16 flex flex-col md:flex-row justify-center items-center md:justify-between">
                 <Link to={"/"} className="absolute text-white top-0 left-0 ml-4 md:ml-8 mt-4 md:mt-8 rotate-90">
-                    <Arrow color={"white"} width={36}/>
+                    <Arrow color={"white"} width={36} />
                 </Link>
 
                 <div className="text-center w-full md:w-3/5">
                     <div className="mb-4">
-                        <Title>{title}</Title>
+                        <Title>{project.title ?? "Loading..."}</Title>
                     </div>
 
-                    <Text color="f1f1f1" variant={"lg"}>{description}</Text>
+                    <Text color="f1f1f1" variant={"lg"}>{project.description ?? "Loading..."}</Text>
                 </div>
 
                 <div className="bg-[#8A58DC] px-4 py-4 md:py-8 rounded-2xl shadow-lg md:absolute w-full md:w-1/4 flex flex-col justify-center md:right-0 mt-4 md:mr-16 md:top-0 md:mt-16">
-                    <div className="flex items-center">
+                    {/* <div className="flex items-center">
                         <Users width={32} />
                         <div className="ml-2">
                             <p className="font-medium text-3xl">
-                                {collaboratorsAmount || "?"} collaborators
+                                {project.collaboratorsAmount || "?"} collaborators
                             </p>
                             <div className="font-medium text-2xl flex flex-wrap">
                                 {collaborators.map((collaborator, index) => {
@@ -104,21 +82,40 @@ export const Project = () => {
                                 })}
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="flex items-center">
                         <Calendar width={32} />
                         <p className="ml-2 font-medium text-2xl flex my-8 md:my-16">
-                            {duration || "?"} weeks
+                            {
+                                // subtract the dates to get the number of days
+                                Math.floor(
+                                    (new Date(project.endDate) - new Date(project.startDate)) / (1000 * 60 * 60 * 24)
+                                )
+                                ?? "Loading..."
+                            } days
                         </p>
                     </div>
 
                     <div className="flex items-center">
                         <Book width={32} />
                         <p className="ml-2 font-medium text-2xl flex">
-                            {subject}
+                            {project.category}
                         </p>
                     </div>
+
+                    {project && project.tags ? (<div className="flex flex-col mt-4">
+                        <Title color="#e2e2e2" variant={6}>Tags:</Title>
+                        <div className="flex flex-wrap">
+                            {project.tags.length > 0 && project.tags.map((tag, index) => {
+                                return (
+                                    <p className="bg-[#2e2e2e] text-white p-2 rounded-xl mr-2 mt-2" key={index}>
+                                        {tag}
+                                    </p>
+                                )
+                            })}
+                        </div>
+                    </div>) : null}
 
                     <div className="mt-8 md:mt-16 flex justify-center">
                         <button className="bg-[#061826] text-[#4A92FF] flex py-4 px-8 rounded-full font-semibold text-xl items-center" onClick={() => {
@@ -137,7 +134,7 @@ export const Project = () => {
             <div className="w-full p-4 md:px-16 py-8 md:py-16 flex justify-between">
                 <div className="text-center w-full md:w-3/5">
                     <Text color="061826" variant={"xl"} bold>
-                        {description}
+                        {project.description ?? "Loading..."}
                     </Text>
                 </div>
             </div>
@@ -148,15 +145,14 @@ export const Project = () => {
 
                 {/* Question */}
                 <div className="w-full">
-                    <div className="mt-4">
-                        <Text variant={"lg"} color="e2e2e2" bold>Have you ever worked with any of the skills of this project?</Text>
-                        <input className="bg-white border border-gray-200 rounded-lg w-full p-2 shadow-md" placeholder="Your answer..." />
-                    </div>
-
-                    <div className="mt-4">
-                        <Text variant={"lg"} color="e2e2e2" bold>Witch paper do you want to apply?</Text>
-                        <input className="bg-white border border-gray-200 rounded-lg w-full p-2 shadow-md" placeholder="Your answer..." />
-                    </div>
+                    {project.questions.length > 0 && project.questions.map((question, index) => {
+                        return (
+                            <div className="mt-4" key={index}>
+                                <Text variant={"lg"} color="e2e2e2" bold>{question}</Text>
+                                <input className="block w-full text-sm border border-gray-200 rounded-lg cursor-pointer shadow-md bg-whitex focus:outline-none dark:placeholder-gray-400 p-2" type="text" placeholder="Your answer..." />
+                            </div>
+                        )
+                    })}
                 </div>
 
                 <div className="mt-4">
@@ -181,6 +177,15 @@ export const Project = () => {
                             No
                         </Text>
                     </div>
+
+                    <div className="mt-4 flex">
+                        <input type="checkbox" className="mr-2 rounded-full" />
+
+                        <div className="flex flex-col">
+                            <p className="font-semibold">Apply as shadow?</p>
+                            <p className="text-gray-500">When you apply as a shadow, you will be able to follow the project and see the progress of the team.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="mt-8">
@@ -193,5 +198,5 @@ export const Project = () => {
                 </div>
             </div>
         </div>
-    );
+    )
 };

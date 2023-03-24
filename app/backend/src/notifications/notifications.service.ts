@@ -4,64 +4,51 @@ import { UpdateNotificationDto } from './dto/update-notification.dto';
 
 @Injectable()
 export class NotificationsService {
-    constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) { }
 
-    async getNots(id: string) {
-        const notifications = await this.prisma.user.findMany({
-        //   where: {
-        //   senderId: id
-        // }
-      });
+  // async getNots(id: string) {
+  //   const notifications = await this.prisma.notification.findMany({
+  //     where: {
+  //       userId: id
+  //     }
+  //   });
 
-        if (!notifications) {
-            throw new BadRequestException('No user found');
-        }
+  //   if (!notifications) {
+  //     throw new BadRequestException('No notifications found');
+  //   }
 
-        return notifications;
-    }
+  //   return notifications
+  // }
 
-    // async getMyUs(id: string) {
-    //     const user = await this.prisma.user.findUnique({ where: { id } });
+  // async updateUser(id: string, body: UpdateNotificationDto) {
+  //     const user = await this.prisma.notifications.findUnique({ where: { id } });
 
-    //     if (!user) {
-    //         throw new BadRequestException('No user found');
-    //     }
+  //     if (!Notification) {
+  //         throw new BadRequestException('No notification found');
+  //     }
 
-    //     return {
-    //         user,
-    //         message: "User found successfully"
-    //     };
-    // }
+  //     await this.prisma.notification.update({
+  //         where: { id },
+  //         data: {
+  //             ...body
+  //         }
+  //     });
 
-    // async updateUser(id: string, body: UpdateNotificationDto) {
-    //     const user = await this.prisma.notifications.findUnique({ where: { id } });
+  //     return {
+  //         Notification,
+  //         message: "notification updated successfully"
+  //     };
+  // }
 
-    //     if (!Notification) {
-    //         throw new BadRequestException('No notification found');
-    //     }
+  // async deleteNots(id: string) {
+  //     const user = await this.prisma.notification.findUnique({ where: { id } });
 
-    //     await this.prisma.notification.update({
-    //         where: { id },
-    //         data: {
-    //             ...body
-    //         }
-    //     });
+  //     if (!user) {
+  //         throw new BadRequestException('No notification found');
+  //     }
 
-    //     return {
-    //         Notification,
-    //         message: "notification updated successfully"
-    //     };
-    // }
+  //     await this.prisma.user.delete({ where: { id } });
 
-    // async deleteNots(id: string) {
-    //     const user = await this.prisma.notification.findUnique({ where: { id } });
-
-    //     if (!user) {
-    //         throw new BadRequestException('No notification found');
-    //     }
-
-    //     await this.prisma.user.delete({ where: { id } });
-
-    //     return { id, message: "nots deleted successfully" };
-    // }
+  //     return { id, message: "nots deleted successfully" };
+  // }
 }

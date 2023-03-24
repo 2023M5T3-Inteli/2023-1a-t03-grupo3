@@ -59,7 +59,6 @@ export class AuthService {
 		}
 
 		res.cookie('token', token);
-
 		return res.send({ message: 'Signin successful' })
 	}
 

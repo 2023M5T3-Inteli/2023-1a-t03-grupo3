@@ -14,7 +14,8 @@ export class NotificationsController {
 
   @Get('/getAll/:id')
   findAll(@Param("id") id: string) {
-    return this.notificationsService.getNots(id);
+    // return this.notificationsService.getNots(id);
+    return "Notifications";
   }
   
   // @Get(':id')

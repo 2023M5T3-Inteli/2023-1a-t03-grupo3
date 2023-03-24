@@ -1,5 +1,12 @@
 
-import { IsArray, IsDate, IsDateString, IsEmail, IsNotEmpty, IsString, Length } from "class-validator";
+import { ParseArrayPipe } from "@nestjs/common";
+import { isArray, IsArray, IsDate, IsDateString, IsEmail, IsNotEmpty, IsObject, IsString, Length } from "class-validator";
+
+interface Role {
+    role: string,
+    amount: number,
+    applied: number
+}
 
 export class CreateProjectDto {
     @IsNotEmpty()

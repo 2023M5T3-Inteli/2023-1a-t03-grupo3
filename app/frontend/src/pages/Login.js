@@ -22,11 +22,15 @@ export const Login = () => {
                     password,
                 })
                 .then(response => {
-                    // set token to the cookie that is returned from the server
+                    console.log(response.data)
                     token = response.data.token;
 
-                    // set token to the cookie
                     document.cookie = `token=${token}`;
+
+                    // redirect to home page
+                    setTimeout(() => {
+                        window.location.href = "/";
+                    }, 1000)
 
                     return response;
                 })
@@ -108,7 +112,7 @@ export const Login = () => {
                                 },
                             })}
                         />
-                        {errors.password && ( 
+                        {errors.password && (
                             <p className="text-red-500">
                                 {errors.password.message}
                             </p>

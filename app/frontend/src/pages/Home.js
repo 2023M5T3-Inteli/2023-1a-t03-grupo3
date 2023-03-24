@@ -39,9 +39,10 @@ export const Home = () => {
                 <p className='text-[#4A92FF] mb-4 mt-4 pt-6 font-bold text-lg'>Trending Projects</p>
 
                 <div className='flex flex-col gap-6'>
-                    {data && data.length >= 1 ? data.map(item => {
+                    {data && data.length >= 1 ? data.map((item, index) => {
+                        console.log(item)
                         return (
-                            <Card {...item} />
+                            <Card {...item} key={index} />
                         )
                     }) : <p className='text-xl text-gray-500'>Loading...</p>}
                 </div>
