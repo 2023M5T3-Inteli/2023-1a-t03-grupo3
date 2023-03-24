@@ -49,6 +49,15 @@ __decorate([
 ], AuthController.prototype, "signin", null);
 __decorate([
     (0, common_1.Get)('signout'),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'Everything works fine',
+        type: auth_dto_1.AuthDto
+    }),
+    (0, swagger_1.ApiResponse)({
+        status: 403,
+        description: 'Forbidden',
+    }),
     __param(0, (0, common_1.Request)()),
     __param(1, (0, common_1.Response)()),
     __metadata("design:type", Function),
@@ -56,6 +65,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "signout", null);
 AuthController = __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiTags)('auth'),
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

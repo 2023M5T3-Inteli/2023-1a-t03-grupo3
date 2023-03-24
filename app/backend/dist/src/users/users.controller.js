@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
+const createUser_dto_1 = require("./dto/createUser.dto");
 const updateUser_dto_1 = require("./dto/updateUser.dto");
 const users_service_1 = require("./users.service");
 let UsersController = class UsersController {
@@ -36,6 +37,15 @@ let UsersController = class UsersController {
 };
 __decorate([
     (0, common_1.Get)(),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'Everything works fine',
+        type: createUser_dto_1.CreateUserDto
+    }),
+    (0, swagger_1.ApiResponse)({
+        status: 403,
+        description: 'Forbidden',
+    }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
@@ -63,6 +73,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "deleteUser", null);
 UsersController = __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiTags)('users'),
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])
