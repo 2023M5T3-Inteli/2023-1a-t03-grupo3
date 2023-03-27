@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import picture from "../assets/alberto.svg";
 import { User } from "../assets/user";
 
-export const UserRanked = ({ fullName, score, index, id }) => {
+export const UserRanked = ({ picture,fullName, score, index, id }) => {
+
   return (
     <Link to={`/profile/${id}`} className="flex flex-row items-center">
       <p className="font-montserrat font-semibold text-lg text-center m-4">

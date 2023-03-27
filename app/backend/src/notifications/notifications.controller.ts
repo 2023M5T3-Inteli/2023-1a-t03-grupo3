@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { NotificationsService } from './notifications.service';
+import { Controller, Get, Param } from '@nestjs/common';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateNotificationDto } from './dto/create-notification.dto';
-import { UpdateNotificationDto } from './dto/update-notification.dto';
+import { NotificationsService } from './notifications.service';
 
+@ApiBearerAuth()
+@ApiTags('notifications')
 @Controller('notifications')
 export class NotificationsController {
   constructor(private readonly notificationsService: NotificationsService) {}
@@ -13,8 +15,18 @@ export class NotificationsController {
   // }
 
   @Get('/getAll/:id')
+  @ApiResponse({
+		status: 200,
+		description: 'Everything works fine',
+		type: CreateNotificationDto
+	  })
+	  @ApiResponse({
+		status: 403,
+		description: 'Forbidden',
+	  })
   findAll(@Param("id") id: string) {
-    return this.notificationsService.getNots(id);
+    // return this.notificationsService.getNots(id);
+    return "Notifications";
   }
   
   // @Get(':id')

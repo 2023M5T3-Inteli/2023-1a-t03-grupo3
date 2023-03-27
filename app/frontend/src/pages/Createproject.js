@@ -1,10 +1,7 @@
 import { Sidebar } from '../components/Sidebar'
-import { Card } from '../components/Card'
 import { Title } from '../components/Title'
 
 export const Createproject = () => {
-
-
     return (
         <div className="flex col min-h-screen max-w-screen w-full h-full">
             <Sidebar />

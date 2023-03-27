@@ -2,12 +2,24 @@ import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common'
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/createProject.dto';
 import { UpdateProjectDto } from './dto/updateProject.dto';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('projects')
 @Controller('projects')
 export class ProjectsController {
 	constructor(private readonly projectsService: ProjectsService) { }
 
 	@Get()
+	@ApiResponse({
+		status: 200,
+		description: 'Everything works fine',
+		type: CreateProjectDto
+	  })
+	  @ApiResponse({
+		status: 403,
+		description: 'Forbidden',
+	  })
 	findAll() {
 		return this.projectsService.findAll();
 	}

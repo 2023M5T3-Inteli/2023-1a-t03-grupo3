@@ -1,32 +1,46 @@
 
-import { IsArray, IsDate, IsDateString, IsEmail, IsNotEmpty, IsString, Length } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
+import { IsArray, IsNotEmpty, IsString } from "class-validator";
+
+interface Role {
+    role: string,
+    amount: number,
+    applied: number
+}
 
 export class CreateProjectDto {
     @IsNotEmpty()
     @IsString()
+    @ApiProperty({example: 'Project', description: 'title'})
     public title: string;
 
     @IsNotEmpty()
     @IsString()
+    @ApiProperty({example: 'string', description: 'description'})
     public description: string;
 
     @IsNotEmpty()
     @IsString()
+    @ApiProperty({example: 'string', description: 'startDate'})
     public startDate: string;
 
     @IsNotEmpty()
     @IsString()
+    @ApiProperty({example: 'string', description: 'endDate'})
     public endDate: string;
 
     @IsNotEmpty()
     @IsString()
+    @ApiProperty({example: 'string', description: 'category'})
     public category: string;
 
     @IsArray()
     @IsNotEmpty()
+    @ApiProperty({example: 'questions', description: 'questions'})
     public questions: string[];
 
     @IsNotEmpty()
     @IsArray()
+    @ApiProperty({example: 'tags', description: 'tags'})
     public tags: string[];
 }
