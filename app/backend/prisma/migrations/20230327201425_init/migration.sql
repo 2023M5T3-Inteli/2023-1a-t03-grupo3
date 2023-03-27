@@ -22,18 +22,6 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "Role" (
-    "id" TEXT NOT NULL,
-    "role" TEXT NOT NULL,
-    "amount" INTEGER NOT NULL,
-    "applied" INTEGER NOT NULL DEFAULT 0,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "Role_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Notification" (
     "id" TEXT NOT NULL,
     "description" TEXT NOT NULL,
@@ -75,6 +63,17 @@ CREATE TABLE "Project" (
 );
 
 -- CreateTable
+CREATE TABLE "Role" (
+    "id" TEXT NOT NULL,
+    "role" TEXT NOT NULL,
+    "amount" INTEGER NOT NULL,
+    "applied" INTEGER NOT NULL DEFAULT 0,
+    "projectId" TEXT,
+
+    CONSTRAINT "Role_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Attachment" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -84,12 +83,6 @@ CREATE TABLE "Attachment" (
     "projectId" TEXT NOT NULL,
 
     CONSTRAINT "Attachment_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "_RoleToUser" (
-    "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -108,12 +101,6 @@ CREATE UNIQUE INDEX "Manager_email_key" ON "Manager"("email");
 CREATE UNIQUE INDEX "Project_title_key" ON "Project"("title");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_RoleToUser_AB_unique" ON "_RoleToUser"("A", "B");
-
--- CreateIndex
-CREATE INDEX "_RoleToUser_B_index" ON "_RoleToUser"("B");
-
--- CreateIndex
 CREATE UNIQUE INDEX "_ProjectToUser_AB_unique" ON "_ProjectToUser"("A", "B");
 
 -- CreateIndex
@@ -126,13 +113,10 @@ ALTER TABLE "User" ADD CONSTRAINT "User_managerId_fkey" FOREIGN KEY ("managerId"
 ALTER TABLE "Notification" ADD CONSTRAINT "Notification_senderId_fkey" FOREIGN KEY ("senderId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Role" ADD CONSTRAINT "Role_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Attachment" ADD CONSTRAINT "Attachment_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_RoleToUser" ADD CONSTRAINT "_RoleToUser_A_fkey" FOREIGN KEY ("A") REFERENCES "Role"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_RoleToUser" ADD CONSTRAINT "_RoleToUser_B_fkey" FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_ProjectToUser" ADD CONSTRAINT "_ProjectToUser_A_fkey" FOREIGN KEY ("A") REFERENCES "Project"("id") ON DELETE CASCADE ON UPDATE CASCADE;

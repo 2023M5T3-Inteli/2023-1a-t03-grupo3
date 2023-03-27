@@ -13,6 +13,7 @@ model User {
   fullName       String
   email          String         @unique
   hashedPassword String
+  contact        String?        @default("")
   linkedin       String?        @default("")
   occupation     String?        @default("user")
   picture        String?        @default("")
