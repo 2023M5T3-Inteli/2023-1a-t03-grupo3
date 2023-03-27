@@ -130,7 +130,7 @@ export const Profile = () => {
                                     })} />}
 
                                     {
-                                        inputState ? <p className='text-[2.2rem] text-[#868686]'>{data.occupation}</p> :
+                                        !inputState ? <p className='text-[2.2rem] text-[#868686]'>{data.occupation}</p> :
                                         <input 
                                             placeholder="Your Dell email" 
                                             className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" 
