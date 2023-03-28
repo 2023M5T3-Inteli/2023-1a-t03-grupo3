@@ -1,13 +1,25 @@
-import { Body, Controller, Delete, Get, Param, Put, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { Body, Controller, Delete, Get, Param, Put } from '@nestjs/common';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreateUserDto } from './dto/createUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
 import { UsersService } from './users.service';
 
+@ApiBearerAuth()
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
 	constructor(private readonly usersService: UsersService) { }
 
 	@Get()
+	@ApiResponse({
+		status: 200,
+		description: 'Everything works fine',
+		type: CreateUserDto
+	  })
+	  @ApiResponse({
+		status: 403,
+		description: 'Forbidden',
+	  })
 	getUsers() {
 		return this.usersService.getUsers();
 	}

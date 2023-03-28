@@ -38,6 +38,9 @@ export class UsersService {
         }
 
         console.log(body)
+        // if (Object.keys(body).length === 0) {
+        //     throw new BadRequestException('No data to update');
+        // }
 
         if (body.hashedPassword) {
             await this.prisma.user.update({
