@@ -10,7 +10,7 @@ import { Notification } from './pages/Notification'
 import { Createproject } from './pages/Createproject'
 import { Ranking } from './pages/Ranking';
 import React from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -24,21 +24,35 @@ export default function App(props) {
         <Route path='/project/:id' element={<Project />} />
         <Route path='/ranking' element={<Ranking />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/notifications' element={<Notification/>}/>
+        <Route path='/notifications' element={<Notification />} />
         <Route path='/createproject' element={<Createproject />} />
       </Route>
     )
   );
 
-	return (
-		<RouterProvider router={router} />
-	);
+  return (
+    <RouterProvider router={router} />
+  );
 }
 
 const Root = () => {
-	return (
-		<div>
-			<Outlet />
-		</div>
-	)
+  return (
+    <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
+      <Outlet />
+    </div>
+  )
 }

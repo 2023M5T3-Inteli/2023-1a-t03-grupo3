@@ -22,20 +22,45 @@ export const Profile = () => {
 
     const [data, setData] = useState({})
 
+    const profileInfo = async () => {
+        try {
+            await axios
+                .get("/users/f900d5e0-ab8d-410d-8792-95a64698bb6f")
+                .then(response => {
+                    setData(response.data)
+                    console.log(response.data)
+                    return response;
+                })
+                .catch((error) => {
+                    return error;
+                });
 
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    const profileInfoUpdate = async (data) => {
-        const { fullName, email, occupation, picture, linkedin, city, state, contact, country, hardSkills, softSkills, otherSkills, score } = data;
-
+    const profileInfoUpdate = async (formData) => {
         try {
             await axios
                 .put("/users/update/f900d5e0-ab8d-410d-8792-95a64698bb6f", {
-                    ...data
+                    occupation: formData.occupation || data.occupation,
+                    email: formData.email || data.email,
+                    picture: formData.picture || data.picture,
+                    linkedin: formData.linkedin || data.linkedin,
+                    city: formData.city || data.city,
+                    state: formData.state || data.state,
+                    country: formData.country || data.country,
+                    contact: formData.contact || data.contact,
+                    hardSkills: formData.hardSkills || data.hardSkills,
+                    softSkills: formData.softSkills || data.softSkills,
+                    otherSkills: formData.otherSkills || data.otherSkills,
                 })
                 .then(response => {
                     toast.success("Your profile has been successfully updated! :)")
 
                     toggleButton(!inputState)
+                    profileInfo()
 
                     return response;
                 })
@@ -64,24 +89,6 @@ export const Profile = () => {
             favorite.scrollIntoView({ behavior: "smooth" })
         }
 
-        const profileInfo = async () => {
-            try {
-                await axios
-                    .get("/users/f900d5e0-ab8d-410d-8792-95a64698bb6f")
-                    .then(response => {
-                        setData(response.data)
-                        console.log(response.data)
-                        return response;
-                    })
-                    .catch((error) => {
-                        return error;
-                    });
-
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
         profileInfo();
 
     }, [])
@@ -109,7 +116,7 @@ export const Profile = () => {
 
                         {/* profile picture, name and ocuppation */}
                         <div className="w-full m-4 justify-between mb-12 flex flex-col lg:flex-row">
-                            <img alt="" src={data.picture || albertoPicture} className="w-52 h-52" />
+                            <img alt="" src={data.picture || albertoPicture} className="w-52 h-52 rounded-full border-2 border-gray-700" />
 
                             <div className=" flex flex-col justify-center lg:text-end px-8">
                                 <p className='text-[3.0rem] font-bold'>{data.fullName ?? "Loading..."}</p>
@@ -117,92 +124,160 @@ export const Profile = () => {
                                 {
                                     inputState ? <p className='text-[2.2rem] text-[#868686]'>{data.occupation}</p> :
                                         <input
-                                            placeholder="Your occupation"
-                                            value={data.occupation}
-                                            {...register("occupation", {
-                                                required: "Occupation is required",
-                                            })}
-                                            className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" disabled={inputState}
+                                            placeholder={data.occupation}
+                                            className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]"
+                                            disabled={inputState}
+                                            {...register("occupation")}
                                         />
                                 }
-                                        {
-                                            errors.occupation && (
-                                                <p className="text-red-500 text-sm">{errors.occupation.message}</p>
-                                            )
-                                        }
+                                {
+                                    errors.occupation && (
+                                        <p className="text-red-500 text-sm">{errors.occupation.message}</p>
+                                    )
+                                }
 
                             </div >
                         </div >
 
-    {/* profile informations */ }
-    < div className = 'mx-6' >
+                        {/* profile informations */}
+                        < div className='mx-6' >
                             <div>
                                 <p> Email </p>
-                                <input placeholder="Your Dell email" className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" disabled={true} value={data.email ?? "Loading..."} />
+                                {
+                                    inputState ? <input
+                                        value={data.email}
+                                        className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]"
+                                        disabled={true}
+                                    /> :
+                                        <input
+                                            placeholder={data.email}
+                                            className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]"
+                                            {...register("email")}
+                                        />
+                                }
                             </div>
 
                             <div className="flex justify-between w-full">
                                 <div className="w-[46%]">
                                     <p className="mt-6"> Linkedin </p>
-                                    <input placeholder="Your linkedin profile link" className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" disabled={inputState} value={data.linkedin}
-                                        {...register("linkedin")} />
+                                    {
+                                        inputState ? <input
+                                            value={data.linkedin}
+                                            className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]"
+                                            disabled={true}
+                                        /> :
+                                            <input
+                                                placeholder={data.linkedin}
+                                                className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]"
+                                                {...register("linkedin")}
+                                            />
+                                    }
                                 </div>
 
                                 <div className="w-[46%]">
                                     <p className="mt-6"> Contact </p>
-                                    <input placeholder="Your contact" className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" disabled={inputState} value={data.contact}
-                                        {...register("contact")} />
+                                    {
+                                        inputState ? <input
+                                            value={data.contact}
+                                            className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]"
+                                            disabled={true}
+                                        /> :
+                                            <input
+                                                placeholder={data.contact}
+                                                className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]"
+                                                {...register("contact")}
+                                            />
+                                    }
                                 </div>
                             </div>
 
                             <div className="flex justify-between w-full">
                                 <div className="w-[46%]">
                                     <p className="mt-6"> City and State </p>
-                                    <input placeholder="Your city/state" className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" disabled={inputState} value={data.city && data.state ? `${data.city} / ${data.state}` : null}
-                                        {...register("city")} />
+                                    {
+                                        inputState ? <input
+                                            value={data.city}
+                                            className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]"
+                                            disabled={true}
+                                        /> :
+                                            <input
+                                                placeholder={data.city}
+                                                className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]"
+                                                {...register("city")}
+
+                                            />
+                                    }
                                 </div>
 
                                 <div className="w-[46%]">
                                     <p className="mt-6"> Country </p>
-                                    <input placeholder="Your linkedin profile link" className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" disabled={inputState} value={data.country}
-                                        {...register("country")} />
+                                    {
+                                        inputState ? <input
+                                            value={data.country}
+                                            className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]"
+                                            disabled={true}
+                                        /> :
+                                            <input
+                                                placeholder={data.country}
+                                                className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]"
+                                                {...register("country")}
+                                            />
+                                    }
                                 </div>
                             </div>
                         </div >
 
-    {/* skills and habilities */ }
-    < div className = "mx-6 mt-12" >
+                        {/* skills and habilities */}
+                        < div className="mx-6 mt-12" >
                             <Subtitle>Skills and habilities</Subtitle>
                             <div className="flex flex-col md:flex-row justify-between w-full">
                                 <div className="w-full md:w-[46%]">
                                     <p className="mt-2"> Soft skills </p>
-                                    <textarea placeholder="Write your soft skills (resilience, communication, team work...)" className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" rows={4} disabled={inputState} value={data.softSkills}
-                                        {...register("softSkills")} />
+                                    {
+                                        inputState ? <textarea placeholder="Write your soft skills (communication, teamwork, leadership...)" className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" rows={4} value={data.softSkills} disabled={true}
+                                        /> :
+                                            <textarea placeholder={data.softSkills} className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" rows={4} disabled={inputState}
+                                                {...register("softSkills")}
+                                            />
+
+                                    }
                                 </div>
 
                                 <div className="w-full md:w-[46%]">
                                     <p className="mt-2"> Hard skills </p>
-                                    <textarea placeholder="Write your hard skills (programming, data analysis, design...)" className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" rows={4} disabled={inputState} value={data.hardSkills}
-                                        {...register("hardSkills")} />
+                                    {
+                                        inputState ? <textarea placeholder="Write your hard skills (programming languages, frameworks, tools...)" className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" rows={4} value={data.hardSkills} disabled={true}
+                                        /> :
+                                            <textarea placeholder={data.hardSkills} className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" rows={4} disabled={inputState}
+                                                {...register("hardSkills")}
+                                            />
+
+                                    }
                                 </div>
                             </div>
 
                             <div className="w-full md:w-[46%]">
                                 <p className="mt-6"> Other skills </p>
-                                <textarea placeholder="Write skills that you got with with the projects" className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" rows={4} disabled={inputState} value={data.otherSkills}
-                                    {...register("otherSkills")} />
+                                {
+                                    inputState ? <textarea placeholder="Write your other skills (languages, hobbies, etc...)" className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" rows={4} value={data.otherSkills} disabled={true}
+                                    /> :
+                                        <textarea placeholder={data.otherSkills} className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" rows={4} disabled={inputState}
+                                            {...register("otherSkills")}
+                                        />
+
+                                }
                             </div>
                         </div >
 
-    <div className="ml-6 mt-12">
-        {
-            inputState ? <EditButton onClick={toggleButton} /> : <SaveButton type="submit" />
-        }
-    </div>
+                        <div className="ml-6 mt-12">
+                            {
+                                inputState ? <EditButton onClick={toggleButton} /> : <SaveButton type="submit" />
+                            }
+                        </div>
                     </form >
 
-    {/* profile projects informations */ }
-    < div className = "mt-12 mx-6" id = "projects" >
+                    {/* profile projects informations */}
+                    < div className="mt-12 mx-6" id="projects" >
                         <Subtitle>Current Projects</Subtitle>
 
                         <div className="mt-4">

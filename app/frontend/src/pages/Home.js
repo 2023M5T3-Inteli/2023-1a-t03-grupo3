@@ -13,10 +13,10 @@ export const Home = () => {
             await axios.get("/projects").then(res => {
                 setData(res.data)
             }).catch(err => {
+                // setData("No Projects")
                 console.log(err)
             })
         }
-
         getProjects()
     }, [])
 
