@@ -30,16 +30,14 @@ export class UsersService {
         return user;
     }
 
-    async updateUser(id: string, body: UpdateUserDto) {
+    async updateUser(id: string, body: any) {
         const user = await this.prisma.user.findUnique({ where: { id } });
 
         if (!user) {
             throw new BadRequestException('No user found');
         }
 
-        if (Object.keys(body).length === 0) {
-            throw new BadRequestException('No data to update');
-        }
+        console.log(body)
 
         if (body.hashedPassword) {
             await this.prisma.user.update({
@@ -47,6 +45,7 @@ export class UsersService {
                 data: {
                     ...body,
                     hashedPassword: await this.hashPassword(body.hashedPassword)
+     
                 }
             });
 

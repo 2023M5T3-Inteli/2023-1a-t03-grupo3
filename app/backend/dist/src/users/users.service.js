@@ -38,9 +38,7 @@ let UsersService = class UsersService {
         if (!user) {
             throw new common_1.BadRequestException('No user found');
         }
-        if (Object.keys(body).length === 0) {
-            throw new common_1.BadRequestException('No data to update');
-        }
+        console.log(body);
         if (body.hashedPassword) {
             await this.prisma.user.update({
                 where: { id },

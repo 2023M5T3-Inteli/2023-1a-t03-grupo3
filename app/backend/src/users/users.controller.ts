@@ -19,7 +19,7 @@ export class UsersController {
 
 	// @UseGuards(JwtAuthGuard)
 	@Put("/update/:id")
-	updateUser(@Body() dto: UpdateUserDto, @Param() params: { id: string }) {
+	updateUser(@Body() dto: any, @Param() params: { id: string }) {
 		return this.usersService.updateUser(params.id, dto);
 	}
 

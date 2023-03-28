@@ -1,4 +1,3 @@
-import { UpdateUserDto } from './dto/updateUser.dto';
 import { UsersService } from './users.service';
 export declare class UsersController {
     private readonly usersService;
@@ -10,7 +9,7 @@ export declare class UsersController {
     getMyUser(params: {
         id: string;
     }): Promise<import(".prisma/client").User>;
-    updateUser(dto: UpdateUserDto, params: {
+    updateUser(dto: any, params: {
         id: string;
     }): Promise<{
         message: string;

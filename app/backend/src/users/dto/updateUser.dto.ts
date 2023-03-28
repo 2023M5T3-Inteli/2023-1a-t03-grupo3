@@ -17,7 +17,7 @@ export class UpdateUserDto {
 
     @IsString()
     @IsOptional()
-    role: string;
+    occupation: string;
 
     @IsString()
     @IsOptional()

@@ -46,7 +46,7 @@ export const Ranking = () => {
                   {...item}
                 />
               );
-            }) : <p className='text-xl text-gray-500'>No one to render...</p>}
+            }) : <p className='text-xl text-gray-500'>Loading...</p>}
           </div>
         </div>
       </div>

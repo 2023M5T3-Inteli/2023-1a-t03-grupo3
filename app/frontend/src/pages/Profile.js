@@ -73,7 +73,7 @@ export const Profile = () => {
         const profileInfo = async () => {
             try {
                 await axios
-                    .get("/users/aa7e2e35-f6c3-44f1-98c0-dd5974ab9c98")
+                .get("/users/eb94c26f-5c2e-4444-bfe2-b8e3ffd7bfaa")
                     .then(response => {
                         setData(response.data)
                         console.log(data)
@@ -115,7 +115,7 @@ export const Profile = () => {
 
                         {/* profile picture, name and ocuppation */}
                         <div className="w-full m-4 justify-between mb-12 flex flex-col lg:flex-row">
-                            <img alt="" src={data.picture} className="w-52 h-52" />
+                            <img alt="" src={data.picture || albertoPicture} className="w-52 h-52" />
 
                             <div className=" flex flex-col justify-center lg:text-end px-8">
                                 <p className='text-[3.0rem] font-bold'>{data.fullName ?? "Loading..."}</p>
@@ -128,19 +128,6 @@ export const Profile = () => {
                                             message: "Invalid email address",
                                         },
                                     })} />}
-
-                                    {
-                                        inputState ? <p className='text-[2.2rem] text-[#868686]'>{data.occupation}</p> :
-                                        <input 
-                                            placeholder="Your Dell email" 
-                                            className="rounded-xl bg-white border-2 w-full py-2 px-3 disabled:bg-[#f0f0f0]" 
-                                            disabled={inputState} 
-                                            value={data.occupation}
-                                            {...register("occupation", {
-                                                required: "Occupation is required",
-                                            })} 
-                                        />
-                                    }
 
                             </div>
                         </div>
