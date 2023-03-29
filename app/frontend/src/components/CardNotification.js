@@ -1,16 +1,19 @@
 
 import x1 from '../assets/x1.svg'
 import alberto from '../assets/alberto.png'
-export const CardNotification = ({ desc, type, aproval }) => {
+import axios from "../axios"
+import { toast } from 'react-toastify';
+
+export const CardNotification = ({ desc, type, aproval, id }) => {
 
     function createPost(isApproved) {
         axios
-            .post(`notification/${id}`, {
+            .put(`notification/${id}`, {
                 aproved: isApproved,
                 // receiver:true
             })
             .then((response) => {
-                setPost(response.data);
+                toast.success("Notificação atualizada com sucesso!")
             });
     }
 
@@ -22,18 +25,18 @@ export const CardNotification = ({ desc, type, aproval }) => {
         
         `}>
             <div className="flex flex-row h-8 justify-center items-center">
-                {
-                    type == "request" ? <img className="flex mr-2 " src={alberto} width={30} height={16} /> : <div className=" w-10 max-h-1"></div>
-                }
+                {type === "request" ?
+                    <img className="flex mr-2 " src={alberto} width={30} height={16} alt="profile" />
+                    : <div className=" w-10 max-h-1"></div>}
                 <p className="">{desc}</p>
             </div>
             <img
                 className="flex flex-row "
                 src={x1}
                 width={15}
+                alt={"x"}
                 height={15}
             />
-
         </div>
     )
 }
