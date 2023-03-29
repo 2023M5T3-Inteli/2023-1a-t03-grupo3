@@ -30,6 +30,7 @@ model User {
   manager        Manager?       @relation(fields: [managerId], references: [id])
   managerId      String?
   projects       Project[]
+  Member         Member[]
 }
 
 model Notification {
@@ -64,10 +65,35 @@ model Project {
   tags        String[]
   questions   String[]
   roles       Role[]
-  members     User[]
+  members     Member[]
   attachments Attachment[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
+  User        User?        @relation(fields: [userId], references: [id])
+  userId      String?
+}
+
+model Member {
+  id        String     @id @default(uuid())
+  role      String
+  questions Question[]
+  accepted  Boolean    @default(false)
+  User      User       @relation(fields: [userId], references: [id])
+  userId    String
+  Project   Project    @relation(fields: [projectId], references: [id])
+  projectId String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Question {
+  id        String   @id @default(uuid())
+  question  String
+  answer    String
+  Member    Member?  @relation(fields: [memberId], references: [id])
+  memberId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Role {
