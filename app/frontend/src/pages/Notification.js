@@ -4,30 +4,46 @@ import { useState } from "react";
 import bell from "../assets/bell.svg";
 import filter from "../assets/filter.svg";
 import { NotificationModal } from "../components/NotificationModal";
-import { Title } from '../components/Title'
+import { Title } from '../components/Title';
+import axios from "../axios"
+import { useParams } from "react-router-dom";
+
 
 export const Notification = () => {
-  var notificationContent = [
-    {
-      desc: "Amet Mattis Vulputate",
-      type: "request",
-      aproval: "",
-    },
+  // var notificationContent = [
+  //   {
+  //     desc: "Amet Mattis Vulputate",
+  //     type: "request",
+  //     aproval: "",
+  //   },
 
-    {
-      desc: "Amet Mattis Vulputate",
-      type: "answer",
-      aproval: false,
-    },
+  //   {
+  //     desc: "Amet Mattis Vulputate",
+  //     type: "answer",
+  //     aproval: false,
+  //   },
 
-    {
-      desc: "Amet Mattis Vulputate",
-      type: "answer",
-      aproval: true,
-    },
-  ];
+  //   {
+  //     desc: "Amet Mattis Vulputate",
+  //     type: "answer",
+  //     aproval: true,
+  //   },
+  // ];
+
+  const params = useParams();
 
   const [openModal, setOpenModal] = useState(false);
+ 
+  function createPost(isApproved){
+    axios
+      .post(`notification/${id}`, {
+        aproved:isApproved,
+        // receiver:true
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
 
   return (
     <div className="flex min-h-screen max-w-screen w-auto h-full">
@@ -64,7 +80,7 @@ export const Notification = () => {
                     return (
                     <CardNotification
                         desc={item.desc}
-                        aproval={item.aproval}
+                        aproval={(item.aproval)}
                         type={item.type}
                     />
                     );
