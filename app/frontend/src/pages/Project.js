@@ -61,6 +61,15 @@ export const Project = () => {
                 </div>
 
                 <div className="bg-[#8A58DC] px-4 py-4 md:py-8 rounded-2xl shadow-lg md:absolute w-full md:w-1/4 flex flex-col justify-center md:right-0 mt-4 md:mr-16 md:top-0 md:mt-16">
+                    <div className="flex flex-col items-center">
+                        <div className="mb-4 text-center">
+                            <Title color={"#e2e2e2"} variant={3}>Project Status</Title>
+                            <p className={`text-xl font-medium text-center ${project.status == "pending" ? "text-yellow-500" : project.status == "completed" ? "text-green-500" : "text-black"
+                                }`}>{project.status ?? "Loading..."}</p>
+
+                            {project.status == "pending" ? <p className="text-3xl mt-4 font-medium text-center">Open for applications!</p> : null}
+                        </div>
+                    </div>
                     {/* <div className="flex items-center">
                         <Users width={32} />
                         <div className="ml-2">
@@ -86,7 +95,7 @@ export const Project = () => {
 
                     <div className="flex items-center">
                         <Calendar width={32} />
-                        <p className="ml-2 font-medium text-2xl flex my-8 md:my-16">
+                        <p className="ml-2 font-medium text-2xl flex mt-4 mb-5 md:my-16">
                             {
                                 // subtract the dates to get the number of days
                                 Math.floor(
@@ -182,8 +191,8 @@ export const Project = () => {
                         <input type="checkbox" className="mr-2 rounded-full" />
 
                         <div className="flex flex-col">
-                            <p className="font-semibold">Apply as shadow?</p>
-                            <p className="text-gray-500">When you apply as a shadow, you will be able to follow the project and see the progress of the team.</p>
+                            <p className="font-semibold text-lg">Apply as shadow?</p>
+                            <p className="text-gray-500">When you apply as Shadow, you will be able to follow the project and see the progress of the team.</p>
                         </div>
                     </div>
                 </div>

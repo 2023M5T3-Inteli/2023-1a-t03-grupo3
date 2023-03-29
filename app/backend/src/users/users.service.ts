@@ -37,6 +37,7 @@ export class UsersService {
             throw new BadRequestException('No user found');
         }
 
+        console.log(body)
         // if (Object.keys(body).length === 0) {
         //     throw new BadRequestException('No data to update');
         // }
@@ -47,6 +48,7 @@ export class UsersService {
                 data: {
                     ...body,
                     hashedPassword: await this.hashPassword(body.hashedPassword)
+     
                 }
             });
 

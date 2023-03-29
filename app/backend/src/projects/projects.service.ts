@@ -8,7 +8,7 @@ export class ProjectsService {
     constructor(private prisma: PrismaService) { }
 
     async findAll() {
-        const projects = this.prisma.project.findMany({});
+        const projects = await this.prisma.project.findMany({});
 
         return projects;
     }
@@ -24,13 +24,13 @@ export class ProjectsService {
             throw new BadRequestException('Project already exists');
         }
 
-        const project = await this.prisma.project.create({
+        const newProject = await this.prisma.project.create({
             data: {
                 ...createProjectDto
             }
         });
 
-        return project;
+        return newProject;
     }
 
     async findOne(id: string) {
@@ -98,6 +98,18 @@ export class ProjectsService {
         return {
             message: 'Project updated successfully',
         };
+    }
+
+    async applyToProject(projectId: string, userId: string) {
+        const foundProject = await this.prisma.project.findUnique({
+            where: { id: projectId }
+        });
+
+        if (!foundProject) {
+            throw new BadRequestException("Project not found");
+        }
+
+        return foundProject
     }
 
     async remove(id: string) {
