@@ -50,8 +50,6 @@ const Root = () => {
         pauseOnHover
         theme="light"
       />
-      {/* Same as */}
-      <ToastContainer />
       <Outlet />
     </div>
   )
