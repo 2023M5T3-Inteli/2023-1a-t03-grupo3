@@ -1,30 +1,39 @@
 
 import x1 from '../assets/x1.svg'
 import alberto from '../assets/alberto.png'
-export const CardNotification = ({desc,type,aproval}) =>{
+export const CardNotification = ({ desc, type, aproval }) => {
 
+    function createPost(isApproved) {
+        axios
+            .post(`notification/${id}`, {
+                aproved: isApproved,
+                // receiver:true
+            })
+            .then((response) => {
+                setPost(response.data);
+            });
+    }
 
-    return(
-        <div className={` border-2 border-black-1000 shadow-md p-4 rounded-xl  bg-[#fafafa] mb-3 
-        ${
-            aproval===true? "border-2 border-green-700" : aproval===false? "border-2 border-red-500": ""
-        } 
+    return (
+        <div onClick={createPost(aproval)} className={` border-2 border-black-1000 shadow-md p-4 rounded-xl  bg-[#fafafa] mb-3 
+        ${aproval === true ? "border-2 border-green-700" : aproval === false ? "border-2 border-red-500" : ""
+            } 
         flex flex-row justify-between 
         
         `}>
             <div className="flex flex-row h-8 justify-center items-center">
                 {
-                    type=="request" ? <img className="flex mr-2 "src={alberto} width={30} height={16} /> : <div className=" w-10 max-h-1"></div>
+                    type == "request" ? <img className="flex mr-2 " src={alberto} width={30} height={16} /> : <div className=" w-10 max-h-1"></div>
                 }
                 <p className="">{desc}</p>
             </div>
-            <img 
-                className="flex flex-row " 
-                src={x1} 
-                width={15} 
+            <img
+                className="flex flex-row "
+                src={x1}
+                width={15}
                 height={15}
             />
-        
+
         </div>
     )
 }
