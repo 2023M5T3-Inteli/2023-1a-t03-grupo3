@@ -8,7 +8,7 @@ export class ProjectsService {
     constructor(private prisma: PrismaService) { }
 
     async findAll() {
-        const projects = await this.prisma.project.findMany({});
+        const projects = await this.prisma.project.findMany({ orderBy: { createdAt: 'desc' } });
 
         return projects;
     }
@@ -115,6 +115,8 @@ export class ProjectsService {
         };
     }
 
+
+
     async applyToProject(projectId: string, body: any) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: projectId }
@@ -124,24 +126,17 @@ export class ProjectsService {
             throw new BadRequestException("Project not found");
         }
 
-        const members = await this.prisma.project.findUnique({
-            where: { id: projectId },
-            select: {
-                members: true
+        const { role, answers, userId } = body;
+
+        const questions = await this.prisma.question.findMany({
+            where: {
+                id: projectId
             }
         });
 
-        const isMember = members.members.find(member => member.id === body.userId);
-
-        if (isMember) {
-            throw new BadRequestException("You are already a member of this project");
+        if (questions.length !== answers.length) {
+            throw new BadRequestException("Invalid answers");
         }
-
-        const {
-            role, answers, userId
-        } = body;
-
-        
 
         return await this.prisma.project.findUnique({
             where: { id: projectId },
@@ -150,6 +145,10 @@ export class ProjectsService {
             }
         });
     }
+
+
+
+
 
     async remove(id: string) {
         const foundProject = await this.prisma.project.findUnique({

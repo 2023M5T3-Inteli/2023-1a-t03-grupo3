@@ -13,11 +13,19 @@ import { Arrow } from "../assets/arrow";
 import send from "../assets/send.svg"
 import { Link, useParams } from "react-router-dom";
 import axios from "../axios";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export const Project = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
     const params = useParams();
 
-    const [isOwner, setIsOwner] = useState(false);
+    const [isOwner] = useState(true);
 
     const [project, setProject] = useState({
         category: "",
@@ -43,13 +51,123 @@ export const Project = () => {
                     )
                 }).catch(err => {
                     console.log(err)
+                    window.location.href = "/"
                 })
         }
 
         getProject(id)
     }, []);
 
+    const onSubmit = data => console.log(data)
+
+    const deleteProject = async () => {
+        await toast.promise(
+            axios.delete(`/projects/delete/${project.id}`).then(res => {
+                setTimeout(() => {
+                    window.location.href = "/"
+                }, 1750)
+            }).catch(err => {
+                console.log(err)
+            }),
+            {
+                loading: "Deleting Project",
+                success: "Project Deleted",
+                error: "Error Deleting Project"
+            }
+        )
+    }
+
+
+    const [canEdit, setCanEdit] = useState(false);
+
     return isOwner ? (
+        <form className="w-full min-h-screen h-full p-0 flex flex-col items-center pb-16" onSubmit={handleSubmit(onSubmit)}>
+            <div className="bg-[#061826] w-full px-8 md:px-16 py-8 md:py-16 flex flex-col md:flex-row justify-center items-center md:justify-between">
+                <Link to={"/"} className="absolute text-white top-0 left-0 ml-4 md:ml-8 mt-4 md:mt-8 rotate-90">
+                    <Arrow color={"white"} width={36} />
+                </Link>
+
+                <div className="text-center w-full md:w-3/5">
+                    <div className="mb-4">
+                        {canEdit ? <input
+                            className="bg-transparent text-white text-3xl font-semibold w-full text-center"
+                            type="text"
+                            placeholder={project.title}
+                            {...register("title")}
+                        />
+                            : <Title variant={2}>{project.title ?? "Loading..."}</Title>}
+                    </div>
+
+                    {canEdit ? <textarea
+                        className="bg-transparent text-white text-xl font-medium w-full text-center rounded-lg"
+                        type="text"
+                        placeholder={project.description}
+                        rows={10}
+                        {...register("description")}
+                    /> : <Text color="f1f1f1" variant={"lg"}>{project.description ?? "Loading..."}</Text>}
+                </div>
+
+                <div className="bg-[#8A58DC] px-4 py-4 md:py-8 rounded-2xl shadow-lg md:absolute w-full md:w-1/4 flex flex-col justify-center md:right-0 mt-4 md:mr-16 md:top-0 md:mt-16">
+                    <div className="flex flex-col items-center">
+                        <div className="mb-4 text-center">
+                            <Title color={"#e2e2e2"} variant={3}>Project Status</Title>
+                            <p className={`text-xl font-medium text-center ${project.status === "pending" ? "text-yellow-500" : project.status === "completed" ? "text-green-500" : "text-black"
+                                }`}>{project.status ?? "Loading..."}</p>
+
+
+                            {project.status === "pending" ? <p className="text-3xl mt-4 font-medium text-center">Open for applications!</p> : null}
+                        </div>
+                    </div>
+
+                    <div className="flex items-center">
+                        <Calendar width={32} />
+                        <p className="ml-2 font-medium text-2xl flex mt-4 mb-5 md:my-16">
+                            {
+                                // subtract the dates to get the number of days
+                                Math.floor(
+                                    (new Date(project.endDate) - new Date(project.startDate)) / (1000 * 60 * 60 * 24)
+                                )
+                                ?? "Loading..."
+                            } days
+                        </p>
+                    </div>
+
+                    <div className="flex items-center">
+                        <Book width={32} />
+                        <p className="ml-2 font-medium text-2xl flex">
+                            {project.category}
+                        </p>
+                    </div>
+
+                    {project && project.tags ? (<div className="flex flex-col mt-4">
+                        <Title color="#e2e2e2" variant={6}>Tags:</Title>
+                        <div className="flex flex-wrap">
+                            {project.tags.length > 0 && project.tags.map((tag, index) => {
+                                return (
+                                    <p className="bg-[#2e2e2e] text-white p-2 rounded-xl mr-2 mt-2" key={index}>
+                                        {tag}
+                                    </p>
+                                )
+                            })}
+                        </div>
+                    </div>) : null}
+                </div>
+            </div>
+
+            <div className="w-full p-4 md:px-16 py-8 md:py-16 flex flex-col justify-between">
+                {canEdit ? null : <div className="text-center w-full md:w-3/5">
+                    <Text color="061826" variant={"xl"} bold>
+                        {project.description ?? "Loading..."}
+                    </Text>
+                </div>}
+
+                <div className="w-full md:w-3/5 flex flex-col px-4 mt-16">
+                    <EditButton onClick={() => setCanEdit(!canEdit)} />
+                    <DeleteButton onClick={deleteProject} />
+                </div>
+            </div>
+        </form>
+    ) : (
         <div className="w-full min-h-screen h-full p-0 flex flex-col items-center pb-16">
             <div className="bg-[#061826] w-full px-8 md:px-16 py-8 md:py-16 flex flex-col md:flex-row justify-center items-center md:justify-between">
                 <Link to={"/"} className="absolute text-white top-0 left-0 ml-4 md:ml-8 mt-4 md:mt-8 rotate-90">
@@ -71,7 +189,7 @@ export const Project = () => {
                             <p className={`text-xl font-medium text-center ${project.status == "pending" ? "text-yellow-500" : project.status == "completed" ? "text-green-500" : "text-black"
                                 }`}>{project.status ?? "Loading..."}</p>
 
-                            {project.status == "pending" ? <p className="text-3xl mt-4 font-medium text-center">Open for applications!</p> : null}
+                            {project.status === "pending" ? <p className="text-3xl mt-4 font-medium text-center">Open for applications!</p> : null}
                         </div>
                     </div>
 
@@ -188,114 +306,5 @@ export const Project = () => {
                 </div>
             </div>
         </div>
-    ) : (
-        <div className="w-full min-h-screen h-full p-0 flex flex-col items-center pb-16">
-            <div className="bg-[#061826] w-full px-8 md:px-16 py-8 md:py-16 flex flex-col md:flex-row justify-center items-center md:justify-between">
-                <Link to={"/"} className="absolute text-white top-0 left-0 ml-4 md:ml-8 mt-4 md:mt-8 rotate-90">
-                    <Arrow color={"white"} width={36} />
-                </Link>
-
-                <div className="text-center w-full md:w-3/5">
-                    <div className="mb-4">
-                        <Title>{project.title ?? "Loading..."}</Title>
-                    </div>
-
-                    <Text color="f1f1f1" variant={"lg"}>{project.description ?? "Loading..."}</Text>
-                </div>
-
-                <div className="bg-[#8A58DC] px-4 py-4 md:py-8 rounded-2xl shadow-lg md:absolute w-full md:w-1/4 flex flex-col justify-center md:right-0 mt-4 md:mr-16 md:top-0 md:mt-16">
-                    <div className="flex flex-col items-center">
-                        <div className="mb-4 text-center">
-                            <Title color={"#e2e2e2"} variant={3}>Project Status</Title>
-                            <p className={`text-xl font-medium text-center ${project.status == "pending" ? "text-yellow-500" : project.status == "completed" ? "text-green-500" : "text-black"
-                                }`}>{project.status ?? "Loading..."}</p>
-
-                            {project.status == "pending" ? <p className="text-3xl mt-4 font-medium text-center">Open for applications!</p> : null}
-                        </div>
-                    </div>
-                    {/* <div className="flex items-center">
-                    <Users width={32} />
-                    <div className="ml-2">
-                        <p className="font-medium text-3xl">
-                            {project.collaboratorsAmount || "?"} collaborators
-                        </p>
-                        <div className="font-medium text-2xl flex flex-wrap">
-                            {collaborators.map((collaborator, index) => {
-                                return (
-                                    <p className="text-lg" key={index}>
-                                        {collaborator.amount || "?"}{" "}
-                                        {collaborator.type || "?"}
-                                        {index !==
-                                            collaborators.length - 1
-                                            ? ","
-                                            : ""}
-                                    </p>
-                                );
-                            })}
-                        </div>
-                    </div>
-                </div> */}
-
-                    <div className="flex items-center">
-                        <Calendar width={32} />
-                        <p className="ml-2 font-medium text-2xl flex mt-4 mb-5 md:my-16">
-                            {
-                                // subtract the dates to get the number of days
-                                Math.floor(
-                                    (new Date(project.endDate) - new Date(project.startDate)) / (1000 * 60 * 60 * 24)
-                                )
-                                ?? "Loading..."
-                            } days
-                        </p>
-                    </div>
-
-                    <div className="flex items-center">
-                        <Book width={32} />
-                        <p className="ml-2 font-medium text-2xl flex">
-                            {project.category}
-                        </p>
-                    </div>
-
-                    {project && project.tags ? (<div className="flex flex-col mt-4">
-                        <Title color="#e2e2e2" variant={6}>Tags:</Title>
-                        <div className="flex flex-wrap">
-                            {project.tags.length > 0 && project.tags.map((tag, index) => {
-                                return (
-                                    <p className="bg-[#2e2e2e] text-white p-2 rounded-xl mr-2 mt-2" key={index}>
-                                        {tag}
-                                    </p>
-                                )
-                            })}
-                        </div>
-                    </div>) : null}
-
-                    <div className="mt-8 md:mt-16 flex justify-center">
-                        <button className="bg-[#061826] text-[#4A92FF] flex py-4 px-8 rounded-full font-semibold text-xl items-center" onClick={() => {
-                            // scroll down to the application questions
-                            window.scrollTo({
-                                top: document.body.scrollHeight,
-                                behavior: 'smooth'
-                            })
-                        }}>
-                            <p className="mr-2">Apply</p><Arrow />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div className="w-full p-4 md:px-16 py-8 md:py-16 flex justify-between">
-                <div className="text-center w-full md:w-3/5">
-                    <Text color="061826" variant={"xl"} bold>
-                        {project.description ?? "Loading..."}
-                    </Text>
-                </div>
-            </div>
-        
-            <div > 
-                <DeleteButton />
-                <EditButton />
-            </div>
-        </div>
-
     )
 };
