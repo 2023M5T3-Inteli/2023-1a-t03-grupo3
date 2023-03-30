@@ -13,11 +13,12 @@ const users_module_1 = require("./users/users.module");
 const projects_module_1 = require("./projects/projects.module");
 const notifications_module_1 = require("./notifications/notifications.module");
 const ranking_module_1 = require("./ranking/ranking.module");
+const root_module_1 = require("./root/root.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [ranking_module_1.RankingModule, auth_module_1.AuthModule, users_module_1.UsersModule, projects_module_1.ProjectsModule, notifications_module_1.NotificationsModule],
+        imports: [ranking_module_1.RankingModule, auth_module_1.AuthModule, users_module_1.UsersModule, projects_module_1.ProjectsModule, notifications_module_1.NotificationsModule, root_module_1.RootModule],
     })
 ], AppModule);
 exports.AppModule = AppModule;
