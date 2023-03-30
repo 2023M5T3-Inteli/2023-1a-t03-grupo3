@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { RootService } from './root.service';
 import { RootController } from './root.controller';
+import { RootService } from './root.service';
 
 @Module({
   controllers: [RootController],
   providers: [RootService]
 })
-export class RootModule {}
+export class RootModule { }

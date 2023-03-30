@@ -1,12 +1,17 @@
 import { Controller, Get } from '@nestjs/common';
 import { RootService } from './root.service';
 
-@Controller('root')
+@Controller()
 export class RootController {
-  constructor(private readonly rootService: RootService) {}
+  constructor(private readonly rootService: RootService) { }
 
-  @Get("/")
+  @Get()
   health() {
-	  return "pong"
+    return "pong"
+  }
+
+  @Get("/health")
+  healthCheck() {
+    return "pong"
   }
 }
