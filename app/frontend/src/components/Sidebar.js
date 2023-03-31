@@ -9,8 +9,8 @@ export const Sidebar = () => {
             case "/":
                 setPage("/")
                 break;
-            case "/createproject":
-                setPage("/createproject")
+            case "/create-project":
+                setPage("/create-project")
                 break;
             case "/profile#projects":
                 setPage("/profile#projects")
@@ -48,7 +48,7 @@ export const Sidebar = () => {
                     Join a project
                 </Link>
 
-                <Link to={"/createproject"} className={`text-xl mb-3 ${page === "/createproject" ? "text-[#f1f1f1] font-semibold underline" : "text-[#c4c4c4] hover:underline"}`}>
+                <Link to={"/create-project"} className={`text-xl mb-3 ${page === "/create-project" ? "text-[#f1f1f1] font-semibold underline" : "text-[#c4c4c4] hover:underline"}`}>
                     Create a project
                 </Link>
 
@@ -69,7 +69,7 @@ export const Sidebar = () => {
                 </Link>
 
 
-                {/* <Link to={"/createproject"} className={`font-medium text-2xl mb-3 uppercase ${page === "/createproject" ? "text-[#f1f1f1] font-bold" : "text-[#c4c4c4] "}`}>
+                {/* <Link to={"/create-project"} className={`font-medium text-2xl mb-3 uppercase ${page === "/create-project" ? "text-[#f1f1f1] font-bold" : "text-[#c4c4c4] "}`}>
                     Create a project
                 </Link>
 
