@@ -15,6 +15,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "../axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { SaveButton } from "../components/Savebutton";
 
 export const Project = () => {
     const {
@@ -25,7 +26,7 @@ export const Project = () => {
 
     const params = useParams();
 
-    const [isOwner] = useState(true);
+    const [isOwner, setIsOwner] = useState(false);
 
     const [project, setProject] = useState({
         category: "",
@@ -40,25 +41,69 @@ export const Project = () => {
         title: "",
     })
 
+    const getProject = async (id) => {
+        await axios.get(`/projects/${id}`)
+            .then(res => {
+                setProject(res.data)
+                console.log(res.data
+                )
+            }).catch(err => {
+                console.log(err)
+                window.location.href = "/"
+            })
+    }
+
     useEffect(() => {
         let { id } = params;
 
-        const getProject = async (id) => {
-            await axios.get(`/projects/${id}`)
-                .then(res => {
-                    setProject(res.data)
-                    console.log(res.data
-                    )
-                }).catch(err => {
-                    console.log(err)
-                    window.location.href = "/"
-                })
-        }
+        id === "2260141f-d9d3-4bd0-858e-165c4688f3c4" ? setIsOwner(true) : setIsOwner(false)
 
         getProject(id)
     }, []);
 
-    const onSubmit = data => console.log(data)
+    const onSubmit = async data => {
+        await toast.promise(
+            axios.put("/projects/update/" + project.id, {
+                title: data.title || project.title,
+                description: data.description || project.description,   
+            })
+                .then(response => {
+                    getProject(project.id)
+                    setCanEdit(false)
+
+                    return response;
+                })
+                .catch((error) => {
+                    return error;
+                }),
+            {
+                loading: "Updating project...",
+                success: "Project updated!",
+                error: "Error updating project."
+            })
+        // try {
+        //     await axios
+        //         .put("/projects/update/" + project.id, {
+        //             ...data,
+        //             ...project,
+        //         })
+        //         .then(response => {
+        //             toast.success("Your project has been successfully updated! :)")
+        //             getProject(project.id)
+        //             setCanEdit(false)
+
+        //             return response;
+        //         })
+        //         .catch((error) => {
+        //             toast.error("Your project has not been updated! Try again later :(")
+
+        //             return error;
+        //         });
+
+        // } catch (error) {
+        //     console.log(error);
+        // }
+    }
 
     const deleteProject = async () => {
         await toast.promise(
@@ -107,7 +152,7 @@ export const Project = () => {
                     /> : <Text color="f1f1f1" variant={"lg"}>{project.description ?? "Loading..."}</Text>}
                 </div>
 
-                <div className="bg-[#8A58DC] px-4 py-4 md:py-8 rounded-2xl shadow-lg md:absolute w-full md:w-1/4 flex flex-col justify-center md:right-0 mt-4 md:mr-16 md:top-0 md:mt-16">
+                <div className="bg-[#8A58DC] px-4 py-2 md:py-4 rounded-2xl shadow-lg md:absolute w-full md:w-1/4 flex flex-col justify-center md:right-0 mt-4 md:mr-16 md:top-0 md:mt-16">
                     <div className="flex flex-col items-center">
                         <div className="mb-4 text-center">
                             <Title color={"#e2e2e2"} variant={3}>Project Status</Title>
@@ -162,7 +207,11 @@ export const Project = () => {
                 </div>}
 
                 <div className="w-full md:w-3/5 flex flex-col px-4 mt-16">
-                    <EditButton onClick={() => setCanEdit(!canEdit)} />
+                    {
+                        canEdit ? <SaveButton type="submit" />
+                            : <EditButton onClick={() => setCanEdit(!canEdit)} />
+                    }
+
                     <DeleteButton onClick={deleteProject} />
                 </div>
             </div>

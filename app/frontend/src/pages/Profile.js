@@ -28,7 +28,6 @@ export const Profile = () => {
                 .get("/users/f900d5e0-ab8d-410d-8792-95a64698bb6f")
                 .then(response => {
                     setData(response.data)
-                    console.log(response.data)
                     return response;
                 })
                 .catch((error) => {
