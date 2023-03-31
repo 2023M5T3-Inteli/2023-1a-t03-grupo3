@@ -19,7 +19,6 @@ export const Ranking = () => {
     getProjects()
   }, [])
 
-  console.log(data)
 
   return (
     <div className=" bg-[#F0F0F0] flex min-h-screen max-w-screen w-full h-full">

@@ -15,11 +15,11 @@ export class ProjectsController {
 		status: 200,
 		description: 'Everything works fine',
 		type: CreateProjectDto
-	  })
-	  @ApiResponse({
+	})
+	@ApiResponse({
 		status: 403,
 		description: 'Forbidden',
-	  })
+	})
 	findAll() {
 		return this.projectsService.findAll();
 	}
@@ -27,6 +27,11 @@ export class ProjectsController {
 	@Get(':id')
 	findOne(@Param('id') id: string) {
 		return this.projectsService.findOne(id);
+	}
+
+	@Get('/members/:id')
+	findMembers(@Param('id') id: string) {
+		return this.projectsService.findMembers(id);
 	}
 
 	@Post("/create")
@@ -42,6 +47,11 @@ export class ProjectsController {
 	@Put('/update/:id')
 	update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
 		return this.projectsService.update(id, updateProjectDto);
+	}
+
+	@Post('/apply/:id')
+	apply(@Param('id') id: string, @Body() body: any) {
+		return this.projectsService.applyToProject(id, body);
 	}
 
 	@Delete('/delete/:id')

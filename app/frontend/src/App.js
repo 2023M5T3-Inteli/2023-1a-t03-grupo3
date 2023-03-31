@@ -21,11 +21,12 @@ export default function App(props) {
       <Route path="/" element={<Root />}>
         <Route index element={<Home />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/project' element={<Project />} />
         <Route path='/project/:id' element={<Project />} />
         <Route path='/ranking' element={<Ranking />} />
         <Route path='/login' element={<Login />} />
         <Route path='/notifications' element={<Notification />} />
-        <Route path='/createproject' element={<Createproject />} />
+        <Route path='/create-project' element={<Createproject />} />
       </Route>
     )
   );
@@ -50,8 +51,6 @@ const Root = () => {
         pauseOnHover
         theme="light"
       />
-      {/* Same as */}
-      <ToastContainer />
       <Outlet />
     </div>
   )
