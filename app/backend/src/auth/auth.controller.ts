@@ -3,12 +3,14 @@ import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
 
+// @ApiBearerAuth() - define que o endpoint requer um token de autenticação
 @ApiBearerAuth()
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) { }
 
+// @Post('signup') - define que o endpoint aceita requisições do tipo POST
   @Post('signup')
   
   signup(@Body() dto: any) {
@@ -19,7 +21,7 @@ export class AuthController {
   signin(@Body() dto: AuthDto, @Request() req, @Response() res) {
     return this.authService.signin(dto, req, res);
   }
-
+// @Get('signout') - define que o endpoint aceita requisições do tipo GET
   @Get('signout')
   @ApiResponse({
 		status: 200,
@@ -30,6 +32,7 @@ export class AuthController {
 		status: 403,
 		description: 'Forbidden',
 	  })
+// @Request() req, @Response() res - define que o endpoint aceita requisições do tipo GET
   signout(@Request() req, @Response() res) {
     return this.authService.signout(req, res);
   }

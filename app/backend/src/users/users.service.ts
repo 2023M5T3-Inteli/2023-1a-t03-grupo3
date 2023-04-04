@@ -6,8 +6,10 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
+     // Injeta a instância de 'PrismaService' no construtor
     constructor(private prisma: PrismaService) { }
 
+    // Método para obter todos os usuários
     async getUsers() {
         const users = await this.prisma.user.findMany({
             select: { id: true, email: true }
@@ -20,6 +22,7 @@ export class UsersService {
         return users;
     }
 
+// Método para obter um usuário específico pelo ID
     async getUser(id: string) {
         const user = await this.prisma.user.findUnique({ where: { id } });
 
@@ -30,6 +33,7 @@ export class UsersService {
         return user;
     }
 
+ // Método para atualizar um usuário específico pelo ID
     async updateUser(id: string, body: any) {
         const user = await this.prisma.user.findUnique({ where: { id } });
 
@@ -42,6 +46,7 @@ export class UsersService {
         //     throw new BadRequestException('No data to update');
         // }
 
+        // Se houver senha, criptografa antes de atualizar
         if (body.hashedPassword) {
             await this.prisma.user.update({
                 where: { id },
@@ -57,6 +62,7 @@ export class UsersService {
             };
         }
 
+         // Atualiza o usuário sem alterar a senha
         await this.prisma.user.update({
             where: { id },
             data: {
@@ -69,6 +75,7 @@ export class UsersService {
         };
     }
 
+    // Método para deletar um usuário específico pelo ID
     async deleteUser(id: string) {
         const user = await this.prisma.user.findUnique({ where: { id } });
 
@@ -81,6 +88,7 @@ export class UsersService {
         return { id, message: "User deleted successfully" };
     }
 
+    // Método para criptografar senhas com 'bcrypt'
     async hashPassword(password: string) {
         return await bcrypt.hash(password, 10);
     }

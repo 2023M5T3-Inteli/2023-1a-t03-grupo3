@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 
+// Definindo a classe RankingService como injetável
 @Injectable()
 export class RankingService {
   constructor(private prisma: PrismaService) { }
 
+  // Função para buscar os 20 primeiros colocados no ranking
   async findAll() {
     const firstTwenty = await this.prisma.user.findMany({
       select: {

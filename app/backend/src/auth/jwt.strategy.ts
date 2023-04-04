@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { jwtSecret } from 'src/utils/constants';
 import { Request } from 'express';
 
+// @Injectable - define que a classe JwtStrategy é injetável
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor() {
@@ -15,6 +16,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             secretOrKey: jwtSecret,
         });
     }
+
 
     private static extractJWT(req: Request): string | null {
         if (req.cookies && 'token' in req.cookies) {

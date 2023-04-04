@@ -7,12 +7,15 @@ import { UpdateProjectDto } from './dto/updateProject.dto';
 export class ProjectsService {
     constructor(private prisma: PrismaService) { }
 
+    
+ // Método para buscar todos os projetos
     async findAll() {
         const projects = await this.prisma.project.findMany({ orderBy: { createdAt: 'desc' } });
 
         return projects;
     }
 
+// Método para criar um novo projeto
     async create(createProjectDto: CreateProjectDto) {
         const foundProject = await this.prisma.project.findUnique({
             where: {
@@ -33,6 +36,7 @@ export class ProjectsService {
         return newProject;
     }
 
+// Método para buscar um projeto pelo ID
     async findOne(id: string) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: id }
@@ -45,6 +49,7 @@ export class ProjectsService {
         return foundProject;
     }
 
+// Método para buscar membros de um projeto pelo ID
     async findMembers(id: string) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: id },
@@ -60,6 +65,7 @@ export class ProjectsService {
         return foundProject;
     }
 
+ // Método para adicionar um membro ao projeto pelo ID
     async addMember(id: string, memberId: string) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: id }
@@ -94,6 +100,7 @@ export class ProjectsService {
     }
 
 
+    // Método para atualizar um projeto pelo ID
     async update(id: string, updateProjectDto: UpdateProjectDto) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: id }
@@ -116,7 +123,7 @@ export class ProjectsService {
     }
 
 
-
+ // Método para aplicar a um projeto pelo ID
     async applyToProject(projectId: string, body: any) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: projectId }
@@ -149,7 +156,7 @@ export class ProjectsService {
 
 
 
-
+ // Método para remover um projeto por ID
     async remove(id: string) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: id }
