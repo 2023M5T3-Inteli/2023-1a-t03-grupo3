@@ -128,25 +128,85 @@ export class ProjectsService {
 
         const { role, answers, userId } = body;
 
-        const questions = await this.prisma.question.findMany({
-            where: {
-                id: projectId
-            }
-        });
-
-        if (questions.length !== answers.length) {
+        if (foundProject.questions.length !== answers.length) {
             throw new BadRequestException("Invalid answers");
         }
 
-        return await this.prisma.project.findUnique({
-            where: { id: projectId },
-            select: {
-                members: true
+        const newMember = await this.prisma.member.create({
+            data: {
+                role: role,
+                questions: answers.map((answer: any) => {
+                    return answer.answer;
+                }),
+                accepted: false,
+                userId: userId,
+                projectId: projectId
             }
         });
+
+        return newMember;
     }
 
 
+
+    async acceptMember(projectId: string, memberId: string) {
+        const foundProject = await this.prisma.project.findUnique({
+            where: { id: projectId }
+        });
+
+        if (!foundProject) {
+            throw new BadRequestException("Project not found");
+        }
+
+        const foundMember = await this.prisma.member.findUnique({
+            where: { id: memberId }
+        });
+
+        if (!foundMember) {
+            throw new BadRequestException("Member not found");
+        }
+
+        await this.prisma.member.update({
+            where: { id: memberId },
+            data: {
+                accepted: true
+            }
+        });
+
+        return {
+            message: 'Member accepted successfully',
+            member: foundMember
+        };
+    }
+
+
+
+    async declineMember(projectId: string, memberId: string) {
+        const foundProject = await this.prisma.project.findUnique({
+            where: { id: projectId }
+        });
+
+        if (!foundProject) {
+            throw new BadRequestException("Project not found");
+        }
+
+        const foundMember = await this.prisma.member.findUnique({
+            where: { id: memberId }
+        });
+
+        if (!foundMember) {
+            throw new BadRequestException("Member not found");
+        }
+
+        await this.prisma.member.delete({
+            where: { id: memberId }
+        });
+
+        return {
+            message: 'Member declined successfully',
+            member: foundMember
+        };
+    }
 
 
 

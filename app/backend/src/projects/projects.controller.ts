@@ -49,6 +49,16 @@ export class ProjectsController {
 		return this.projectsService.update(id, updateProjectDto);
 	}
 
+	@Put('/update/acceptMember/:id')
+	accept(@Param('id') projectId: string, @Body() body: any) {
+		return this.projectsService.acceptMember(projectId, body.memberId);
+	}
+
+	@Put('/update/declineMember/:id')
+	decline(@Param('id') projectId: string, @Body() body: any) {
+		return this.projectsService.declineMember(projectId, body.memberId);
+	}
+
 	@Post('/apply/:id')
 	apply(@Param('id') id: string, @Body() body: any) {
 		return this.projectsService.applyToProject(id, body);
