@@ -7,19 +7,25 @@ import { UpdateProjectDto } from './dto/updateProject.dto';
 export class ProjectsService {
     constructor(private prisma: PrismaService) { }
 
-    
- // Método para buscar todos os projetos
+
+    // Método para buscar todos os projetos
     async findAll() {
         const projects = await this.prisma.project.findMany({ orderBy: { createdAt: 'desc' } });
 
         return projects;
     }
 
-// Método para criar um novo projeto
+    // Método para criar um novo projeto
     async create(createProjectDto: CreateProjectDto) {
         const foundProject = await this.prisma.project.findUnique({
             where: {
                 title: createProjectDto.title
+            }
+        });
+
+        const creator = await this.prisma.user.findUnique({
+            where: {
+                id: createProjectDto.userId
             }
         });
 
@@ -29,14 +35,14 @@ export class ProjectsService {
 
         const newProject = await this.prisma.project.create({
             data: {
-                ...createProjectDto
+                ...createProjectDto,
             }
         });
 
         return newProject;
     }
 
-// Método para buscar um projeto pelo ID
+    // Método para buscar um projeto pelo ID
     async findOne(id: string) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: id }
@@ -49,7 +55,7 @@ export class ProjectsService {
         return foundProject;
     }
 
-// Método para buscar membros de um projeto pelo ID
+    // Método para buscar membros de um projeto pelo ID
     async findMembers(id: string) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: id },
@@ -65,7 +71,7 @@ export class ProjectsService {
         return foundProject;
     }
 
- // Método para adicionar um membro ao projeto pelo ID
+    // Método para adicionar um membro ao projeto pelo ID
     async addMember(id: string, memberId: string) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: id }
@@ -123,7 +129,7 @@ export class ProjectsService {
     }
 
 
- // Método para aplicar a um projeto pelo ID
+    // Método para aplicar a um projeto pelo ID
     async applyToProject(projectId: string, body: any) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: projectId }
@@ -139,6 +145,10 @@ export class ProjectsService {
             throw new BadRequestException("Invalid answers");
         }
 
+        const user = await this.prisma.user.findUnique({
+            where: { id: userId }
+        });
+
         const newMember = await this.prisma.member.create({
             data: {
                 role: role,
@@ -148,6 +158,23 @@ export class ProjectsService {
                 accepted: false,
                 userId: userId,
                 projectId: projectId
+            }
+        });
+
+        const owner = await this.prisma.user.findUnique({
+            where: { id: foundProject.userId }
+        });
+
+        // create a notification for the project owner
+        await this.prisma.user.update({
+            where: { id: owner.id },
+            data: {
+                notifications: {
+                    create: {
+                        description: `${user.fullName} applied to your project ${foundProject.title}`,
+                        type: 'application'
+                    }
+                }
             }
         });
 
@@ -216,7 +243,7 @@ export class ProjectsService {
     }
 
 
- // Método para remover um projeto por ID
+    // Método para remover um projeto por ID
     async remove(id: string) {
         const foundProject = await this.prisma.project.findUnique({
             where: { id: id }

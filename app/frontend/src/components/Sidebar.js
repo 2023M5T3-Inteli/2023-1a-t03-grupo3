@@ -55,7 +55,7 @@ export const Sidebar = () => {
 
     useEffect(() => {
         profileInfo()
-    })
+    }, [])
 
     return (
         <div className="flex flex-col w-1/5 bg-[#061826] p-4 text-[#f1f1f1]">

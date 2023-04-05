@@ -22,10 +22,6 @@ export const Login = () => {
                     password,
                 })
                 .then(response => {
-                    console.log(response.data)
-                    token = response.data.token;
-
-                    document.cookie = `token=${token}`;
 
                     // redirect to home page
                     setTimeout(() => {

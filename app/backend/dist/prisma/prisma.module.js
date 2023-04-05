@@ -1,5 +1,4 @@
 "use strict";
-// aplicar os decoradores na classe PrismaService.
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7,14 +6,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-
-// Inicializa a exportação do PrismaModule como indefinido (void 0) antes de sua definição.
 exports.PrismaModule = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("./prisma.service");
 let PrismaModule = class PrismaModule {
 };
-//decorador que define a classe PrismaModule como um módulo global.
 PrismaModule = __decorate([
     (0, common_1.Global)(),
     (0, common_1.Module)({
@@ -23,5 +19,4 @@ PrismaModule = __decorate([
     })
 ], PrismaModule);
 exports.PrismaModule = PrismaModule;
-
 //# sourceMappingURL=prisma.module.js.map

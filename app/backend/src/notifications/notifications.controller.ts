@@ -11,34 +11,33 @@ import { NotificationsService } from './notifications.service';
 
 
 export class NotificationsController {
-// Injetar o serviço de notificações
+  // Injetar o serviço de notificações
 
-  constructor(private readonly notificationsService: NotificationsService) {}
+  constructor(private readonly notificationsService: NotificationsService) { }
 
-// @Post('create')
+  // @Post('create')
   // create(@Body() createNotificationDto: CreateNotificationDto) {
   //   return this.notificationsService.create(createNotificationDto);
   // }
 
-// Método para buscar todas as notificações de um usuário
+  // Método para buscar todas as notificações de um usuário
   @Get('/getAll/:id')
   @ApiResponse({
-		status: 200,
-		description: 'Everything works fine',
-		type: CreateNotificationDto
-	  })
-	  @ApiResponse({
-		status: 403,
-		description: 'Forbidden',
-	  })
+    status: 200,
+    description: 'Everything works fine',
+    type: CreateNotificationDto
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden',
+  })
 
   findAll(@Param("id") id: string) {
-    // return this.notificationsService.getNots(id);
-    return "Notifications";
+    return this.notificationsService.findAll(id);
   }
-  
 
-// Outros métodos comentados que podem ser usados futuramente
+
+  // Outros métodos comentados que podem ser usados futuramente
   // @Get(':id')
   // findOne(@Param('id') id: string) {
   //   return this.notificationsService.findAll();

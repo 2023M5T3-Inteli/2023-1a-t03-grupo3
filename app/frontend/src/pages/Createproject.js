@@ -32,7 +32,8 @@ export const Createproject = () => {
                     { role: role, amount: quantity, applied: 0 }
                 ], tags, questions: [
                     question
-                ], startDate, endDate, category
+                ], startDate, endDate, category,
+                userId: "f900d5e0-ab8d-410d-8792-95a64698bb6f"
             })
                 .then(response => {
                     setTimeout(() => {

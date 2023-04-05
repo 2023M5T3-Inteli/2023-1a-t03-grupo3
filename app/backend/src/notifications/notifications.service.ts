@@ -1,63 +1,25 @@
-import { Injectable } from '@nestjs/common';
-import { Notification } from './interfaces/notifications.interface';
-import { createNotificationDto } from './dto/create-notification.dto';
-import { updateNotificationDto } from './dto/update-notification.dto';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
 export class NotificationsService {
-  deleteNotification(id: number): Notification | PromiseLike<Notification> {
-    throw new Error('Method not implemented.');
-  }
-  private readonly notifications: Notification[] = [];
-  
-// Método para criar uma nova notificação
-  create(createNotificationDto: createNotificationDto) {
-    const newNotification: Notification = {
-      id:createNotificationDto.id,
-      sender: createNotificationDto.sender,
-      description: createNotificationDto.description,
-      type:createNotificationDto.type,
-      aproved:createNotificationDto.aproved,
-      receiver:createNotificationDto.receiver,
+  constructor(private prisma: PrismaService) { }
 
-    }
-    this.notifications.push(newNotification)
-    return 'Notification created';
-  }
+  // Método para retornar todas as notificações
+  async findAll(id: string) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: id
+      },
+      select: {
+        notifications: true
+      }
+    });
 
-   // Método para atualizar uma notificação existente
-  update(updateNotificationDto: updateNotificationDto){
-
-    const notificationToUpdate = this.notifications.find(Notification=> Notification.id === updateNotificationDto.id);
-    const notificationToUpdateIndex = this.notifications.indexOf(notificationToUpdate);
-    const updatedNotification: Notification = {
-    
-      id: this.notifications[notificationToUpdateIndex].id,
-      sender: this.notifications[notificationToUpdateIndex].sender,
-      description: this.notifications[notificationToUpdateIndex].description,
-      aproved:updateNotificationDto.aproved,
-      type:this.notifications[notificationToUpdateIndex].type,
-      receiver:this.notifications[notificationToUpdateIndex].receiver,
+    if (!user) {
+      throw new BadRequestException('User not found');
     }
 
-    this.notifications[notificationToUpdateIndex] = updatedNotification;
-
-    return this.notifications[notificationToUpdateIndex];
-  }
-
-// Método para retornar todas as notificações
-  findAll(): Notification[] {
-    return this.notifications;
-  }
-
-
-  // Método para deletar uma notificação pelo ID
-  delete(id: number): String{
-    const notificationToDelete = this.notifications.find(Notification=> Notification.id === id);
-    const notificationToDeleteIndex = this.notifications.indexOf(notificationToDelete);
-
-    delete this.notifications[notificationToDeleteIndex];
-
-    return "Object deleted";
+    return user.notifications;
   }
 }

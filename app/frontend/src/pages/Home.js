@@ -40,7 +40,6 @@ export const Home = () => {
 
                 <div className='flex flex-col gap-6'>
                     {data && data.length >= 1 ? data.map((item, index) => {
-                        console.log(item)
                         return (
                             <Card {...item} key={index} />
                         )

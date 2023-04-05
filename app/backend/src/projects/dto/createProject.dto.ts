@@ -11,36 +11,41 @@ interface Role {
 export class CreateProjectDto {
     @IsNotEmpty()
     @IsString()
-    @ApiProperty({example: 'Project', description: 'title'})
+    @ApiProperty({ example: 'Project', description: 'title' })
     public title: string;
 
     @IsNotEmpty()
     @IsString()
-    @ApiProperty({example: 'string', description: 'description'})
+    @ApiProperty({ example: 'string', description: 'description' })
     public description: string;
 
     @IsNotEmpty()
     @IsString()
-    @ApiProperty({example: 'string', description: 'startDate'})
+    @ApiProperty({ example: 'string', description: 'startDate' })
     public startDate: string;
 
     @IsNotEmpty()
     @IsString()
-    @ApiProperty({example: 'string', description: 'endDate'})
+    @ApiProperty({ example: 'string', description: 'endDate' })
     public endDate: string;
 
     @IsNotEmpty()
     @IsString()
-    @ApiProperty({example: 'string', description: 'category'})
+    @ApiProperty({ example: 'string', description: 'category' })
     public category: string;
 
     @IsArray()
     @IsNotEmpty()
-    @ApiProperty({example: 'questions', description: 'questions'})
+    @ApiProperty({ example: 'questions', description: 'questions' })
     public questions: string[];
 
     @IsNotEmpty()
     @IsArray()
-    @ApiProperty({example: 'tags', description: 'tags'})
+    @ApiProperty({ example: 'tags', description: 'tags' })
     public tags: string[];
+
+    @IsNotEmpty()
+    @IsString()
+    @ApiProperty({ example: 'string', description: 'userId' })
+    public userId: string;
 }
