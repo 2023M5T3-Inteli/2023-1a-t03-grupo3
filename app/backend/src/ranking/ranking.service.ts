@@ -24,6 +24,7 @@ export class RankingService {
     return firstTwenty;
   }
 
+  // Função para incrementar o score de um usuário pelo ID
   async increment(id: string) {
     const user = await this.prisma.user.findUnique({
       where: {
@@ -31,10 +32,12 @@ export class RankingService {
       }
     });
 
+  // Verifica se o usuário existe, caso contrário, lança um erro
     if (!user) {
       throw new Error('User not found');
     }
 
+  // Atualiza o score do usuário, incrementando 5 pontos
     const updatedUser = await this.prisma.user.update({
       where: {
         id
