@@ -26,3 +26,4 @@ app/backend/node_modules/
 app/frontend/node_modules/
 app/backend/dist/
 app/frontend/build/
+app/backend/dist/*
