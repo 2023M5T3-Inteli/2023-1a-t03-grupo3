@@ -28,7 +28,7 @@ export const Home = () => {
                 <div className="relative">
                     <input type="text" placeholder="Search for Projects" className="py-2 pl-5 pr- border border-gray-400 rounded-full w-full" />
                     <div className="absolute inset-y-0 right-0 flex items-center ">
-                        <button><img src={filter} className="mr-2"></img></button>
+                        <button><img src={filter} className="mr-2" alt='filter'></img></button>
 
                         <button type="button" className="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white font-bold rounded-r-full "> <img src={search}></img>
                         </button>

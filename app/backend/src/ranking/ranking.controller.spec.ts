@@ -3,11 +3,14 @@ import { PrismaClient } from "@prisma/client";
 import { RankingController } from "./ranking.controller";
 import { RankingService } from "./ranking.service";
 
+// Definindo os testes para o RankingController
 describe("RankingController", () => {
   let controller: RankingController;
   let service: RankingService;
   let prisma: PrismaClient;
 
+
+// Configurando o módulo de testes antes de cada teste
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [RankingController],
@@ -18,10 +21,12 @@ describe("RankingController", () => {
     service = module.get<RankingService>(RankingService);
   });
 
+// Teste para verificar se o controlador foi definido
   it("should be defined", () => {
     expect(controller).toBeDefined();
   });
 
+ // Testes para a função de ordenação do ranking
   describe("# ranking sort", () => {
     it("should get until 20 and rank them", async () => {
       const usersMock = [
@@ -32,6 +37,7 @@ describe("RankingController", () => {
       expect(await controller.findAll()).toBe(usersMock);
     });
 
+  // Testes para a função de incrementar pontos do ranking
     it("should get more than 20", async () => {
       const usersMock = [
         { id: "id", fullName: "Any", score: 0, picture: "" },

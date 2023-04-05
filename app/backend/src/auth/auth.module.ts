@@ -4,6 +4,7 @@ import { AuthController } from './auth.controller';
 import { PrismaService } from 'prisma/prisma.service';
 import { JwtModule } from '@nestjs/jwt';
 
+// @Module - define que a classe AuthModule é um módulo Nest
 @Module({
   imports: [JwtModule],
   controllers: [AuthController],

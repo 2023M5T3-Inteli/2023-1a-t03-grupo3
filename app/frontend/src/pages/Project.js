@@ -26,7 +26,7 @@ export const Project = () => {
 
     const params = useParams();
 
-    const [isOwner, setIsOwner] = useState(false);
+    const [isOwner, setIsOwner] = useState(true);
 
     const [project, setProject] = useState({
         category: "",
@@ -56,8 +56,6 @@ export const Project = () => {
     useEffect(() => {
         let { id } = params;
 
-        id === "2260141f-d9d3-4bd0-858e-165c4688f3c4" ? setIsOwner(true) : setIsOwner(false)
-
         getProject(id)
     }, []);
 
@@ -65,7 +63,7 @@ export const Project = () => {
         await toast.promise(
             axios.put("/projects/update/" + project.id, {
                 title: data.title || project.title,
-                description: data.description || project.description,   
+                description: data.description || project.description,
             })
                 .then(response => {
                     getProject(project.id)

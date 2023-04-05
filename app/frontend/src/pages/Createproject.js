@@ -29,7 +29,7 @@ export const Createproject = () => {
         await toast.promise(
             axios.post("/projects/create", {
                 title, description, roles: [
-                    { role, amount: quantity, applied: 0 }
+                    { role: role, amount: quantity, applied: 0 }
                 ], tags, questions: [
                     question
                 ], startDate, endDate, category
@@ -45,9 +45,9 @@ export const Createproject = () => {
                     return error;
                 }),
             {
-                loading: "Updating project...",
-                success: "Project updated!",
-                error: "Error updating project."
+                loading: "Creating project...",
+                success: "Project created!",
+                error: "Error creating project."
             })
     };
 

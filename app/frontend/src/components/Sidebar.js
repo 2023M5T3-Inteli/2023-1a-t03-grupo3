@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { Text } from './Text'
 import albertoPicture from '../assets/alberto.svg'
 import { useEffect, useState } from 'react'
+import globe_icon from '../assets/globe.svg'
+import axios from "../axios";
 
 export const Sidebar = () => {
     useEffect(() => {
@@ -9,8 +11,8 @@ export const Sidebar = () => {
             case "/":
                 setPage("/")
                 break;
-            case "/createproject":
-                setPage("/createproject")
+            case "/create-project":
+                setPage("/create-project")
                 break;
             case "/profile#projects":
                 setPage("/profile#projects")
@@ -32,14 +34,37 @@ export const Sidebar = () => {
 
     const [page, setPage] = useState("/")
 
+    const [data, setData] = useState({})
+
+    const profileInfo = async () => {
+        try {
+            await axios
+                .get("/users/f900d5e0-ab8d-410d-8792-95a64698bb6f")
+                .then(response => {
+                    setData(response.data)
+                    return response;
+                })
+                .catch((error) => {
+                    return error;
+                });
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        profileInfo()
+    })
+
     return (
         <div className="flex flex-col w-1/5 bg-[#061826] p-4 text-[#f1f1f1]">
             <Link to="/profile" className='flex md:flex-col lg:flex-row w-full items-center mb-8justify-center'>
-                <img alt="img" src={albertoPicture} className="w-16 h-16 mr-4" />
+                <img alt="img" src={data.picture || albertoPicture} className="w-16 h-16 mr-4 rounded-full" />
 
                 <div className='hidden md:block'>
-                    <Text variant={"xl"}>Alberto Castilho</Text>
-                    <Text variant={"md"} color={"c4c4c4"}>Web Development Manager</Text>
+                    <Text variant={"xl"}>{data.fullName ?? "Loading..."}</Text>
+                    <Text variant={"md"} color={"c4c4c4"}>{data.occupation ?? "Loading..."}</Text>
                 </div>
             </Link>
 
@@ -48,7 +73,7 @@ export const Sidebar = () => {
                     Join a project
                 </Link>
 
-                <Link to={"/createproject"} className={`text-xl mb-3 ${page === "/createproject" ? "text-[#f1f1f1] font-semibold underline" : "text-[#c4c4c4] hover:underline"}`}>
+                <Link to={"/create-project"} className={`text-xl mb-3 ${page === "/create-project" ? "text-[#f1f1f1] font-semibold underline" : "text-[#c4c4c4] hover:underline"}`}>
                     Create a project
                 </Link>
 
@@ -69,7 +94,7 @@ export const Sidebar = () => {
                 </Link>
 
 
-                {/* <Link to={"/createproject"} className={`font-medium text-2xl mb-3 uppercase ${page === "/createproject" ? "text-[#f1f1f1] font-bold" : "text-[#c4c4c4] "}`}>
+                {/* <Link to={"/create-project"} className={`font-medium text-2xl mb-3 uppercase ${page === "/create-project" ? "text-[#f1f1f1] font-bold" : "text-[#c4c4c4] "}`}>
                     Create a project
                 </Link>
 
@@ -91,7 +116,7 @@ export const Sidebar = () => {
             </div>
 
             <div className='mt-auto'>
-                <p>Botao idioma</p>
+            <button className={"text-white flex flex-row"}> Idioma <img className='ml-2' alt="" src={globe_icon}></img> </button>
             </div>
         </div>
     )

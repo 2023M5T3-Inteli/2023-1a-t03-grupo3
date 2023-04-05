@@ -10,6 +10,8 @@ import { JwtService } from '@nestjs/jwt';
 import { jwtSecret } from 'src/utils/constants'
 import { Request, Response } from 'express';
 
+
+// @Injectable - define que a classe AuthService é injetável
 @Injectable()
 export class AuthService {
 	constructor(private prisma: PrismaService, private jwt: JwtService) { }
@@ -35,7 +37,7 @@ export class AuthService {
 
 		return { message: 'Signup successful' };
 	}
-
+// @Request() req, @Response() res - define que o endpoint aceita requisições do tipo GET
 	async signin(dto: AuthDto, req: Request, res: Response) {
 		const { email, password } = dto;
 

@@ -1,54 +1,63 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { PrismaService } from 'prisma/prisma.service';
-import { UpdateNotificationDto } from './dto/update-notification.dto';
+import { Injectable } from '@nestjs/common';
+import { Notification } from './interfaces/notifications.interface';
+import { createNotificationDto } from './dto/create-notification.dto';
+import { updateNotificationDto } from './dto/update-notification.dto';
 
 @Injectable()
 export class NotificationsService {
-  constructor(private prisma: PrismaService) { }
+  deleteNotification(id: number): Notification | PromiseLike<Notification> {
+    throw new Error('Method not implemented.');
+  }
+  private readonly notifications: Notification[] = [];
+  
+// Método para criar uma nova notificação
+  create(createNotificationDto: createNotificationDto) {
+    const newNotification: Notification = {
+      id:createNotificationDto.id,
+      sender: createNotificationDto.sender,
+      description: createNotificationDto.description,
+      type:createNotificationDto.type,
+      aproved:createNotificationDto.aproved,
+      receiver:createNotificationDto.receiver,
 
-  // async getNots(id: string) {
-  //   const notifications = await this.prisma.notification.findMany({
-  //     where: {
-  //       userId: id
-  //     }
-  //   });
+    }
+    this.notifications.push(newNotification)
+    return 'Notification created';
+  }
 
-  //   if (!notifications) {
-  //     throw new BadRequestException('No notifications found');
-  //   }
+   // Método para atualizar uma notificação existente
+  update(updateNotificationDto: updateNotificationDto){
 
-  //   return notifications
-  // }
+    const notificationToUpdate = this.notifications.find(Notification=> Notification.id === updateNotificationDto.id);
+    const notificationToUpdateIndex = this.notifications.indexOf(notificationToUpdate);
+    const updatedNotification: Notification = {
+    
+      id: this.notifications[notificationToUpdateIndex].id,
+      sender: this.notifications[notificationToUpdateIndex].sender,
+      description: this.notifications[notificationToUpdateIndex].description,
+      aproved:updateNotificationDto.aproved,
+      type:this.notifications[notificationToUpdateIndex].type,
+      receiver:this.notifications[notificationToUpdateIndex].receiver,
+    }
 
-  // async updateUser(id: string, body: UpdateNotificationDto) {
-  //     const user = await this.prisma.notifications.findUnique({ where: { id } });
+    this.notifications[notificationToUpdateIndex] = updatedNotification;
 
-  //     if (!Notification) {
-  //         throw new BadRequestException('No notification found');
-  //     }
+    return this.notifications[notificationToUpdateIndex];
+  }
 
-  //     await this.prisma.notification.update({
-  //         where: { id },
-  //         data: {
-  //             ...body
-  //         }
-  //     });
+// Método para retornar todas as notificações
+  findAll(): Notification[] {
+    return this.notifications;
+  }
 
-  //     return {
-  //         Notification,
-  //         message: "notification updated successfully"
-  //     };
-  // }
 
-  // async deleteNots(id: string) {
-  //     const user = await this.prisma.notification.findUnique({ where: { id } });
+  // Método para deletar uma notificação pelo ID
+  delete(id: number): String{
+    const notificationToDelete = this.notifications.find(Notification=> Notification.id === id);
+    const notificationToDeleteIndex = this.notifications.indexOf(notificationToDelete);
 
-  //     if (!user) {
-  //         throw new BadRequestException('No notification found');
-  //     }
+    delete this.notifications[notificationToDeleteIndex];
 
-  //     await this.prisma.user.delete({ where: { id } });
-
-  //     return { id, message: "nots deleted successfully" };
-  // }
+    return "Object deleted";
+  }
 }
