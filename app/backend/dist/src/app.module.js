@@ -14,11 +14,13 @@ const projects_module_1 = require("./projects/projects.module");
 const notifications_module_1 = require("./notifications/notifications.module");
 const ranking_module_1 = require("./ranking/ranking.module");
 const root_module_1 = require("./root/root.module");
+const prisma_service_1 = require("../prisma/prisma.service");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [ranking_module_1.RankingModule, auth_module_1.AuthModule, users_module_1.UsersModule, projects_module_1.ProjectsModule, notifications_module_1.NotificationsModule, root_module_1.RootModule],
+        providers: [prisma_service_1.PrismaService]
     })
 ], AppModule);
 exports.AppModule = AppModule;
