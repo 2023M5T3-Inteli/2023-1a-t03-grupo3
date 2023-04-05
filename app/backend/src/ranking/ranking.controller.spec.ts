@@ -59,64 +59,65 @@ describe("RankingController", () => {
       jest.spyOn(service, "findAll").mockImplementation(async () => usersMock);
       expect(await controller.findAll()).toBeCalled();
     });
+/*
+    describe("# increment points", () => {
+      it("gets the id and increment 5 points on score", async () => {
+        const userMock = [
+          {
+            id: "ide",
+            fullName: "",
+            email: "",
+            hashedPassword: "string",
+            contact: "string",
+            linkedin: "string",
+            occupation: "string",
+            picture: "string",
+            city: "string",
+            state: "string",
+            country: "string",
+            hardSkills: "string",
+            softSkills: "string",
+            otherSkills: "string",
+            score: 0,
+          },
+        ];
+        jest
+          .spyOn(service, "increment")
+          .mockImplementation(async () => userMock);
+        expect(await controller.increment("ide")).toBe({
+          id: "ide",
+          fullName: "any",
+          score: 5,
+          picture: "",
+        });
+      });
 
-  //   describe("# increment points", () => {
-  //     it("gets the id and increment 5 points on score", async () => {
-  //       const userMock = [
-  //         {
-  //           id: "ide",
-  //           fullName: "",
-  //           email: "",
-  //           hashedPassword: "string",
-  //           contact: "string",
-  //           linkedin: "string",
-  //           occupation: "string",
-  //           picture: "string",
-  //           city: "string",
-  //           state: "string",
-  //           country: "string",
-  //           hardSkills: "string",
-  //           softSkills: "string",
-  //           otherSkills: "string",
-  //           score: 0,
-  //         },
-  //       ];
-  //       jest
-  //         .spyOn(service, "increment")
-  //         .mockImplementation(async () => userMock);
-  //       expect(await controller.increment("ide")).toBe({
-  //         id: "ide",
-  //         fullName: "any",
-  //         score: 5,
-  //         picture: "",
-  //       });
-  //     });
-
-  //     it("user not found", async () => {
-  //       const userMock = [
-  //         {
-  //           id: "ide",
-  //           fullName: "",
-  //           email: "",
-  //           hashedPassword: "string",
-  //           contact: "string",
-  //           linkedin: "string",
-  //           occupation: "string",
-  //           picture: "string",
-  //           city: "string",
-  //           state: "string",
-  //           country: "string",
-  //           hardSkills: "string",
-  //           softSkills: "string",
-  //           otherSkills: "string",
-  //           score: 0,
-  //         },
-  //       ];
-  //       jest
-  //         .spyOn(service, "increment")
-  //         .mockImplementation(async () => userMock);
-  //       expect(await controller.increment("ide")).not.toBeCalled();
-  //     });
-  //   });
+      it("user not found", async () => {
+        const userMock = [
+          {
+            id: "ide",
+            fullName: "",
+            email: "",
+            hashedPassword: "string",
+            contact: "string",
+            linkedin: "string",
+            occupation: "string",
+            picture: "string",
+            city: "string",
+            state: "string",
+            country: "string",
+            hardSkills: "string",
+            softSkills: "string",
+            otherSkills: "string",
+            score: 0,
+          },
+        ];
+        jest
+          .spyOn(service, "increment")
+          .mockImplementation(async () => userMock);
+        expect(await controller.increment("ide")).not.toBeCalled();
+      });
+    });
+  */
   });
 });

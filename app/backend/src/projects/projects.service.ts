@@ -118,32 +118,34 @@ export class ProjectsService {
 
 
     async applyToProject(projectId: string, body: any) {
-        const foundProject = await this.prisma.project.findUnique({
-            where: { id: projectId }
-        });
+        // const foundProject = await this.prisma.project.findUnique({
+        //     where: { id: projectId }
+        // });
 
-        if (!foundProject) {
-            throw new BadRequestException("Project not found");
-        }
+        // if (!foundProject) {
+        //     throw new BadRequestException("Project not found");
+        // }
 
-        const { role, answers, userId } = body;
+        // const { role, answers, userId } = body;
 
-        const questions = await this.prisma.question.findMany({
-            where: {
-                id: projectId
-            }
-        });
+        // const questions = await this.prisma.question.findMany({
+        //     where: {
+        //         id: projectId
+        //     }
+        // });
 
-        if (questions.length !== answers.length) {
-            throw new BadRequestException("Invalid answers");
-        }
+        // if (questions.length !== answers.length) {
+        //     throw new BadRequestException("Invalid answers");
+        // }
 
-        return await this.prisma.project.findUnique({
-            where: { id: projectId },
-            select: {
-                members: true
-            }
-        });
+        // return await this.prisma.project.findUnique({
+        //     where: { id: projectId },
+        //     select: {
+        //         members: true
+        //     }
+        // });
+
+        return "Applied"
     }
 
 
